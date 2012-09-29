@@ -44,7 +44,7 @@ Game.prototype.applyHappiness = function (deltaHappiness) {
 	var sign = deltaHappiness < 0 ? -1 : 1;
 	for (var i = 0; i < Math.abs(deltaHappiness); i++) {
 		occupant = this.occupants[_.random(0, this.occupants.length - 1)];
-		occupant.happiness += sign;
+		occupant.updateHappiness(sign);
 	}
 };
 

@@ -1,3 +1,5 @@
+var debug = false;
+
 function ViewModel(game) {
 	this.game = game;
 
@@ -5,8 +7,17 @@ function ViewModel(game) {
 	this.month = ko.observable();
 	this.energy = ko.observable();
 	this.occupants = ko.observable();
+
 	this.weather = ko.observable();
 	this.equipment = ko.observable();
+
+	if (debug) {
+		this.occupants.subscribe(function (newValue) {
+			console.log('occ has changed', JSON.stringify(_.map(newValue, function (val) {
+				return val.happiness;
+			})));
+		});
+	}
 
 	this.update();
 }
@@ -23,9 +34,10 @@ ViewModel.prototype.update = function () {
 	this.budget(this.game.budget);
 	this.month(monthNames[this.game.month]);
 	this.energy(-this.game.consumed);
-	this.occupants(_.map(this.game.occupants, function(occupant) {
-		return occupant.happiness;
-	}));
+
+	this.occupants([]);
+	this.occupants(this.game.occupants);
+
 	this.weather(this.game.thisMonthsWeather());
 	this.equipment(_.map(this.game.equipment, function (equip, slot) {
 		return {

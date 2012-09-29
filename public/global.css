@@ -713,3 +713,8 @@ a.label:hover,a.badge:hover{color:#ffffff;text-decoration:none;cursor:pointer;}
 .invisible{visibility:hidden;}
 body{background-color:white;padding:50px;}
 .game-container{border:1px solid #eeeeee;width:940px;height:500px;margin:0 auto;padding:10px;}
+#equipment>*{width:10em;background-color:#eeeeee;}
+.occupant{display:inline-block;width:15px;height:15px;text-align:center;padding:2px;background-color:#999999;color:white;}.occupant.happy{background-color:#46a546;}
+.occupant.content{background-color:#049cdb;}
+.occupant.discontent{background-color:#f89406;}
+.occupant.unhappy{background-color:#9d261d;}

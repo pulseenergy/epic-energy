@@ -8,6 +8,8 @@
 <script src="lib/knockout-2.1.0.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="lib/js/bootstrap-button.js"></script>
+<script src="src/js/util.js"></script>
+
 <script src="src/js/Occupant.js"></script>
 <script src="src/js/Equipment.js"></script>
 <script src="src/js/Game.js"></script>
@@ -27,7 +29,7 @@
 <div class="game-container">
 	<div data-bind="text: '$' + budget() + ' remaining'"></div>
 	<div id="occupants" data-bind="foreach: occupants">
-		<span data-bind="text: $data"> </span>
+		<span class="occupant" data-bind="text: happiness, attr: { 'title': happinessLabel }, class: happinessLabel"></span>
 	</div>
 	<div data-bind="text: 'Date: ' + month() + ' 1'"></div>
 	<div data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
