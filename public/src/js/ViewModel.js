@@ -19,11 +19,7 @@ ViewModel.prototype.update = function () {
 	this.occupants(_.map(this.game.occupants, function(occupant) {
 		return occupant.happiness;
 	}));
-	var weather = {};
-	_.each(this.game.weather, function (v, k) {
-		weather[k] = v[this.game.month];
-	});
-	this.weather(weather);
+	this.weather(this.game.thisMonthsWeather());
 };
 
 ViewModel.prototype.advanceToNextMonth = function () {

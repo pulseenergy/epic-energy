@@ -22,7 +22,7 @@ function Game() {
 }
 
 Game.prototype.monthDelta = function () {
-	var weather = this.weather[this.month];
+	var weather = this.thisMonthsWeather();
 	var total = { money: 0, happy: 0, energy: 0 };
 	_.each(this.equipment, function (equip) {
 		var partial = equip.monthDelta(this, weather);
@@ -43,3 +43,11 @@ Game.prototype.applyHappiness = function (deltaHappiness) {
 		occupant.happiness += sign;
 	}
 };
+
+Game.prototype.thisMonthsWeather = function () {
+	var weather = {};
+	_.each(this.weather, function (v, k) {
+		weather[k] = v[this.month];
+	}, this);
+	return weather;
+}
