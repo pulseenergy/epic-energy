@@ -6,9 +6,8 @@ var vancouverWeather = {
 	recordLow: [-13.3, -6.7, -5, -1.1, 1.1, 2.8, 2.8, 5, 1.7, -3.2, -9.9, -15.6, -15.6]
 };
 
-var vancouverOfficeEnergy = [50985, 43655, 42752, 37045, 35019, 34887, 38875, 39735, 33185, 35012, 48868, 53010]; // kwh
-
 var startingBudget = 1000;
+var vancouverOfficeEnergy = [50985, 43655, 42752, 37045, 35019, 34887, 38875, 39735, 33185, 35012, 48868, 53010]; // kwh
 
 function Game() {
 	this.budget = startingBudget;
@@ -185,7 +184,7 @@ Game.prototype.nextMonth = function () {
 };
 
 Game.prototype.isGameOver = function () {
-	// TODO: occupants left, over budget
+	// TODO: occupants all left, over budget
 	return this.month === 12;
 };
 
