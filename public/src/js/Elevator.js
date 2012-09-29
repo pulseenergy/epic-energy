@@ -1,10 +1,10 @@
 function OffElevator(base) {
-	this.name = "No Elevator";
-	this.upgradeTitle = "Disable " + base.name;
+	this.upgradeTitle = "Turn Off " + base.name;
+	base.upgradeTitle = "Turn On " + base.name
+	this.name = base.name + " (Off)";
 	this.upgrades = function () {
 		return _.map(base.upgrades(), function (upgrade) {
 			if (upgrade[0] instanceof OffElevator) {
-				base.upgradeTitle = "Re-enable " + base.name
 				return [base, {}];
 			}
 			return upgrade;

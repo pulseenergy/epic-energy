@@ -1,8 +1,30 @@
+function NoLighting(base) {
+	this.upgradeTitle = "Turn Off " + base.name + " (Provide Candles)";
+	base.upgradeTitle = "Turn On " + base.name
+	this.name = "Candles";
+	this.upgrades = function () {
+		return _.map(base.upgrades(), function (upgrade) {
+			if (upgrade[0] instanceof OffElevator) {
+				return [base, {}];
+			}
+			return upgrade;
+		});
+	};
+	this.monthDelta = function (game, baselineEnergy, weather) {
+		var positive = _.random(0,100) > 90;
+		return {
+			money: 0,
+			happy: positive ? 1 : -1,
+			energy: 0,
+			messages: positive ? ["The candles are romantic"] : ["I'm afraid of the dark"]
+		};
+	};
+};
 
 function T12Lighting() {
 	this.upgradeTitle = this.name = "T12 Light Bulbs";
 	this.upgrades = function () {
-		return [ [new T8Lighting(), { money: -1000 }] ];
+		return [ [new NoLighting(this), { money: -10 }], [new T8Lighting(), { money: -1000 }] ];
 	};
 	this.monthDelta = function (game, baselineEnergy, weather) {
 		return {
@@ -17,7 +39,7 @@ function T12Lighting() {
 function T8Lighting() {
 	this.upgradeTitle = this.name = "T8 Light Bulbs";
 	this.upgrades = function () {
-		return [ ];
+		return [ [new NoLighting(this), { money: -10 }] ];
 	};
 	this.monthDelta = function (game, baselineEnergy, weather) {
 		return {
