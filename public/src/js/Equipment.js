@@ -11,7 +11,12 @@ function Equipment() {
 function OffBoiler(base) {
 	this.name = "Disabled " + base.name;
 	this.upgrades = function () {
-		return [ [base, {}], [new BetterBoiler(), { money: 1000 }] ];
+		return _.map(base.upgrades(), function (upgrade) {
+			if (upgrade[0] instanceof OffBoiler) {
+				return [base, {}];
+			}
+			return upgrade;
+		});
 	};
 	this.monthDelta = function (game, weather) {
 		return {
@@ -25,7 +30,7 @@ function OffBoiler(base) {
 function CrappyBoiler() {
 	this.name = "Atmospheric Boiler";
 	this.upgrades = function () {
-		return [ [new OffBoiler(this), {}], [new BetterBoiler(), { money: 1000 }] ];
+		return [ [new OffBoiler(this), {}], [new BetterBoiler(), { money: -1000 }] ];
 	};
 	this.monthDelta = function (game, weather) {
 		return {
@@ -45,7 +50,7 @@ function BetterBoiler() {
 		return {
 			money: 0,
 			happy: 0,
-			energy: (weather.averageLow < 8) ? 80 : 40
+			energy: (weather.averageLow < 8) ? -80 : -40
 		};
 	};
 };

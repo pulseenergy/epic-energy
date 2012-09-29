@@ -34,9 +34,9 @@ Game.prototype.monthDelta = function () {
 };
 
 Game.prototype.applyCost = function (total) {
-	this.budget += total.money;
-	this.consumed += total.energy;
-	this.applyHappiness(total.happy);
+	this.budget += total.money || 0;
+	this.consumed += total.energy || 0;
+	this.applyHappiness(total.happy || 0);
 };
 
 Game.prototype.applyHappiness = function (deltaHappiness) {

@@ -11,6 +11,11 @@ function ViewModel(game) {
 	this.update();
 }
 
+function vowel(char) {
+	char = char.toLowerCase();
+	return char == 'a' || char == 'e' || char == 'i' || char == 'o' || char == 'u';
+}
+
 ViewModel.prototype.update = function () {
 	var monthNames = 'January February March April May June July August September October November December'.split(' ');
 	var viewModel = this;
@@ -31,9 +36,10 @@ ViewModel.prototype.update = function () {
 				var cost = upgrade[1];
 				return {
 					upgradeTo: function () {
+						var a = vowel(name[0]) ? 'a ' : 'an ';
 						var message = cost.money > 0
-							? 'Spend $' + cost.money + ' to change to a ' + name + '?'
-							: 'Change to a ' + name + '?';
+							? 'Spend $' + cost.money + ' to change to ' + a + name + '?'
+							: 'Change to ' + a + name + '?';
 						if (confirm(message)) {
 							viewModel.game.applyCost(cost);
 							viewModel.game.equipment[slot] = upgrade[0];
