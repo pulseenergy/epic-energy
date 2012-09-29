@@ -1,11 +1,11 @@
 var minHappiness = 0;
 var maxHappiness = 3;
 
-var happinessLabels = ['unhappy', 'discontent', 'content', 'happy'];
+var happinessLabels = ['Unhappy', 'Discontent', 'Content', 'Happy'];
 
 function Occupant() {
 	this.happiness = 2;
-	this.happinessLabel = 'content';
+	this.updateHappinessLabel();
 }
 
 Occupant.prototype.updateHappiness = function (amount) {

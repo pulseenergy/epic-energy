@@ -7,6 +7,8 @@
 <script src="lib/underscore-1.4.0.js"></script>
 <script src="lib/knockout-2.1.0.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="lib/js/bootstrap-transition.js"></script>
+<script src="lib/js/bootstrap-tooltip.js"></script>
 <script src="lib/js/bootstrap-button.js"></script>
 <script src="src/js/util.js"></script>
 <script src="src/js/Occupant.js"></script>
@@ -26,6 +28,10 @@
 		game = new Game();
 		viewModel = new ViewModel(game);
 		ko.applyBindings(viewModel);
+
+		$('body').tooltip({
+			selector: '.tooltipped'
+		})
 	});
 </script>
 </head>
@@ -65,7 +71,7 @@
 						<li class="occupants">
 							<h4>Occupants</h4>
 							<div data-bind="foreach: occupants">
-								<span class="occupant" data-bind="attr: { 'title': happinessLabel }, class: happinessLabel"></span>
+								<span class="occupant tooltipped" data-bind="attr: { 'title': happinessLabel }, class: happinessLabel.toLowerCase()"></span>
 							</div>
 						</li>
 						<!-- ko foreach: equipment -->
