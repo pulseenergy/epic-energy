@@ -18,6 +18,7 @@
 	var game, viewModel;
 
 	$(function () {
+		$('#fullscreen-button').click(goFullScreen);
 		game = new Game();
 		viewModel = new ViewModel(game);
 		ko.applyBindings(viewModel);
@@ -48,9 +49,10 @@
 		</div>
 	</div>
 </div>
-
+<button class="btn btn-mini pull-left" id="fullscreen-button">Fullscreen</button>
 <div class="main-body season-spring">
 	<div class="container">
+
 		<div class="row">
 			<span class="left-column span4">
 				<div class="building-container"></div>

@@ -8,3 +8,14 @@ ko.bindingHandlers['class'] = {
 		element['__ko__previousClassValue__'] = value;
 	}
 };
+
+function goFullScreen() {
+	var docElm = document.documentElement;
+	if (docElm.requestFullscreen) {
+		docElm.requestFullscreen();
+	} else if (docElm.mozRequestFullScreen) {
+		docElm.mozRequestFullScreen();
+	} else if (docElm.webkitRequestFullScreen) {
+		docElm.webkitRequestFullScreen();
+	}
+}
