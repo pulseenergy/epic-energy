@@ -19,3 +19,9 @@ function goFullScreen() {
 		docElm.webkitRequestFullScreen();
 	}
 }
+
+function preload(images) {
+	$(images).each(function() {
+		(new Image()).src = this;
+	});
+}
