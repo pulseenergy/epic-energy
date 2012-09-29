@@ -13,7 +13,8 @@ function Game() {
 	this.budget = startingBudget;
 	this.consumed = 0;
 	this.equipment = {
-		boiler: new CrappyBoiler()
+		boiler: new CrappyBoiler(),
+		hotWater: new CrappyHotWater()
 	};
 	this.occupants = [];
 	for (var i = 0; i < 10; i++) {
