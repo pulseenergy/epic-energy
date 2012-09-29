@@ -119,7 +119,7 @@
 				<div class="right-column-bottom">
 					<h3>Available Actions</h3>
 					<!-- ko if: !selectedCategory() -->
-						<p>Select a category to see available actions.</p>
+						<p>&#171; Select a category on the left to see available actions.</p>
 					<!-- /ko -->
 					<!-- ko if: selectedCategory() -->
 						<!-- ko if: !availableActionsForSelectedCategory().length -->
@@ -130,7 +130,7 @@
 								<div class="action-name" data-bind="text: name"></div>
 								<div class="action-cost" data-bind="text: formattedCost"></div>
 								<div class="action-do">
-									<button class="btn btn-success" data-bind="click: $root.pendingAction">Do It &#187;</button>
+									<button class="btn btn-success" data-bind="click: $root.pendingAction">Do It</button>
 								</div>
 							</div>
 						</div>

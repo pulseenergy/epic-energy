@@ -58,7 +58,7 @@
 				margin: 0;
 				
 				li {
-					width: 69px;
+					width: 70px;
 					display: block;
 					float: left;
 					.border-radius(10px);
@@ -72,8 +72,12 @@
 					text-align: center;
 					background: url(img/equipment_icons.png) 0 0 no-repeat #fafafa;
 					
+					&:nth-of-type(1n+4) {
+						margin-right: 0;
+					}
+					
 					&.occupants {
-						width: 217px;
+						width: 220px;
 						margin-right: 0;
 						height: auto;
 						background: #fafafa;
