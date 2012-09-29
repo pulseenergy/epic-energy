@@ -43,12 +43,19 @@ Game.prototype.applyCost = function (total) {
 };
 
 Game.prototype.applyHappiness = function (deltaHappiness) {
-	var occupant;
+	var occupant, occupantIndex;
 	var sign = deltaHappiness < 0 ? -1 : 1;
 	for (var i = 0; i < Math.abs(deltaHappiness); i++) {
-		occupant = this.occupants[_.random(0, this.occupants.length - 1)];
+		occupantIndex = _.random(0, this.notUnhappyOccupants().length - 1);
+		occupant = this.notUnhappyOccupants()[occupantIndex];
 		occupant.updateHappiness(sign);
 	}
+};
+
+Game.prototype.notUnhappyOccupants = function () {
+	return _.filter(this.occupants, function(occupant) {
+		return occupant.happiness > 0;
+	})
 };
 
 Game.prototype.thisMonthsWeather = function () {
