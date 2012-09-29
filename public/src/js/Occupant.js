@@ -15,4 +15,4 @@ Occupant.prototype.updateHappiness = function (amount) {
 
 Occupant.prototype.updateHappinessLabel = function () {
 	this.happinessLabel = happinessLabels[this.happiness];
-}
+};

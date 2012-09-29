@@ -55,16 +55,9 @@
 			<span class="left-column span4">
 				<div class="building-container"></div>
 				<div class="equipment-summary clearfix">
-					<ul>
-						<li>A</li>
-						<li>B</li>
-						<li>C</li>
-						<li>D</li>
-						<li>E</li>
+					<ul data-bind="foreach: equipment">
+						<li data-bind="text: name"></li>
 					</ul>
-				</div>
-				<div id="equipment" data-bind="foreach: equipment">
-					<div data-bind="attr: { class: cssClass }, text: name"></div>
 				</div>
 			</span>
 			<span class="right-column span8">
