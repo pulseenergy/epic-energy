@@ -53,14 +53,34 @@
 				margin: 0;
 				
 				li {
-					width: 120px;
+					width: 80px;
 					display: block;
 					float: left;
-					.border-radius(5px);
-					border: 1px solid #bbb;
+					.border-radius(10px);
+					border: 2px solid #ccc;
 					.box-sizing(border-box);
-					padding: 15px;
+					padding: 65px 0 10px;
 					margin: 0 10px 10px 0;
+					height: 90px;
+					display: table-cell;
+					vertical-align: bottom;
+					background-repeat: no-repeat;
+					text-align: center;
+					#gradient .vertical(#fafafa, #fafafa);
+					
+					&.water-heating {background-image: url();}
+					
+					h4 {
+						line-height: 1.2em;
+						margin-bottom: 0;
+						font-size: 12px;
+					}
+					
+					&:hover {
+						border-color: #555;
+						.box-shadow(0 0 0 3px rgba(0,0,0,.04));
+						cursor: pointer;
+					}
 				}
 			}
 		}
@@ -68,6 +88,17 @@
 	
 	.right-column {
 		padding-top: 20px;
+		
+		.this-month-summary {
+			
+			h1 {
+				
+			}
+			
+			p {
+				
+			}
+		}
 	}
 }
 
