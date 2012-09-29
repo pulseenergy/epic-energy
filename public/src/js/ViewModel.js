@@ -66,6 +66,7 @@ ViewModel.prototype.update = function () {
 			return {
 				category: slot,
 				name: name,
+				upgradeTitle: upgrade[0].upgradeTitle,
 				cost: cost,
 				formattedCost: cost.money < 0 ? '$' + -cost.money : 'Free',
 				message: message,

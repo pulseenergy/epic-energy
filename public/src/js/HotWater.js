@@ -1,5 +1,7 @@
 function OffHotWater(base) {
-	this.upgradeTitle = this.name = "Disabled " + base.name;
+	this.upgradeTitle = "Turn Off " + base.name;
+	base.upgradeTitle = "Turn On " + base.name;
+	this.name = base.name + " (Off)";
 	this.upgrades = function () {
 		return _.map(base.upgrades(), function (upgrade) {
 			if (upgrade[0] instanceof OffHotWater) {
@@ -19,7 +21,8 @@ function OffHotWater(base) {
 };
 
 function CrappyHotWater() {
-	this.upgradeTitle = this.name = "Atmospheric Hot Water Heater";
+	this.name = "Atmospheric Hot Water Heater";
+	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
 		return [ [new OffHotWater(this), {}], [new OnDemandHotWater(), { money: -1000 }], [new CondensingHotWater(), { money: -1000 }] ];
 	};
@@ -34,7 +37,8 @@ function CrappyHotWater() {
 };
 
 function OnDemandHotWater() {
-	this.upgradeTitle = this.name = "On Demand Hot Water Heater";
+	this.name = "On Demand Hot Water Heater";
+	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
 		return [ [new OffHotWater(this), {}], [new CondensingHotWater(), { money: -1000 }] ];
 	};
@@ -49,7 +53,8 @@ function OnDemandHotWater() {
 };
 
 function SolarHotWater() {
-	this.upgradeTitle = this.name = "Solar Hot Water Heater";
+	this.name = "Solar Hot Water Heater";
+	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
 		return [ [new OffHotWater(this), {}] ];
 	};
@@ -64,7 +69,8 @@ function SolarHotWater() {
 };
 
 function CondensingHotWater() {
-	this.upgradeTitle = this.name = "Condensing Hot Water Heater";
+	this.name = "Condensing Hot Water Heater";
+	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
 		return [ [new OffHotWater(this), {}] ];
 	};
