@@ -14,7 +14,7 @@ function Game() {
 	this.budget = startingBudget;
 	this.consumed = 0;
 	this.equipment = {
-		Boiler: new CrappyBoiler()
+		boiler: new CrappyBoiler()
 	};
 	this.occupants = [];
 	for (var i = 0; i < 10; i++) {
@@ -183,7 +183,7 @@ Game.prototype.nextMonth = function () {
 	if (this.month < 12) {
 		this.month++;
 	}
-}
+};
 
 Game.prototype.isGameOver = function () {
 	// TODO: occupants left, over budget
