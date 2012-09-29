@@ -129,9 +129,9 @@
 						<div data-bind="foreach: availableActionsForSelectedCategory">
 							<div class="action-row">
 								<div class="action-name" data-bind="text: upgradeTitle"></div>
-								<div class="action-cost" data-bind="text: formattedCost"></div>
+								<div class="action-cost" data-bind="text: formattedCost, css: { insufficentFunds: !available }"></div>
 								<div class="action-do">
-									<button class="btn btn-success" data-bind="click: $root.pendingAction">Do It</button>
+									<button class="btn btn-success" data-bind="click: $root.pendingAction, enable: available">Do It</button>
 								</div>
 							</div>
 						</div>

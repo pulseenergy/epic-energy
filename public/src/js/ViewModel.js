@@ -69,17 +69,19 @@ ViewModel.prototype.update = function () {
 
 	this.messages(this.game.messages);
 
+	var budget = game.budget;
+
 	var actions = {};
 	_.each(this.game.equipment, function (equip, slot) {
 		actions[slot] = _.map(equip.upgrades(), function (upgrade) {
 			var name = upgrade[0].name;
 			var cost = upgrade[1];
-			var a = vowel(name[0]) ? 'a ' : 'an ';
 			return {
 				category: slot,
 				name: name,
 				upgradeTitle: upgrade[0].upgradeTitle,
 				cost: cost,
+				available: cost.money == null || (budget + cost.money) >= 0,
 				formattedCost: cost.money < 0 ? '$' + -cost.money : 'Free',
 				apply: function (game) {
 					game.equipment[slot] = upgrade[0];
