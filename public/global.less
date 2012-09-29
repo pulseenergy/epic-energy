@@ -6,6 +6,39 @@ body {
 	min-height: 100%;
 	margin: 0;
 	background: url(img/skyline.png) top repeat-x;
+	
+	.building-container {
+		width: 260px;
+		height: 300px;		
+		position: relative;
+		background: url(img/bldg_spring.png) top left no-repeat;
+		left: -20px;
+		top: -10px;
+	}
+	
+	&.season-spring {
+		.building-container {
+			background: url(img/bldg_spring.png) top left no-repeat;
+		}
+	}
+	
+	&.season-summer {
+		.building-container {
+			background: url(img/bldg_summer.png) top left no-repeat;
+		}
+	}
+	
+	&.season-winter {
+		.building-container {
+			background: url(img/bldg_winter.png) top left no-repeat;
+		}
+	}
+	
+	&.season-fall {
+		.building-container {
+			background: url(img/bldg_fall.png) top left no-repeat;
+		}
+	}
 }
 
 
