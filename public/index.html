@@ -61,8 +61,15 @@
 			<span class="left-column span4">
 				<div class="building-container"></div>
 				<div class="equipment-summary clearfix">
-					<ul data-bind="foreach: equipment">
-						<li data-bind="text: category, attr: { title: name }, css: { selected: $root.selectedCategory() === category }, click: $root.selectCategory.bind($root)"></li>
+					<ul>
+						<li class="occupants">
+							<div data-bind="foreach: occupants">
+								<span class="occupant" data-bind="text: happiness, attr: { 'title': happinessLabel }, class: happinessLabel"></span>
+							</div>
+						</li>
+						<!-- ko foreach: equipment -->						
+						<li data-bind="text: category, attr: { title: name }, css: { selected: $root.selectedCategory() === category }, class: category, click: $root.selectCategory.bind($root)"></li>
+						<!-- /ko -->
 					</ul>
 				</div>
 			</span>
@@ -83,9 +90,7 @@
 						</ul>
 					</div>
 					
-					<div id="occupants" data-bind="foreach: occupants">
-						<span class="occupant" data-bind="text: happiness, attr: { 'title': happinessLabel }, class: happinessLabel"></span>
-					</div>
+					
 					<div data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
 
 					<button class="btn btn-large btn-primary pull-right" data-bind="click: advanceToNextMonth, disable: gameOver">Next</button>

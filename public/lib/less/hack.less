@@ -64,15 +64,44 @@
 					padding: 10px;
 					margin: 0 5px 5px 0;
 					height: 90px;
-					display: table-cell;
-					vertical-align: bottom;
 					background-repeat: no-repeat;
 					text-align: center;
 					#gradient .vertical(#fafafa, #fafafa);
+					background: url(img/equipment_icons.png) 0 0 no-repeat;
 					
 					&.occupants {
 						width: 256px;
+						height: auto;
+						background: none;
+						
+						.occupant {
+							display: inline-block;
+							width: 16px;
+							height: 25px;
+							padding-top: 8px;
+							text-align: center;
+							font-size: 11px;
+							font-weight: 600;
+							margin-right: 4px;
+							background-color: @grayLight;
+							color: white;
+							background: url(img/occupant_hollow.png);
+							.box-sizing(border-box);
+
+							&.happy { background-color: @green; }
+							&.content { background-color: @blue; }
+							&.discontent { background-color: @orange; }
+							&.unhappy { background-color: @red; }
+						}
+						
 					}
+					
+					&.hotWater {background-position: url();}
+					&.building {background-position: url();}
+					&.hvac {background-position: url();}
+					&.cooling {background-position: url();}
+					&.lighting {background-position: url();}
+					&.elevator {background-position: url();}
 					
 					h4 {
 						line-height: 1.2em;
