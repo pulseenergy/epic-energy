@@ -19,6 +19,9 @@ function ViewModel(game) {
 		});
 	}
 
+	this.pendingAction = ko.observable();
+	this.availableActionsByCategory = ko.observable();
+
 	this.update();
 }
 
@@ -29,7 +32,6 @@ function vowel(char) {
 
 ViewModel.prototype.update = function () {
 	var monthNames = 'January February March April May June July August September October November December'.split(' ');
-	var viewModel = this;
 
 	this.budget(this.game.budget);
 	this.month(monthNames[this.game.month]);
@@ -42,24 +44,30 @@ ViewModel.prototype.update = function () {
 	this.equipment(_.map(this.game.equipment, function (equip, slot) {
 		return {
 			cssClass: slot,
-			name: equip.name,
+			name: equip.name
+		};
+	}));
+
+	this.availableActionsByCategory(_.map(this.game.equipment, function (equip, slot) {
+		return {
+			category: slot,
 			upgrades: _.map(equip.upgrades(), function (upgrade) {
 				var name = upgrade[0].name;
 				var cost = upgrade[1];
+				var a = vowel(name[0]) ? 'a ' : 'an ';
+				var message = cost.money < 0
+						? 'Spend $' + -cost.money + ' to change to ' + a + name + '?'
+						: 'Change to ' + a + name + '?';
 				return {
-					upgradeTo: function () {
-						var a = vowel(name[0]) ? 'a ' : 'an ';
-						var message = cost.money > 0
-							? 'Spend $' + cost.money + ' to change to ' + a + name + '?'
-							: 'Change to ' + a + name + '?';
-						if (confirm(message)) {
-							viewModel.game.applyCost(cost);
-							viewModel.game.equipment[slot] = upgrade[0];
-							viewModel.advanceToNextMonth();
-						}
-					},
+					category: slot,
 					name: name,
-					cost: cost
+					cost: cost,
+					formattedCost: cost.money < 0 ? '$' + -cost.money : 'Free',
+					message: message,
+					apply: function (game) {
+						game.equipment[slot] = upgrade[0];
+						game.applyCost(upgrade[1]);
+					}
 				};
 			})
 		};
@@ -67,6 +75,10 @@ ViewModel.prototype.update = function () {
 };
 
 ViewModel.prototype.advanceToNextMonth = function () {
+	if (this.pendingAction()) {
+		this.pendingAction().apply(this.game);
+		this.pendingAction(null);
+	}
 	this.game.month++;
 	game.monthDelta();
 	this.update();

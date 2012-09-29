@@ -36,11 +36,34 @@
 	<div data-bind="text: energy() + ' kWh consumed'"></div>
 	<div id="equipment" data-bind="foreach: equipment">
 		<div data-bind="attr: { class: cssClass }, text: name"></div>
-		<ul class="upgrades" data-bind="foreach: upgrades">
-			<li class="upgrade" data-bind="click: upgradeTo, text: name + ' ($' + (cost.money || 0) + ')'"></li>
-		</ul>
+	</div>
+	<div id="pendingAction">
+		<!-- ko if: !pendingAction() -->
+			<h4>No Pending Action</h4>
+		<!-- /ko -->
+		<!-- ko if: pendingAction -->
+			<h4>Pending Action</h4>
+			<ul data-bind="with: pendingAction">
+				<li>
+					<span data-bind="text: category"></span>
+					<span data-bind="text: message"></span>
+				</li>
+			</ul>
+		<!-- /ko -->
 	</div>
 	<button class="btn" data-bind="click: advanceToNextMonth">Next</button>
+	<div id="availableActions" data-bind="foreach: availableActionsByCategory">
+		<div class="actionCategory">
+			<h4 data-bind="text: name"></h4>
+			<ul data-bind="foreach: upgrades">
+				<li>
+					<span data-bind="text: name"></span>
+					<span data-bind="text: formattedCost"></span>
+					<button data-bind="click: $root.pendingAction">Do It</button>
+				</li>
+			</ul>
+		</div>
+	</div>
 </div>
 </body>
 </html>
