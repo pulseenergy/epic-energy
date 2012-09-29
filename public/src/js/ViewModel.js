@@ -82,7 +82,7 @@ ViewModel.prototype.update = function () {
 				upgradeTitle: upgrade[0].upgradeTitle,
 				cost: cost,
 				available: cost.money == null || (budget + cost.money) >= 0,
-				formattedCost: cost.money < 0 ? '$' + -cost.money : 'Free',
+				formattedCost: cost.money < 0 ? '$' + accounting.formatNumber(-cost.money) : 'Free',
 				apply: function (game) {
 					game.equipment[slot] = upgrade[0];
 					game.applyCost(upgrade[1]);

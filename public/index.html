@@ -6,6 +6,7 @@
 
 <script src="lib/underscore-1.4.0.js"></script>
 <script src="lib/knockout-2.1.0.js"></script>
+<script src="lib/accounting.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="lib/js/bootstrap-transition.js"></script>
 <script src="lib/js/bootstrap-tooltip.js"></script>
@@ -87,9 +88,9 @@
 					<div class="score-summary">
 						<dl>
 							<dt>Energy Used</dt>
-							<dd data-bind="text: function() { return Math.round(energy()) + ' kWh' }()"></dd>
+							<dd data-bind="text: accounting.formatNumber(energy()) + ' kWh'"></dd>
 							<dt>Remaining Budget</dt>
-							<dd data-bind="text: '$' + budget()">
+							<dd data-bind="text: '$' + accounting.formatNumber(budget())">
 						</dl>
 					</div>
 					<div class="monthly-summary" style="float: none">

@@ -6,7 +6,7 @@ var vancouverWeather = {
 	recordLow: [-13.3, -6.7, -5, -1.1, 1.1, 2.8, 2.8, 5, 1.7, -3.2, -9.9, -15.6, -15.6]
 };
 
-var startingBudget = 1000;
+var startingBudget = 10000;
 var vancouverOfficeEnergy = [50985, 43655, 42752, 37045, 35019, 34887, 38875, 39735, 33185, 35012, 48868, 53010]; // kwh
 
 function Game() {
