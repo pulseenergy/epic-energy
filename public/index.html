@@ -31,6 +31,7 @@
       </span>
     </div>
 	<div data-bind="text: 'Date: ' + month() + ' 1'"></div>
+	<div data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
 	<div data-bind="text: energy() + ' kWh consumed'"></div>
 	<button class="btn" data-bind="click: advanceToNextMonth">Next</button>
 </div>
