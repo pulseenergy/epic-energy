@@ -56,46 +56,53 @@
 				<div class="building-container"></div>
 				<div class="equipment-summary clearfix">
 					<ul data-bind="foreach: equipment">
-						<li data-bind="text: name"></li>
+						<li data-bind="text: category, attr: { title: name }, click: $root.selectCategory.bind($root)"></li>
 					</ul>
 				</div>
 			</span>
 			<span class="right-column span8">
-                <div data-bind="foreach: messages"><span data-bind="text: $data"></span></div>
-				<div data-bind="text: '$' + budget() + ' remaining'"></div>
-				<div id="occupants" data-bind="foreach: occupants">
-					<span class="occupant" data-bind="text: happiness, attr: { 'title': happinessLabel }, class: happinessLabel"></span>
+				<div id="above">
+					<div data-bind="foreach: messages"><span data-bind="text: $data"></span></div>
+					<div data-bind="text: '$' + budget() + ' remaining'"></div>
+					<div id="occupants" data-bind="foreach: occupants">
+						<span class="occupant" data-bind="text: happiness, attr: { 'title': happinessLabel }, class: happinessLabel"></span>
+					</div>
+					<div data-bind="text: 'Date: ' + monthName()"></div>
+					<div data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
+					<div data-bind="text: energy() + ' kWh consumed'"></div>
+					<div id="pendingAction">
+						<!-- ko if: !pendingAction() -->
+							<h4>No Pending Action</h4>
+						<!-- /ko -->
+						<!-- ko if: pendingAction -->
+							<h4>Pending Action</h4>
+							<ul data-bind="with: pendingAction">
+								<li>
+									<span data-bind="text: category"></span>
+									<span data-bind="text: message"></span>
+								</li>
+							</ul>
+						<!-- /ko -->
+					</div>
+					<button class="btn" data-bind="click: advanceToNextMonth, disable: gameOver">Next</button>
 				</div>
-				<div data-bind="text: 'Date: ' + monthName()"></div>
-				<div data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
-				<div data-bind="text: energy() + ' kWh consumed'"></div>
-				<div id="pendingAction">
-					<!-- ko if: !pendingAction() -->
-						<h4>No Pending Action</h4>
+				<div id="availableActions">
+					<h4>Available Actions</h4>
+					<!-- ko if: !selectedCategory() -->
+						<p>Select a category to see available actions.</p>
 					<!-- /ko -->
-					<!-- ko if: pendingAction -->
-						<h4>Pending Action</h4>
-						<ul data-bind="with: pendingAction">
-							<li>
-								<span data-bind="text: category"></span>
-								<span data-bind="text: message"></span>
-							</li>
-						</ul>
-					<!-- /ko -->
-				</div>
-				<button class="btn" data-bind="click: advanceToNextMonth, disable: gameOver">Next</button>
-				<h4>Available Actions</h4>
-				<div id="availableActions" data-bind="foreach: availableActionsByCategory">
-					<div class="actionCategory">
-						<h4 data-bind="text: category"></h4>
-						<ul data-bind="foreach: upgrades">
+					<!-- ko if: selectedCategory() -->
+						<!-- ko if: !availableActionsForSelectedCategory().length -->
+							<p>No available actions.</p>
+						<!-- /ko -->
+						<ul data-bind="foreach: availableActionsForSelectedCategory">
 							<li>
 								<span data-bind="text: name"></span>
 								<span data-bind="text: formattedCost"></span>
 								<button data-bind="click: $root.pendingAction">Do It</button>
 							</li>
 						</ul>
-					</div>
+					<!-- /ko -->
 				</div>
 			</span>
 		</div>

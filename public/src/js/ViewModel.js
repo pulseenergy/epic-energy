@@ -26,6 +26,12 @@ function ViewModel(game) {
 	this.pendingAction = ko.observable();
 	this.availableActionsByCategory = ko.observable();
 
+	this.selectedCategory = ko.observable();
+	this.availableActionsForSelectedCategory = ko.computed(function () {
+		var selected = this.selectedCategory();
+		return (this.availableActionsByCategory() || {})[selected] || [];
+	}, this);
+
 	this.update();
 }
 
@@ -46,40 +52,47 @@ ViewModel.prototype.update = function () {
 	this.weather(this.game.thisMonthsWeather());
 	this.equipment(_.map(this.game.equipment, function (equip, slot) {
 		return {
-			cssClass: slot,
+			category: slot,
 			name: equip.name
 		};
 	}));
-	
+
 	this.messages(this.game.messages);
 
-	this.availableActionsByCategory(_.map(this.game.equipment, function (equip, slot) {
-		return {
-			category: slot,
-			upgrades: _.map(equip.upgrades(), function (upgrade) {
-				var name = upgrade[0].name;
-				var cost = upgrade[1];
-				var a = vowel(name[0]) ? 'a ' : 'an ';
-				var message = cost.money < 0
-						? 'Spend $' + -cost.money + ' to change to ' + a + name + '?'
-						: 'Change to ' + a + name + '?';
-				return {
-					category: slot,
-					name: name,
-					cost: cost,
-					formattedCost: cost.money < 0 ? '$' + -cost.money : 'Free',
-					message: message,
-					apply: function (game) {
-						game.equipment[slot] = upgrade[0];
-						game.applyCost(upgrade[1]);
-					}
-				};
-			})
-		};
-	}));
-
+	var actions = {};
+	_.each(this.game.equipment, function (equip, slot) {
+		actions[slot] = _.map(equip.upgrades(), function (upgrade) {
+			var name = upgrade[0].name;
+			var cost = upgrade[1];
+			var a = vowel(name[0]) ? 'a ' : 'an ';
+			var message = cost.money < 0
+					? 'Spend $' + -cost.money + ' to change to ' + a + name + '?'
+					: 'Change to ' + a + name + '?';
+			return {
+				category: slot,
+				name: name,
+				cost: cost,
+				formattedCost: cost.money < 0 ? '$' + -cost.money : 'Free',
+				message: message,
+				apply: function (game) {
+					game.equipment[slot] = upgrade[0];
+					game.applyCost(upgrade[1]);
+				}
+			};
+		});
+	});
+	this.availableActionsByCategory(actions);
 
 	this.gameOver(this.game.isGameOver());
+};
+
+ViewModel.prototype.selectCategory = function (equipment) {
+	var category = equipment.category;
+	if (this.selectedCategory() == category) {
+		this.selectedCategory(null);
+	} else {
+		this.selectedCategory(category);
+	}
 };
 
 ViewModel.prototype.advanceToNextMonth = function () {

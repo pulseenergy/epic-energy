@@ -10,7 +10,7 @@ function Game() {
 	this.budget = 1000;
 	this.consumed = 0;
 	this.equipment = {
-		boiler: new CrappyBoiler()
+		Boiler: new CrappyBoiler()
 	};
 	this.occupants = [];
 	for (var i = 0; i < 10; i++) {
