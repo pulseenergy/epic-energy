@@ -1,5 +1,6 @@
 var debug = false;
 var monthNames = 'January February March April May June July August September October November December -'.split(' ');
+var seasons = ['winter', 'spring', 'summer', 'fall'];
 
 function categoryFriendlyName(category) {
 	return {
@@ -18,6 +19,9 @@ function ViewModel(game) {
 	this.budget = ko.observable();
 	this.year = ko.observable();
 	this.month = ko.observable();
+	this.season = ko.computed(function () {
+		return seasons[Math.floor(this.month() / 3)] || seasons[0];
+	}, this);
 	this.monthName = ko.observable();
 	this.energy = ko.observable();
 	this.occupants = ko.observable();
