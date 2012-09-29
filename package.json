@@ -1,0 +1,9 @@
+{
+  "name": "ever-energy",
+  "description": "Better known as Legends of Energy 3: Downtown",
+  "version": "0.0.1",
+  "dependencies": {
+    "connect": "2.5.x",
+    "less-middleware": "0.1.x"
+  }
+}
