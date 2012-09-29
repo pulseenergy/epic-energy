@@ -13,7 +13,7 @@ function CrappyBoiler() {
 	this.monthDelta = function (game, weather) {
 		return {
 			money: 0,
-			happy: 0,
+			happy: -1,
 			energy: -100
 		};
 	};

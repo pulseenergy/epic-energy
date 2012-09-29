@@ -25,8 +25,8 @@
 </head>
 <body>
 	<div data-bind="text: '$' + budget() + ' remaining'"></div>
-    <div id="occupants" data-bind="foreach: game.occupants">
-      <span data-bind="text: happiness">
+    <div id="occupants" data-bind="foreach: occupants">
+      <span data-bind="text: $data">
       </span>
     </div>
 	<div data-bind="text: 'Date: ' + month() + ' 1'"></div>

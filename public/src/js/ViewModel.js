@@ -4,6 +4,7 @@ function ViewModel(game) {
 	this.budget = ko.observable();
 	this.month = ko.observable();
 	this.energy = ko.observable();
+	this.occupants = ko.observable();
 
 	this.update();
 }
@@ -14,6 +15,9 @@ ViewModel.prototype.update = function () {
 	this.budget(this.game.budget);
 	this.month(monthNames[this.game.month]);
 	this.energy(-this.game.consumed);
+	this.occupants(_.map(this.game.occupants, function(occupant) {
+		return occupant.happiness;
+	}));
 };
 
 ViewModel.prototype.advanceToNextMonth = function () {
