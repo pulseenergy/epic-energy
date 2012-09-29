@@ -111,7 +111,7 @@
 					</div>
 				</div>
 				<div class="right-column-bottom">
-					<h2>Available Actions</h2>
+					<h3>Available Actions</h3>
 					<!-- ko if: !selectedCategory() -->
 						<p>Select a category to see available actions.</p>
 					<!-- /ko -->
@@ -120,11 +120,11 @@
 							<p>No available actions.</p>
 						<!-- /ko -->
 						<div data-bind="foreach: availableActionsForSelectedCategory">
-							<div class="row">
-								<div class="span6" data-bind="text: name"></div>
-								<div class="span1" data-bind="text: formattedCost"></div>
-								<div class="span1">
-									<button class="btn" data-bind="click: $root.pendingAction">Do It</button>
+							<div class="action-row">
+								<div class="action-name" data-bind="text: name"></div>
+								<div class="action-cost" data-bind="text: formattedCost"></div>
+								<div class="action-do">
+									<button class="btn btn-success" data-bind="click: $root.pendingAction">Do It &#187;</button>
 								</div>
 							</div>
 						</div>

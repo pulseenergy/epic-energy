@@ -58,7 +58,7 @@
 				margin: 0;
 				
 				li {
-					width: 70px;
+					width: 69px;
 					display: block;
 					float: left;
 					.border-radius(10px);
@@ -67,13 +67,13 @@
 					padding: 8px 2px;
 					margin: 0 5px 5px 0;
 					font-size: 12px;
-					height: 90px;
+					height: 80px;
 					background-repeat: no-repeat;
 					text-align: center;
 					background: url(img/equipment_icons.png) 0 0 no-repeat #fafafa;
 					
 					&.occupants {
-						width: 220px;
+						width: 217px;
 						margin-right: 0;
 						height: auto;
 						background: #fafafa;
@@ -181,7 +181,62 @@
 					}
 				}
 			}
+		}
+		
+		.right-column-bottom {
+			h3 {
+				margin-bottom: 10px;
+			}
 		}		
 	}
 }
+
+.action-row {
+	.clearfix;
+	border-top: 1px dotted #ddd;
+	padding: 8px 0;
+	
+	.action-name {
+		font-weight: 600;
+		display: block;
+		float: left;
+		width: 400px;
+		font-size: 14px;
+		margin-right: 10px;
+	}
+	
+	.action-cost {
+		display: block;
+		float: left;
+		width: 120px;
+		text-align: right;
+	}
+	
+	.action-do {
+		display: block;
+		float: right;
+	}
+	
+	&:last-of-type {
+		border-bottom: 0;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
