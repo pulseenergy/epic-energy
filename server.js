@@ -1,10 +1,18 @@
-var connect = require('connect');
+var express = require('express'),
+	lessMiddleware = require('less-middleware');
 
-var app = connect()
-	.use(connect.static('public'))
-	.use(require('less-middleware')({
-		debug: true,
-		src: 'public'
+var app = express.createServer();
+
+app.configure(function () {
+	app.use(lessMiddleware({
+		src: __dirname + '/public',
+		compress: true,
+		debug: true
 	}));
 
+	app.use(express.static(__dirname + '/public'));
+});
+
 app.listen(3000);
+console.log('running on 3000');
+
