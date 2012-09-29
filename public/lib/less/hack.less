@@ -66,13 +66,12 @@
 					height: 90px;
 					background-repeat: no-repeat;
 					text-align: center;
-					#gradient .vertical(#fafafa, #fafafa);
-					background: url(img/equipment_icons.png) 0 0 no-repeat;
+					background: url(img/equipment_icons.png) 0 0 no-repeat #fafafa;
 					
 					&.occupants {
 						width: 256px;
 						height: auto;
-						background: none;
+						background: #fafafa;
 						
 						.occupant {
 							display: inline-block;
@@ -85,7 +84,7 @@
 							margin-right: 4px;
 							background-color: @grayLight;
 							color: white;
-							background: url(img/occupant_hollow.png);
+							background: url(img/occupant_hollow.png) 0 0 no-repeat;
 							.box-sizing(border-box);
 
 							&.happy { background-color: @green; }
