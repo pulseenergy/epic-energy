@@ -26,5 +26,9 @@
 	<div data-bind="text: '$' + budget() + ' remaining'"></div>
 	<div data-bind="text: 'Date: ' + month() + ' 1'"></div>
 	<button class="btn" data-bind="click: advanceToNextMonth">Next</button>
+	<div id="occupants" data-bind="foreach: game.occupants">
+	  <div data-bind="text: happiness">
+	  </div>
+	</div>
 </body>
 </html>
