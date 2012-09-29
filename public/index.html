@@ -35,7 +35,7 @@
 	<div id="equipment" data-bind="foreach: equipment">
 		<div data-bind="attr: { class: cssClass }, text: name"></div>
 		<ul class="upgrades" data-bind="foreach: upgrades">
-			<li class="upgrade" data-bind="click: $parent.upgradeTo, text: name + ' ($' + (cost.money || 0) + ')'"></li>
+			<li class="upgrade" data-bind="click: upgradeTo, text: name + ' ($' + (cost.money || 0) + ')'"></li>
 		</ul>
 	</div>
 	<button class="btn" data-bind="click: advanceToNextMonth">Next</button>

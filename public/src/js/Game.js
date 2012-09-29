@@ -30,6 +30,10 @@ Game.prototype.monthDelta = function () {
 		total.happy += partial.happy;
 		total.energy += partial.energy;
 	});
+	this.applyCost(total);
+};
+
+Game.prototype.applyCost = function (total) {
 	this.budget += total.money;
 	this.consumed += total.energy;
 	this.applyHappiness(total.happy);
@@ -50,4 +54,4 @@ Game.prototype.thisMonthsWeather = function () {
 		weather[k] = v[this.month];
 	}, this);
 	return weather;
-}
+};

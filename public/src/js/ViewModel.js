@@ -13,6 +13,7 @@ function ViewModel(game) {
 
 ViewModel.prototype.update = function () {
 	var monthNames = 'January February March April May June July August September October November December'.split(' ');
+	var viewModel = this;
 
 	this.budget(this.game.budget);
 	this.month(monthNames[this.game.month]);
@@ -26,12 +27,21 @@ ViewModel.prototype.update = function () {
 			cssClass: slot,
 			name: equip.name,
 			upgrades: _.map(equip.upgrades(), function (upgrade) {
+				var name = upgrade[0].name;
+				var cost = upgrade[1];
 				return {
 					upgradeTo: function () {
-						alert("upgrading to " + upgrade);
+						var message = cost.money > 0
+							? 'Spend $' + cost.money + ' to change to a ' + name + '?'
+							: 'Change to a ' + name + '?';
+						if (confirm(message)) {
+							viewModel.game.applyCost(cost);
+							viewModel.game.equipment[slot] = upgrade[0];
+							viewModel.advanceToNextMonth();
+						}
 					},
-					name: upgrade[0].name,
-					cost: upgrade[1]
+					name: name,
+					cost: cost
 				};
 			})
 		};
