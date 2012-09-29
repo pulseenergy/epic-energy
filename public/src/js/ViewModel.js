@@ -23,6 +23,7 @@ function ViewModel(game) {
 	}
 
 	this.gameOver = ko.observable(false);
+	this.finalScore = ko.observable();
 	this.pendingAction = ko.observable();
 	this.availableActionsByCategory = ko.observable();
 
@@ -44,7 +45,7 @@ ViewModel.prototype.update = function () {
 	this.budget(this.game.budget);
 	this.month(this.game.month);
 	this.monthName(monthNames[this.game.month]);
-	this.energy(-this.game.consumed);
+	this.energy(this.game.consumed);
 
 	this.occupants([]); // force template update
 	this.occupants(this.game.occupants);
@@ -84,6 +85,9 @@ ViewModel.prototype.update = function () {
 	this.availableActionsByCategory(actions);
 
 	this.gameOver(this.game.isGameOver());
+	if (this.gameOver()) {
+		this.finalScore(this.game.computeScore());
+	}
 };
 
 ViewModel.prototype.selectCategory = function (equipment) {

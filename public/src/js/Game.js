@@ -6,8 +6,12 @@ var vancouverWeather = {
 	recordLow: [-13.3, -6.7, -5, -1.1, 1.1, 2.8, 2.8, 5, 1.7, -3.2, -9.9, -15.6, -15.6]
 };
 
+var vancouverOfficeEnergy = [50985, 43655, 42752, 37045, 35019, 34887, 38875, 39735, 33185, 35012, 48868, 53010]; // kwh
+
+var startingBudget = 1000;
+
 function Game() {
-	this.budget = 1000;
+	this.budget = startingBudget;
 	this.consumed = 0;
 	this.equipment = {
 		Boiler: new CrappyBoiler()
@@ -18,8 +22,10 @@ function Game() {
 	}
 	this.month = 0;
 
+	// later: these could be dynamic for a given location
+	// disaggregated data down below would require using fixed end use percentages
 	this.weather = vancouverWeather;
-	this.baselineEnergy = [50985, 43655, 42752, 37045, 35019, 34887, 38875, 39735, 33185, 35012, 48868, 53010];
+	this.baselineEnergy = vancouverOfficeEnergy;
 	this.disaggregatedBaseline = this.disaggregate(this.baselineEnergy, this.baselineEnergy);
 	this.messages = [];
 }
@@ -34,6 +40,7 @@ Game.prototype.monthDelta = function () {
 		total.money += partial.money;
 		total.happy += partial.happy;
 		total.energy -= partial.energy;
+		total.energy += partial.energy;
 		this.messages = this.messages.concat(partial.messages);
 	}, this);
 	this.applyCost(total);
@@ -179,6 +186,23 @@ Game.prototype.nextMonth = function () {
 }
 
 Game.prototype.isGameOver = function () {
+	// TODO: occupants left, over budget
 	return this.month === 12;
 };
+
+Game.prototype.computeScore = function () {
+	var occupant = _.reduce(this.occupants, function (sum, occupant) {
+		return sum + (occupant.happiness - 2) * 10;
+	}, 0);
+	var energy = (getBaselineTotal() - this.consumed) / 10;
+	var budget = this.budget / 10; // max 100
+	console.log(energy, budget, occupant);
+	return Math.round(energy + budget + occupant);
+};
+
+function getBaselineTotal() {
+	return _.reduce(vancouverOfficeEnergy, function (sum, amount) {
+		return sum + amount;
+	}, 0);
+}
 
