@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Legends of Energy 3: Downtown</title>
+<link rel="stylesheet" href="global.css">
+
+<script src="lib/underscore-1.4.0.js"></script>
+<script src="lib/knockout-2.1.0.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="lib/js/bootstrap-button.js"></script>
+<script src="src/js/Occupant.js"></script>
+<script src="src/js/Equipment.js"></script>
+<script src="src/js/Game.js"></script>
+<script src="src/js/ViewModel.js"></script>
+<script>
+	var game, viewModel;
+
+	$(function () {
+		game = new Game();
+		viewModel = new ViewModel(game);
+		ko.applyBindings(viewModel);
+	});
+</script>
+</head>
+<body>
+
+<div class="month-tracker">
+	<div class="container">
+		<div class="row">
+			<span class="span12">
+				<ul>
+					<li>Jan</li>
+					<li>Feb</li>
+					<li>Mar</li>
+					<li>Apr</li>
+					<li>May</li>
+					<li class="selected">Jun</li>
+					<li>Jul</li>
+					<li>Aug</li>
+					<li>Sep</li>
+					<li>Oct</li>
+					<li>Nov</li>
+					<li>Dec</li>
+				</ul>
+			</span>
+		</div>
+	</div>
+</div>
+
+<div class="skyline">
+	<div class="container">
+		<div class="row">
+			<span class="span3">3
+			</span>
+			<span class="span9">9
+			</span>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

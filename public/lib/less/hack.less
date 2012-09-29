@@ -1,0 +1,40 @@
+
+.month-tracker {
+	
+	@monthTrackerHeight: 34px;
+	height: @monthTrackerHeight;
+	background: @grayDark;
+	
+	ul {
+		margin: 0;
+		list-style: none;
+		height: @monthTrackerHeight;
+		
+		li {
+			width: 78px;
+			line-height: @monthTrackerHeight;
+			font-weight: bold;
+			font-size: 12px;
+			text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+			text-align: center;
+			text-transform: uppercase;
+			float: left;
+			display: block;
+			color: #999;
+			
+			&:hover {
+				background: rgba(255,255,255,.1);
+				cursor: pointer;
+			}
+			
+			&.selected {
+				background: url(img/month_selected.png) bottom center no-repeat rgba(255,255,255,.1);
+			}
+		}
+	}
+}
+
+.skyline {
+	min-height: 480px;
+	background: url(img/skyline.png) top repeat-x;
+}
