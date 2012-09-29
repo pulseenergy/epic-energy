@@ -95,13 +95,15 @@
 						<!-- ko if: !availableActionsForSelectedCategory().length -->
 							<p>No available actions.</p>
 						<!-- /ko -->
-						<ul data-bind="foreach: availableActionsForSelectedCategory">
-							<li>
-								<span data-bind="text: name"></span>
-								<span data-bind="text: formattedCost"></span>
-								<button data-bind="click: $root.pendingAction">Do It</button>
-							</li>
-						</ul>
+						<div data-bind="foreach: availableActionsForSelectedCategory" class="container">
+							<div class="row">
+								<div class="span6" data-bind="text: name"></div>
+								<div class="span1" data-bind="text: formattedCost"></div>
+								<div class="span1">
+									<button class="btn" data-bind="click: $root.pendingAction">Do It</button>
+								</div>
+							</div>
+						</div>
 					<!-- /ko -->
 				</div>
 			</span>
