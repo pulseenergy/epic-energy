@@ -93,7 +93,7 @@
 						</dl>
 					</div>
 					<div class="monthly-summary" style="float: none">
-						<h1 data-bind="text: monthName() + ' 1, ' + year()"></h1>
+						<h1><span data-bind="text: monthName() + ' 1, ' + year()"></span> <button class="btn btn-large btn-primary" data-bind="click: advanceToNextMonth, disable: gameOver">Next</button></h1>
 						<ul data-bind="foreach: messages">
 							<li data-bind="text: $data"></li>
 						</ul>
@@ -102,7 +102,6 @@
 					
 					<div data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
 
-					<button class="btn btn-large btn-primary pull-right" data-bind="click: advanceToNextMonth, disable: gameOver">Next</button>
 					<div id="pendingAction">
 						<!-- ko if: !pendingAction() -->
 							<h4>No Pending Action</h4>
