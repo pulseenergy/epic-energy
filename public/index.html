@@ -70,6 +70,8 @@
 				<div class="right-column-top">
 					<div class="score-summary">
 						<dl>
+							<dt>Energy Used</dt>
+							<dd data-bind="text: energy() + ' kWh'"></dd>
 							<dt>Remaining Budget</dt>
 							<dd data-bind="text: '$' + budget()">
 						</dl>
@@ -85,7 +87,6 @@
 						<span class="occupant" data-bind="text: happiness, attr: { 'title': happinessLabel }, class: happinessLabel"></span>
 					</div>
 					<div data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
-					<div data-bind="text: energy() + ' kWh consumed'"></div>
 
 					<button class="btn btn-large btn-primary pull-right" data-bind="click: advanceToNextMonth, disable: gameOver">Next</button>
 					<div id="pendingAction">
@@ -112,7 +113,7 @@
 						<!-- ko if: !availableActionsForSelectedCategory().length -->
 							<p>No available actions.</p>
 						<!-- /ko -->
-						<div data-bind="foreach: availableActionsForSelectedCategory" class="container">
+						<div data-bind="foreach: availableActionsForSelectedCategory">
 							<div class="row">
 								<div class="span6" data-bind="text: name"></div>
 								<div class="span1" data-bind="text: formattedCost"></div>
