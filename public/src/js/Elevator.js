@@ -1,8 +1,10 @@
 function OffElevator(base) {
-	this.upgradeTitle = this.name = "Disabled " + base.name;
+	this.name = "No Elevator";
+	this.upgradeTitle = "Disable " + base.name;
 	this.upgrades = function () {
 		return _.map(base.upgrades(), function (upgrade) {
 			if (upgrade[0] instanceof OffElevator) {
+				base.upgradeTitle = "Re-enable " + base.name
 				return [base, {}];
 			}
 			return upgrade;
@@ -19,13 +21,15 @@ function OffElevator(base) {
 };
 
 function CrappyElevator() {
-	this.upgradeTitle = this.name = "Inefficient Elevator";
+	this.name = "Inefficient Elevator";
+	this.upgradeTitle = "Downgrade to " + this.name;
 	this.upgrades = function () {
 		return [
 			[new OffElevator(this), {}],
 			[new RegenerativeDriveElevator(), { money: -1900 }],
 			[new HibernatingElevator(), { money: -500 }],
-			[new HibernatingRegenerativeDriveElevator(), { money: -2400 }]
+			[new HibernatingRegenerativeDriveElevator(), { money: -2400 }],
+			[new LEDElevatorLighting(this), { money: -250}]
 		];
 	};
 	this.monthDelta = function (game, baselineEnergy, weather) {
@@ -39,11 +43,13 @@ function CrappyElevator() {
 };
 
 function HibernatingElevator() {
-	this.upgradeTitle = this.name = "Hibernating Elevator";
+	this.name = "Hibernating Elevator";
+	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
 		return [
 			[new OffElevator(this), {}],
-			[new HibernatingRegenerativeDriveElevator(), { money: -1900 }]
+			[new HibernatingRegenerativeDriveElevator(), { money: -1900 }],
+			[new LEDElevatorLighting(this), { money: -250}]
 		];
 	};
 	this.monthDelta = function (game, baselineEnergy, weather) {
@@ -57,11 +63,13 @@ function HibernatingElevator() {
 };
 
 function RegenerativeDriveElevator() {
-	this.upgradeTitle = this.name = "Elevator with Regenerative Drive";
+	this.name = "Elevator with Regenerative Drive";
+	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
 		return [
 			[new OffElevator(this), {}],
-			[new HibernatingRegenerativeDriveElevator(), { money: -500 }]
+			[new HibernatingRegenerativeDriveElevator(), { money: -500 }],
+			[new LEDElevatorLighting(this), { money: -250}]
 		];
 	};
 	this.monthDelta = function (game, baselineEnergy, weather) {
@@ -75,9 +83,13 @@ function RegenerativeDriveElevator() {
 };
 
 function HibernatingRegenerativeDriveElevator() {
-	this.upgradeTitle = this.name = "Hibernating Elevator with Regenerative Drive";
+	this.name = "Hibernating Elevator with Regenerative Drive";
+	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
-		return [ [new OffElevator(this), {}] ];
+		return [
+	        	[new OffElevator(this), {}],
+				[new LEDElevatorLighting(this), { money: -250}]
+	    ];
 	};
 	this.monthDelta = function (game, baselineEnergy, weather) {
 		return {
@@ -85,6 +97,32 @@ function HibernatingRegenerativeDriveElevator() {
 			happy: 0,
 			energy: baselineEnergy * 0.2,
 			messages: []
+		};
+	};
+};
+
+function LEDElevatorLighting(elevator) {
+	this.name = elevator.name;
+	this.upgradeTitle = "Replace bulbs with LED lighting";
+	this.upgrades = function () {
+		var parentUpgrades = elevator.upgrades();
+		var myUpgrades = [];
+		_.each(parentUpgrades, function(upgrade) {
+			if (!(upgrade[0] instanceof LEDElevatorLighting)) {
+				var decorated = new LEDElevatorLighting(upgrade[0]);
+				decorated.upgradeTitle = upgrade[0].upgradeTitle;
+				myUpgrades.push([decorated, upgrade[1]]);
+			}
+		});
+		return myUpgrades;
+	};
+	this.monthDelta = function (game, baselineEnergy, weather) {
+		var parent = elevator.monthDelta(game, baselineEnergy, weather)
+		return {
+			money: parent.money,
+			happy: parent.happy,
+			energy: 0.9 * parent.energy,
+			messages: parent.messages
 		};
 	};
 };
