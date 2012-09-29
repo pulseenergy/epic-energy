@@ -20,7 +20,7 @@ function ViewModel(game) {
 	this.year = ko.observable();
 	this.month = ko.observable();
 	this.season = ko.computed(function () {
-		return seasons[Math.floor(this.month() / 3)] || seasons[0];
+		return 'season-' + seasons[Math.floor(this.month() / 3)] || seasons[0];
 	}, this);
 	this.monthName = ko.observable();
 	this.energy = ko.observable();

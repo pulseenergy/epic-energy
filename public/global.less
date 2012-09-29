@@ -5,38 +5,45 @@ body {
 	padding: 50;
 	min-height: 100%;
 	margin: 0;
-	background: url(img/skyline.png) top repeat-x;
+	background: url(img/skyline.png) top repeat-x #fff;
 	
 	.building-container {
 		width: 260px;
 		height: 300px;		
 		position: relative;
-		background: url(img/bldg_spring.png) top left no-repeat;
+		background: url(img/bldg_winter.png) top left no-repeat;
 		left: -20px;
 		top: -10px;
+		.transition(all 3s);
 	}
 	
 	&.season-spring {
+		background-image: url();
+		
 		.building-container {
 			background: url(img/bldg_spring.png) top left no-repeat;
+			.transition(all 3s);
 		}
 	}
 	
 	&.season-summer {
 		.building-container {
 			background: url(img/bldg_summer.png) top left no-repeat;
+			.transition(all 3s);
 		}
 	}
 	
 	&.season-winter {
 		.building-container {
 			background: url(img/bldg_winter.png) top left no-repeat;
+			.transition(all 3s);
 		}
 	}
 	
 	&.season-fall {
 		.building-container {
 			background: url(img/bldg_fall.png) top left no-repeat;
+			.transition(all 3s);
 		}
 	}
 }
