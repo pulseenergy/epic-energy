@@ -191,7 +191,7 @@ Game.prototype.nextMonth = function () {
 
 Game.prototype.isGameOver = function () {
 	// TODO: occupants all left, over budget
-	return this.month === 12;
+	return this.month === 12 || _.isEmpty(this.notUnhappyOccupants());
 };
 
 Game.prototype.computeScore = function () {
