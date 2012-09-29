@@ -34,7 +34,40 @@
 	}
 }
 
-.skyline {
-	min-height: 480px;
-	background: url(img/skyline.png) top repeat-x;
+.main-body {
+	padding-top: 30px;
+	padding-bottom: 100px;
+	
+	.left-column {
+		.building-container {
+			width: 260px;
+			height: 300px;
+			background: url(img/building_spring.png) top left no-repeat;
+		}
+		
+		.equipment-summary {
+			margin: 20px 0;
+			
+			ul {
+				list-style: none;
+				margin: 0;
+				
+				li {
+					width: 120px;
+					display: block;
+					float: left;
+					.border-radius(5px);
+					border: 1px solid #bbb;
+					.box-sizing(border-box);
+					padding: 15px;
+					margin: 0 10px 10px 0;
+				}
+			}
+		}
+	}
+	
+	.right-column {
+		padding-top: 20px;
+	}
 }
+
