@@ -62,7 +62,7 @@
 					display: block;
 					float: left;
 					.border-radius(10px);
-					border: 2px solid #ddd;
+					border: 1px solid #bbb;
 					.box-sizing(border-box);
 					padding: 8px 2px;
 					margin: 0 5px 5px 0;
@@ -116,11 +116,18 @@
 						font-weight: 600;
 					}
 					
-					&:hover,
+					&:hover {
+						.box-shadow(0 0 0 3px rgba(0,0,0,.04));
+						cursor: pointer;
+					}
+					
 					&.selected {
 						border-color: #555;
 						.box-shadow(0 0 0 3px rgba(0,0,0,.04));
 						cursor: pointer;
+						background-color: #444;
+						color: #fff;
+						border-color: #444;
 					}
 				}
 			}
