@@ -15,7 +15,8 @@ function Game() {
 	this.equipment = {
 		boiler: new CrappyBoiler(),
 		hotWater: new CrappyHotWater(),
-		elevator: new CrappyElevator()
+		elevator: new CrappyElevator(),
+		building: new NothingBuilding()
 	};
 	this.occupants = [];
 	for (var i = 0; i < 10; i++) {
