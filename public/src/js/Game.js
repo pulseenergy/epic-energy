@@ -45,8 +45,10 @@ Game.prototype.monthDelta = function () {
 		total.money += partial.money;
 		total.happy += partial.happy;
 		total.energy += partial.energy;
+		if (debug) console.log('adding energy', type, partial.energy);
 		this.messages = this.messages.concat(partial.messages);
 	}, this);
+	if (debug) console.log('total energy', total.energy);
 	this.applyCost(total);
 };
 

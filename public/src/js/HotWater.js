@@ -24,7 +24,12 @@ function CrappyHotWater() {
 	this.name = "Atmospheric Hot Water Heater";
 	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
-		return [ [new OffHotWater(this), {}], [new OnDemandHotWater(), { money: -1000 }], [new CondensingHotWater(), { money: -1000 }] ];
+		return [
+			[new OffHotWater(this), {}],
+			[new OnDemandHotWater(), { money: -600 }],
+			[new CondensingHotWater(), { money: -1200 }],
+			[new SolarHotWater(), { money: -3000 }]
+		];
 	};
 	this.monthDelta = function (game, baselineEnergy, weather) {
 		return {
@@ -40,7 +45,7 @@ function OnDemandHotWater() {
 	this.name = "On Demand Hot Water Heater";
 	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
-		return [ [new OffHotWater(this), {}], [new CondensingHotWater(), { money: -1000 }] ];
+		return [ [new OffHotWater(this), {}] ];
 	};
 	this.monthDelta = function (game, baselineEnergy, weather) {
 		return {
@@ -78,7 +83,7 @@ function CondensingHotWater() {
 		return {
 			money: 0,
 			happy: 0,
-			energy: baselineEnergy * 0.65,
+			energy: baselineEnergy * 0.5,
 			messages: []
 		};
 	};
