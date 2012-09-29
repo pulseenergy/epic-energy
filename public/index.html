@@ -56,7 +56,7 @@
 				<div class="building-container"></div>
 				<div class="equipment-summary clearfix">
 					<ul data-bind="foreach: equipment">
-						<li data-bind="text: category, attr: { title: name }, click: $root.selectCategory.bind($root)"></li>
+						<li data-bind="text: category, attr: { title: name }, css: { selected: $root.selectedCategory() === category }, click: $root.selectCategory.bind($root)"></li>
 					</ul>
 				</div>
 			</span>
