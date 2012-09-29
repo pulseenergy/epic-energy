@@ -13,29 +13,31 @@
 		li {
 			width: 78px;
 			line-height: @monthTrackerHeight;
-			font-weight: bold;
 			font-size: 12px;
 			text-shadow: 0 -1px 0 rgba(0,0,0,.5);
 			text-align: center;
 			text-transform: uppercase;
 			float: left;
 			display: block;
-			color: #999;
+			color: #777;
+			font-weight: 600;
 			
 			&:hover {
 				background: rgba(255,255,255,.1);
 				cursor: pointer;
+				color: #ccc;
 			}
 			
 			&.selected {
 				background: url(img/month_selected.png) bottom center no-repeat rgba(255,255,255,.1);
+				color: #ddd;
 			}
 		}
 	}
 }
 
 .main-body {
-	padding-top: 30px;
+	padding-top: 20px;
 	padding-bottom: 100px;
 	
 	.left-column {
@@ -74,6 +76,7 @@
 						line-height: 1.2em;
 						margin-bottom: 0;
 						font-size: 12px;
+						font-weight: 600;
 					}
 					
 					&:hover,
@@ -89,20 +92,61 @@
 	
 	.right-column {
 		
-		.this-month-summary {
-			
+		.right-column-top {
 			height: 300px;
-			padding-top: 30px;
 			.box-sizing(border-box);
+			padding-top: 20px;
+			.clearfix;
 			
-			h1 {
+			.monthly-summary {
 				
+				float: left;
+
+				h1 {
+
+				}
+
+				p {
+
+				}
 			}
 			
-			p {
+			.score-summary {
+				float: right;
+				padding: 20px;
+				.border-radius(10px);
+				border: 2px solid #fff;
+				.box-sizing(border-box);
+				.box-shadow(0 0 20px 0 rgba(0,0,0,.2));
+				background: rgba(255,255,255,.6);
+				text-align: right;
+				text-shadow: 0 1px 0 #fff;
 				
+				h2 {
+					
+				}
+				
+				dl {
+					margin: 0;
+					
+					dt {
+						font-weight: 400;
+						margin-bottom: .2em;
+						color: @gray;
+					}
+					
+					dd {
+						margin-bottom: .8em;
+						font-size: 21px;
+						font-weight: 700;
+						
+						&:last-of-type {
+							margin-bottom: 0;
+						}
+					}
+				}
 			}
-		}
+		}		
 	}
 }
 
