@@ -6,6 +6,7 @@ function ViewModel(game) {
 	this.energy = ko.observable();
 	this.occupants = ko.observable();
 	this.weather = ko.observable();
+	this.equipment = ko.observable();
 
 	this.update();
 }
@@ -20,6 +21,21 @@ ViewModel.prototype.update = function () {
 		return occupant.happiness;
 	}));
 	this.weather(this.game.thisMonthsWeather());
+	this.equipment(_.map(this.game.equipment, function (equip, slot) {
+		return {
+			cssClass: slot,
+			name: equip.name,
+			upgrades: _.map(equip.upgrades(), function (upgrade) {
+				return {
+					upgradeTo: function () {
+						alert("upgrading to " + upgrade);
+					},
+					name: upgrade[0].name,
+					cost: upgrade[1]
+				};
+			})
+		};
+	}));
 };
 
 ViewModel.prototype.advanceToNextMonth = function () {

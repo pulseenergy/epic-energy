@@ -26,13 +26,18 @@
 
 <div class="game-container">
 	<div data-bind="text: '$' + budget() + ' remaining'"></div>
-    <div id="occupants" data-bind="foreach: occupants">
-      <span data-bind="text: $data">
-      </span>
-    </div>
+	<div id="occupants" data-bind="foreach: occupants">
+		<span data-bind="text: $data"> </span>
+	</div>
 	<div data-bind="text: 'Date: ' + month() + ' 1'"></div>
 	<div data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
 	<div data-bind="text: energy() + ' kWh consumed'"></div>
+	<div id="equipment" data-bind="foreach: equipment">
+		<div data-bind="attr: { class: cssClass }, text: name"></div>
+		<ul class="upgrades" data-bind="foreach: upgrades">
+			<li class="upgrade" data-bind="click: $parent.upgradeTo, text: name + ' ($' + (cost.money || 0) + ')'"></li>
+		</ul>
+	</div>
 	<button class="btn" data-bind="click: advanceToNextMonth">Next</button>
 </div>
 </body>
