@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Hello!</title>
+<title>Legends of Energy 3: Downtown</title>
 <link rel="stylesheet" href="global.css" />
+<script src="lib/knockout-2.1.0.js"></script>
+<script src="Occupant.js"></script>
+<script src="Game.js"></script>
+<script src="ViewModel.js"></script>
+<script>
+	var game, viewModel;
+	
+	window.onload = function () {
+		game = new Game();
+		viewModel = new ViewModel(game);
+		ko.applyBindings(viewModel);
+	}
+</script>
 </head>
 <body>
+	<div data-bind="text: month"></div>
 </body>
 </html>
