@@ -55,8 +55,12 @@ Game.prototype.applyHappiness = function (deltaHappiness) {
 	var occupant, occupantIndex;
 	var sign = deltaHappiness < 0 ? -1 : 1;
 	for (var i = 0; i < Math.abs(deltaHappiness); i++) {
-		occupantIndex = _.random(0, this.notUnhappyOccupants().length - 1);
-		occupant = this.notUnhappyOccupants()[occupantIndex];
+		var notUnhappy = this.notUnhappyOccupants();
+		if (notUnhappy.length == 0) {
+			break;
+		}
+		occupantIndex = _.random(0, notUnhappy.length - 1);
+		occupant = notUnhappy[occupantIndex];
 		occupant.updateHappiness(sign);
 	}
 };
