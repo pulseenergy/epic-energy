@@ -39,7 +39,7 @@ function CrappyElevator() {
 };
 
 function HibernatingElevator() {
-	this.name = "Hibernating Drive";
+	this.name = "Hibernating Elevator";
 	this.upgrades = function () {
 		return [
 			[new OffElevator(this), {}],

@@ -66,10 +66,10 @@
 						<li class="occupants">
 							<h4>Occupants</h4>
 							<div data-bind="foreach: occupants">
-								<span class="occupant" data-bind="text: happiness, attr: { 'title': happinessLabel }, class: happinessLabel"></span>
+								<span class="occupant" data-bind="attr: { 'title': happinessLabel }, class: happinessLabel"></span>
 							</div>
 						</li>
-						<!-- ko foreach: equipment -->						
+						<!-- ko foreach: equipment -->
 						<li data-bind="text: category, attr: { title: name }, css: { selected: $root.selectedCategory() === category }, class: category, click: $root.selectCategory.bind($root)"></li>
 						<!-- /ko -->
 					</ul>
