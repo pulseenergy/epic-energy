@@ -21,9 +21,9 @@ function ViewModel(game) {
 		});
 	}
 
+	this.gameOver = ko.observable(false);
 	this.pendingAction = ko.observable();
 	this.availableActionsByCategory = ko.observable();
-	this.gameOver = ko.observable(false);
 
 	this.update();
 }
@@ -34,8 +34,6 @@ function vowel(char) {
 }
 
 ViewModel.prototype.update = function () {
-	var viewModel = this;
-
 	this.budget(this.game.budget);
 	this.month(this.game.month);
 	this.monthName(monthNames[this.game.month]);
@@ -51,7 +49,6 @@ ViewModel.prototype.update = function () {
 			name: equip.name
 		};
 	}));
-
 	this.availableActionsByCategory(_.map(this.game.equipment, function (equip, slot) {
 		return {
 			category: slot,
@@ -77,6 +74,7 @@ ViewModel.prototype.update = function () {
 		};
 	}));
 
+
 	this.gameOver(this.game.isGameOver());
 };
 
@@ -85,8 +83,8 @@ ViewModel.prototype.advanceToNextMonth = function () {
 		this.pendingAction().apply(this.game);
 		this.pendingAction(null);
 	}
-	this.game.nextMonth();
 	this.game.monthDelta();
+	this.game.nextMonth();
 
 	this.update();
 };
