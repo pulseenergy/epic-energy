@@ -28,7 +28,7 @@ function OffBoiler(base) {
 		};
 	};
 	this.getMessages = function(game, baselineEnergy, weather) {
-		var messages = []; 
+		var messages = [];
 		if (weather.mean < 7) {
 			messages.push("I'm turning on a space heater");
 		} else if (weather.averageLow < 8) {
@@ -37,7 +37,7 @@ function OffBoiler(base) {
 			messages.push("Brrr - it's cold in here");
 		}
 		return messages;
-	}
+	};
 };
 
 function CrappyBoiler() {

@@ -39,7 +39,6 @@ Game.prototype.monthDelta = function () {
 		var partial = equip.monthDelta(this, baselineEnergy, weather);
 		total.money += partial.money;
 		total.happy += partial.happy;
-		total.energy -= partial.energy;
 		total.energy += partial.energy;
 		this.messages = this.messages.concat(partial.messages);
 	}, this);
@@ -65,7 +64,7 @@ Game.prototype.applyHappiness = function (deltaHappiness) {
 Game.prototype.notUnhappyOccupants = function () {
 	return _.filter(this.occupants, function(occupant) {
 		return occupant.happiness > 0;
-	})
+	});
 };
 
 Game.prototype.thisMonthsWeather = function () {
