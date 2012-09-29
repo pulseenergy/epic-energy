@@ -4,6 +4,7 @@
 <title>Legends of Energy 3: Downtown</title>
 <link rel="stylesheet" href="global.css">
 
+
 <script src="lib/underscore-1.4.0.js"></script>
 <script src="lib/knockout-2.1.0.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -17,6 +18,7 @@
 <script src="src/js/Equipment.js"></script>
 <script src="src/js/Game.js"></script>
 <script src="src/js/ViewModel.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
 <script>
 	var game, viewModel;
 
@@ -66,16 +68,27 @@
 				</div>
 			</span>
 			<span class="right-column span8">
-				<div id="above">
-					<button class="btn btn-large btn-primary pull-right" data-bind="click: advanceToNextMonth, disable: gameOver">Next</button>
-					<div data-bind="foreach: messages"><span data-bind="text: $data"></span></div>
-					<div data-bind="text: '$' + budget() + ' remaining'"></div>
+				<div class="right-column-top">
+					<div class="score-summary">
+						<dl>
+							<dt>Remaining Budget</dt>
+							<dd data-bind="text: '$' + budget()">
+						</dl>
+					</div>
+					<div class="monthly-summary" style="float: none">
+						<h1 data-bind="text: monthName() + ' 1, 2012'"></h1>
+						<ul data-bind="foreach: messages">
+							<li data-bind="text: $data"></li>
+						</ul>
+					</div>
+					
 					<div id="occupants" data-bind="foreach: occupants">
 						<span class="occupant" data-bind="text: happiness, attr: { 'title': happinessLabel }, class: happinessLabel"></span>
 					</div>
-					<div data-bind="text: 'Date: ' + monthName()"></div>
 					<div data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
 					<div data-bind="text: energy() + ' kWh consumed'"></div>
+
+					<button class="btn btn-large btn-primary pull-right" data-bind="click: advanceToNextMonth, disable: gameOver">Next</button>
 					<div id="pendingAction">
 						<!-- ko if: !pendingAction() -->
 							<h4>No Pending Action</h4>
@@ -90,10 +103,9 @@
 							</ul>
 						<!-- /ko -->
 					</div>
-
 				</div>
-				<div id="availableActions">
-					<h4>Available Actions</h4>
+				<div class="right-column-bottom">
+					<h2>Available Actions</h2>
 					<!-- ko if: !selectedCategory() -->
 						<p>Select a category to see available actions.</p>
 					<!-- /ko -->
