@@ -1,4 +1,3 @@
-
 function Game() {
 	this.budget = 1000;
 	this.consumed = 0;

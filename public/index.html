@@ -2,13 +2,14 @@
 <html>
 <head>
 <title>Legends of Energy 3: Downtown</title>
-<link rel="stylesheet" href="global.css">
 <link href="lib/less/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="global.css">
 <script src="lib/underscore-1.4.0.js"></script>
 <script src="lib/knockout-2.1.0.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="lib/js/bootstrap-button.js"></script>
 <script src="src/js/Occupant.js"></script>
+<script src="src/js/Equipment.js"></script>
 <script src="src/js/Game.js"></script>
 <script src="src/js/ViewModel.js"></script>
 <script>
@@ -22,8 +23,8 @@
 </script>
 </head>
 <body>
-	<div data-bind="text: month"></div>
+	<div data-bind="text: '$' + budget() + ' remaining'"></div>
+	<div data-bind="text: 'Date: ' + month() + ' 1'"></div>
 	<button class="btn" data-bind="click: advanceToNextMonth">Next</button>
-
 </body>
 </html>
