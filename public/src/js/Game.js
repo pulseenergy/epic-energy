@@ -18,7 +18,8 @@ function Game() {
 		elevator: new CrappyElevator(),
 		building: new NothingBuilding(),
 		airCon: new AirCon(),
-		plugLoad: new PlugLoad()
+		plugLoad: new PlugLoad(),
+		lighting: new T12Lighting()
 	};
 	this.occupants = [];
 	for (var i = 0; i < 10; i++) {
