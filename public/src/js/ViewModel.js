@@ -3,6 +3,7 @@ function ViewModel(game) {
 
 	this.budget = ko.observable();
 	this.month = ko.observable();
+	this.energy = ko.observable();
 
 	this.update();
 }
@@ -12,9 +13,11 @@ ViewModel.prototype.update = function () {
 
 	this.budget(this.game.budget);
 	this.month(monthNames[this.game.month]);
+	this.energy(-this.game.consumed);
 };
 
 ViewModel.prototype.advanceToNextMonth = function () {
 	this.game.month++;
+	game.monthDelta(null);
 	this.update();
 };
