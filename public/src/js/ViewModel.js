@@ -75,16 +75,12 @@ ViewModel.prototype.update = function () {
 			var name = upgrade[0].name;
 			var cost = upgrade[1];
 			var a = vowel(name[0]) ? 'a ' : 'an ';
-			var message = cost.money < 0
-					? 'Spend $' + -cost.money + ' to change to ' + a + name + '?'
-					: 'Change to ' + a + name + '?';
 			return {
 				category: slot,
 				name: name,
 				upgradeTitle: upgrade[0].upgradeTitle,
 				cost: cost,
 				formattedCost: cost.money < 0 ? '$' + -cost.money : 'Free',
-				message: message,
 				apply: function (game) {
 					game.equipment[slot] = upgrade[0];
 					game.applyCost(upgrade[1]);
