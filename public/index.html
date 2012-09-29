@@ -26,44 +26,76 @@
 </head>
 <body>
 
-<div class="game-container">
-	<div data-bind="text: '$' + budget() + ' remaining'"></div>
-	<div id="occupants" data-bind="foreach: occupants">
-		<span class="occupant" data-bind="text: happiness, attr: { 'title': happinessLabel }, class: happinessLabel"></span>
-	</div>
-	<div data-bind="text: 'Date: ' + month() + ' 1'"></div>
-	<div data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
-	<div data-bind="text: energy() + ' kWh consumed'"></div>
-	<div id="equipment" data-bind="foreach: equipment">
-		<div data-bind="attr: { class: cssClass }, text: name"></div>
-	</div>
-	<div id="pendingAction">
-		<!-- ko if: !pendingAction() -->
-			<h4>No Pending Action</h4>
-		<!-- /ko -->
-		<!-- ko if: pendingAction -->
-			<h4>Pending Action</h4>
-			<ul data-bind="with: pendingAction">
-				<li>
-					<span data-bind="text: category"></span>
-					<span data-bind="text: message"></span>
-				</li>
-			</ul>
-		<!-- /ko -->
-	</div>
-	<button class="btn" data-bind="click: advanceToNextMonth">Next</button>
-	<div id="availableActions" data-bind="foreach: availableActionsByCategory">
-		<div class="actionCategory">
-			<h4 data-bind="text: name"></h4>
-			<ul data-bind="foreach: upgrades">
-				<li>
-					<span data-bind="text: name"></span>
-					<span data-bind="text: formattedCost"></span>
-					<button data-bind="click: $root.pendingAction">Do It</button>
-				</li>
-			</ul>
+<div class="month-tracker">
+	<div class="container">
+		<div class="row">
+			<span class="span12">
+				<ul>
+					<li data-bind="css: { selected: month() === 0 }">Jan</li>
+					<li data-bind="css: { selected: month() === 1 }">Feb</li>
+					<li data-bind="css: { selected: month() === 2 }">Mar</li>
+					<li data-bind="css: { selected: month() === 3 }">Apr</li>
+					<li data-bind="css: { selected: month() === 4 }">May</li>
+					<li data-bind="css: { selected: month() === 5 }">Jun</li>
+					<li data-bind="css: { selected: month() === 6 }">Jul</li>
+					<li data-bind="css: { selected: month() === 7 }">Aug</li>
+					<li data-bind="css: { selected: month() === 8 }">Sep</li>
+					<li data-bind="css: { selected: month() === 9 }">Oct</li>
+					<li data-bind="css: { selected: month() === 10 }">Nov</li>
+					<li data-bind="css: { selected: month() === 11 }">Dec</li>
+				</ul>
+			</span>
 		</div>
 	</div>
 </div>
+
+<div class="skyline">
+	<div class="container">
+		<div class="row">
+			<span class="span3">3
+			</span>
+			<span class="span9">
+				<div data-bind="text: '$' + budget() + ' remaining'"></div>
+				<div id="occupants" data-bind="foreach: occupants">
+					<span class="occupant" data-bind="text: happiness, attr: { 'title': happinessLabel }, class: happinessLabel"></span>
+				</div>
+				<div data-bind="text: 'Date: ' + monthName() + ' 1'"></div>
+				<div data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
+				<div data-bind="text: energy() + ' kWh consumed'"></div>
+				<div id="equipment" data-bind="foreach: equipment">
+					<div data-bind="attr: { class: cssClass }, text: name"></div>
+				</div>
+				<div id="pendingAction">
+					<!-- ko if: !pendingAction() -->
+						<h4>No Pending Action</h4>
+					<!-- /ko -->
+					<!-- ko if: pendingAction -->
+						<h4>Pending Action</h4>
+						<ul data-bind="with: pendingAction">
+							<li>
+								<span data-bind="text: category"></span>
+								<span data-bind="text: message"></span>
+							</li>
+						</ul>
+					<!-- /ko -->
+				</div>
+				<button class="btn" data-bind="click: advanceToNextMonth">Next</button>
+				<div id="availableActions" data-bind="foreach: availableActionsByCategory">
+					<div class="actionCategory">
+						<h4 data-bind="text: name"></h4>
+						<ul data-bind="foreach: upgrades">
+							<li>
+								<span data-bind="text: name"></span>
+								<span data-bind="text: formattedCost"></span>
+								<button data-bind="click: $root.pendingAction">Do It</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</span>
+		</div>
+	</div>
+</div>
+
 </body>
 </html>

@@ -5,6 +5,7 @@ function ViewModel(game) {
 
 	this.budget = ko.observable();
 	this.month = ko.observable();
+	this.monthName = ko.observable();
 	this.energy = ko.observable();
 	this.occupants = ko.observable();
 
@@ -34,7 +35,8 @@ ViewModel.prototype.update = function () {
 	var monthNames = 'January February March April May June July August September October November December'.split(' ');
 
 	this.budget(this.game.budget);
-	this.month(monthNames[this.game.month]);
+	this.month(this.game.month);
+	this.monthName(monthNames[this.game.month]);
 	this.energy(-this.game.consumed);
 
 	this.occupants([]);
