@@ -18,6 +18,6 @@ ViewModel.prototype.update = function () {
 
 ViewModel.prototype.advanceToNextMonth = function () {
 	this.game.month++;
-	game.monthDelta(null);
+	game.monthDelta();
 	this.update();
 };
