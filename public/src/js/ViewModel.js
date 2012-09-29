@@ -1,4 +1,5 @@
 var debug = false;
+var monthNames = 'January February March April May June July August September October November December -'.split(' ');
 
 function ViewModel(game) {
 	this.game = game;
@@ -22,6 +23,7 @@ function ViewModel(game) {
 
 	this.pendingAction = ko.observable();
 	this.availableActionsByCategory = ko.observable();
+	this.gameOver = ko.observable(false);
 
 	this.update();
 }
@@ -32,14 +34,14 @@ function vowel(char) {
 }
 
 ViewModel.prototype.update = function () {
-	var monthNames = 'January February March April May June July August September October November December'.split(' ');
+	var viewModel = this;
 
 	this.budget(this.game.budget);
 	this.month(this.game.month);
 	this.monthName(monthNames[this.game.month]);
 	this.energy(-this.game.consumed);
 
-	this.occupants([]);
+	this.occupants([]); // force template update
 	this.occupants(this.game.occupants);
 
 	this.weather(this.game.thisMonthsWeather());
@@ -74,6 +76,8 @@ ViewModel.prototype.update = function () {
 			})
 		};
 	}));
+
+	this.gameOver(this.game.isGameOver());
 };
 
 ViewModel.prototype.advanceToNextMonth = function () {
@@ -81,7 +85,8 @@ ViewModel.prototype.advanceToNextMonth = function () {
 		this.pendingAction().apply(this.game);
 		this.pendingAction(null);
 	}
-	this.game.month++;
-	game.monthDelta();
+	this.game.nextMonth();
+	this.game.monthDelta();
+
 	this.update();
 };

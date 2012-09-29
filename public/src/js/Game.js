@@ -66,6 +66,7 @@ Game.prototype.thisMonthsWeather = function () {
 	return weather;
 };
 
+
 Game.prototype.disaggregate = function (monthlyEnergy, weather) {
 	var disaggregateMonthlyEnergy = [];
 	// TODO - base on weather
@@ -167,3 +168,14 @@ Game.prototype.disaggregate = function (monthlyEnergy, weather) {
 	};
 	return disaggregateMonthlyEnergy;
 };
+
+Game.prototype.nextMonth = function () {
+	if (this.month < 12) {
+		this.month++;
+	}
+}
+
+Game.prototype.isGameOver = function () {
+	return this.month === 12;
+};
+
