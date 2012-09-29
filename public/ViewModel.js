@@ -12,4 +12,9 @@ ViewModel.prototype.update = function () {
 
 	this.budget(this.game.budget);
 	this.month(monthNames[this.game.month]);
-}
+};
+
+ViewModel.prototype.advanceToNextMonth = function () {
+	this.game.month++;
+	this.update();
+};

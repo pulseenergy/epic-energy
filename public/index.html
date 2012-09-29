@@ -9,7 +9,7 @@
 <script src="ViewModel.js"></script>
 <script>
 	var game, viewModel;
-	
+
 	window.onload = function () {
 		game = new Game();
 		viewModel = new ViewModel(game);
@@ -19,5 +19,6 @@
 </head>
 <body>
 	<div data-bind="text: month"></div>
+	<button data-bind="click: advanceToNextMonth">Next</button>
 </body>
 </html>
