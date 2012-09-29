@@ -1,5 +1,5 @@
 function OffBoiler(base) {
-	this.name = "Disabled " + base.name;
+	this.upgradeTitle = this.name = "Disabled " + base.name;
 	this.upgrades = function () {
 		return _.map(base.upgrades(), function (upgrade) {
 			if (upgrade[0] instanceof OffBoiler) {
@@ -17,7 +17,7 @@ function OffBoiler(base) {
 		};
 	};
 	this.getMessages = function(game, baselineEnergy, weather) {
-		var messages = []; 
+		var messages = [];
 		if (weather.mean < 7) {
 			messages.push("I'm turning on a space heater");
 		} else if (weather.averageLow < 8) {
@@ -30,7 +30,7 @@ function OffBoiler(base) {
 };
 
 function CrappyBoiler() {
-	this.name = "Atmospheric Boiler";
+	this.upgradeTitle = this.name = "Atmospheric Boiler";
 	this.upgrades = function () {
 		return [ [new OffBoiler(this), {}], [new BetterBoiler(), { money: -1000 }] ];
 	};
@@ -45,7 +45,7 @@ function CrappyBoiler() {
 };
 
 function BetterBoiler() {
-	this.name = "Condensing Boiler";
+	this.upgradeTitle = this.name = "Condensing Boiler";
 	this.upgrades = function () {
 		return [ [new OffBoiler(this), {}] ];
 	};

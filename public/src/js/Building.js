@@ -1,5 +1,5 @@
 function NothingBuilding() {
-	this.name = "Building";
+	this.upgradeTitle = this.name = "Building";
 	this.upgrades = function () {
 		return [ [new ThrowParty(), { money: -100, happy: 3 }] ];
 	};
@@ -14,7 +14,7 @@ function NothingBuilding() {
 };
 
 function ThrowParty() {
-	this.name = "Throw Party";
+	this.upgradeTitle = this.name = "Throw Party";
 	this.upgrades = function () {
 		return [];
 	};

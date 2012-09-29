@@ -1,6 +1,6 @@
 
 function T12Lighting() {
-	this.name = "T12 Light Bulbs";
+	this.upgradeTitle = this.name = "T12 Light Bulbs";
 	this.upgrades = function () {
 		return [ [new T8Lighting(), { money: -1000 }] ];
 	};
@@ -15,7 +15,7 @@ function T12Lighting() {
 };
 
 function T8Lighting() {
-	this.name = "T8 Light Bulbs";
+	this.upgradeTitle = this.name = "T8 Light Bulbs";
 	this.upgrades = function () {
 		return [ ];
 	};

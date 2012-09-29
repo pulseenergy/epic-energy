@@ -15,14 +15,6 @@ function ViewModel(game) {
 	this.equipment = ko.observable();
 	this.messages = ko.observable();
 
-	if (debug) {
-		this.occupants.subscribe(function (newValue) {
-			console.log('occ has changed', JSON.stringify(_.map(newValue, function (val) {
-				return val.happiness;
-			})));
-		});
-	}
-
 	this.gameOver = ko.observable(false);
 	this.finalScore = ko.observable();
 	this.pendingAction = ko.observable();

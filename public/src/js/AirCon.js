@@ -1,5 +1,5 @@
 function OffAirCon(base) {
-	this.name = "Disabled " + base.name;
+	this.upgradeTitle = this.name = "Disabled " + base.name;
 	this.upgrades = function () {
 		return _.map(base.upgrades(), function (upgrade) {
 			if (upgrade[0] instanceof OffAirCon) {
@@ -19,7 +19,7 @@ function OffAirCon(base) {
 };
 
 function AirCon() {
-	this.name = "Air Conditioning";
+	this.upgradeTitle = this.name = "Air Conditioning";
 	this.upgrades = function () {
 		return [ [new OffAirCon(this), {}] ];
 	};

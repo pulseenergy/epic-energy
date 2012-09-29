@@ -1,5 +1,5 @@
 function OffElevator(base) {
-	this.name = "Disabled " + base.name;
+	this.upgradeTitle = this.name = "Disabled " + base.name;
 	this.upgrades = function () {
 		return _.map(base.upgrades(), function (upgrade) {
 			if (upgrade[0] instanceof OffElevator) {
@@ -19,7 +19,7 @@ function OffElevator(base) {
 };
 
 function CrappyElevator() {
-	this.name = "Inefficient Elevator";
+	this.upgradeTitle = this.name = "Inefficient Elevator";
 	this.upgrades = function () {
 		return [
 			[new OffElevator(this), {}],
@@ -39,7 +39,7 @@ function CrappyElevator() {
 };
 
 function HibernatingElevator() {
-	this.name = "Hibernating Elevator";
+	this.upgradeTitle = this.name = "Hibernating Elevator";
 	this.upgrades = function () {
 		return [
 			[new OffElevator(this), {}],
@@ -57,7 +57,7 @@ function HibernatingElevator() {
 };
 
 function RegenerativeDriveElevator() {
-	this.name = "Elevator with Regenerative Drive";
+	this.upgradeTitle = this.name = "Elevator with Regenerative Drive";
 	this.upgrades = function () {
 		return [
 			[new OffElevator(this), {}],
@@ -75,7 +75,7 @@ function RegenerativeDriveElevator() {
 };
 
 function HibernatingRegenerativeDriveElevator() {
-	this.name = "Hibernating Elevator with Regenerative Drive";
+	this.upgradeTitle = this.name = "Hibernating Elevator with Regenerative Drive";
 	this.upgrades = function () {
 		return [ [new OffElevator(this), {}] ];
 	};

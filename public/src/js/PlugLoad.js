@@ -1,6 +1,5 @@
-
 function PlugLoad() {
-	this.name = "Occupant Plug Load";
+	this.upgradeTitle = this.name = "Occupant Plug Load";
 	this.upgrades = function () {
 		return [ [new OffAirCon(this), {}] ];
 	};
