@@ -6,6 +6,9 @@
 <link href="lib/less/bootstrap.css" rel="stylesheet">
 <script src="lib/underscore-1.4.0.js"></script>
 <script src="lib/knockout-2.1.0.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="lib/js/bootstrap-button.js"></script>
+
 <script src="Occupant.js"></script>
 <script src="Game.js"></script>
 <script src="ViewModel.js"></script>
@@ -13,21 +16,16 @@
 <script>
 	var game, viewModel;
 
-	window.onload = function () {
+	$(function () {
 		game = new Game();
 		viewModel = new ViewModel(game);
 		ko.applyBindings(viewModel);
-	}
+	});
 </script>
 </head>
 <body>
 	<div data-bind="text: month"></div>
 	<button class="btn" data-bind="click: advanceToNextMonth">Next</button>
 
-
-
-
 </body>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="lib/js/bootstrap-button.js"></script>
 </html>
