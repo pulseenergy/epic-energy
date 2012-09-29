@@ -19,17 +19,20 @@ function Game() {
 	this.month = 0;
 
 	this.weather = vancouverWeather;
+	this.baselineEnergy = [50985, 43655, 42752, 37045, 35019, 34887, 38875, 39735, 33185, 35012, 48868, 53010];
+	this.disaggregatedBaseline = this.disaggregate(this.baselineEnergy, this.baselineEnergy);
 }
 
 Game.prototype.monthDelta = function () {
 	var weather = this.thisMonthsWeather();
 	var total = { money: 0, happy: 0, energy: 0 };
-	_.each(this.equipment, function (equip) {
-		var partial = equip.monthDelta(this, weather);
+	_.each(this.equipment, function (equip, type) {
+		var baselineEnergy = this.disaggregatedBaseline[this.month][type];
+		var partial = equip.monthDelta(this, baselineEnergy, weather);
 		total.money += partial.money;
 		total.happy += partial.happy;
-		total.energy += partial.energy;
-	});
+		total.energy -= partial.energy;
+	}, this);
 	this.applyCost(total);
 };
 
@@ -54,4 +57,106 @@ Game.prototype.thisMonthsWeather = function () {
 		weather[k] = v[this.month];
 	}, this);
 	return weather;
+};
+
+Game.prototype.disaggregate = function (monthlyEnergy, weather) {
+	var disaggregateMonthlyEnergy = [];
+	// TODO - base on weather
+	disaggregateMonthlyEnergy[0] = {
+			plugLoad : 8217,
+			elevator : 1233,
+			lighting : 10682,
+			hotWater : 863,
+			airCon   : 0,
+			boiler   : 29990
+	};
+	disaggregateMonthlyEnergy[1] = {
+			plugLoad : 8217,
+			elevator : 1233,
+			lighting : 10682,
+			hotWater : 863,
+			airCon   : 0,
+			boiler   : 22660
+	};
+	disaggregateMonthlyEnergy[2] = {
+			plugLoad : 8217,
+			elevator : 1233,
+			lighting : 10271,
+			hotWater : 822,
+			airCon   : 0,
+			boiler   : 22209
+	};
+	disaggregateMonthlyEnergy[3] = {
+			plugLoad : 8217,
+			elevator : 1233,
+			lighting : 10271,
+			hotWater : 822,
+			airCon   : 0,
+			boiler   : 16502
+	};
+	disaggregateMonthlyEnergy[4] = {
+			plugLoad : 8217,
+			elevator : 1233,
+			lighting : 9860,
+			hotWater : 822,
+			airCon   : 7000,
+			boiler   : 7886
+	};
+	disaggregateMonthlyEnergy[5] = {
+			plugLoad : 8217,
+			elevator : 1233,
+			lighting : 9860,
+			hotWater : 781,
+			airCon   : 14796,
+			boiler   : 0
+	};
+	disaggregateMonthlyEnergy[6] = {
+			plugLoad : 8217,
+			elevator : 1233,
+			lighting : 9860,
+			hotWater : 781,
+			airCon   : 18784,
+			boiler   : 0
+	};
+	disaggregateMonthlyEnergy[7] = {
+			plugLoad : 8217,
+			elevator : 1233,
+			lighting : 9860,
+			hotWater : 781,
+			airCon   : 19644,
+			boiler   : 0
+	};
+	disaggregateMonthlyEnergy[8] = {
+			plugLoad : 8217,
+			elevator : 1233,
+			lighting : 10271,
+			hotWater : 822,
+			airCon   : 6000,
+			boiler   : 6643
+	};
+	disaggregateMonthlyEnergy[9] = {
+			plugLoad : 8217,
+			elevator : 1233,
+			lighting : 10271,
+			hotWater : 822,
+			airCon   : 0,
+			boiler   : 14469
+	};
+	disaggregateMonthlyEnergy[10] = {
+			plugLoad : 8217,
+			elevator : 1233,
+			lighting : 10682,
+			hotWater : 863,
+			airCon   : 0,
+			boiler   : 27873
+	};
+	disaggregateMonthlyEnergy[11] = {
+			plugLoad : 8217,
+			elevator : 1233,
+			lighting : 10682,
+			hotWater : 863,
+			airCon   : 0,
+			boiler   : 32015
+	};
+	return disaggregateMonthlyEnergy;
 };

@@ -1,5 +1,5 @@
 function Equipment() {
-	this.monthDelta = function (game, weather) {
+	this.monthDelta = function (game, baselineEnergy, weather) {
 		return {
 			money: 0,
 			happy: 0,
@@ -18,11 +18,11 @@ function OffBoiler(base) {
 			return upgrade;
 		});
 	};
-	this.monthDelta = function (game, weather) {
+	this.monthDelta = function (game, baselineEnergy, weather) {
 		return {
 			money: 0,
 			happy: (weather.averageLow < 12) ? (weather.averageLow < 8) ? -2 : -1 : 0,
-			energy: (weather.averageLow < 12) ? -200 : 0
+			energy: (weather.mean < 7) ? 2 * baselineEnergy : 0
 		};
 	};
 };
@@ -32,11 +32,11 @@ function CrappyBoiler() {
 	this.upgrades = function () {
 		return [ [new OffBoiler(this), {}], [new BetterBoiler(), { money: -1000 }] ];
 	};
-	this.monthDelta = function (game, weather) {
+	this.monthDelta = function (game, baselineEnergy, weather) {
 		return {
 			money: 0,
 			happy: (weather.averageLow < 8) ? -1 : 0,
-			energy: -100
+			energy: baselineEnergy
 		};
 	};
 };
@@ -46,11 +46,11 @@ function BetterBoiler() {
 	this.upgrades = function () {
 		return [ [new OffBoiler(this), {}] ];
 	};
-	this.monthDelta = function (game, weather) {
+	this.monthDelta = function (game, baselineEnergy, weather) {
 		return {
 			money: 0,
 			happy: 0,
-			energy: (weather.averageLow < 8) ? -80 : -40
+			energy: (weather.averageLow < 8) ? 0.80 * baselineEnergy : 0.40 * baselineEnergy
 		};
 	};
 };
