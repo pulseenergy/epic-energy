@@ -21,17 +21,20 @@ function Game() {
 	this.weather = vancouverWeather;
 	this.baselineEnergy = [50985, 43655, 42752, 37045, 35019, 34887, 38875, 39735, 33185, 35012, 48868, 53010];
 	this.disaggregatedBaseline = this.disaggregate(this.baselineEnergy, this.baselineEnergy);
+	this.messages = [];
 }
 
 Game.prototype.monthDelta = function () {
 	var weather = this.thisMonthsWeather();
 	var total = { money: 0, happy: 0, energy: 0 };
+	this.messages = [];
 	_.each(this.equipment, function (equip, type) {
 		var baselineEnergy = this.disaggregatedBaseline[this.month][type];
 		var partial = equip.monthDelta(this, baselineEnergy, weather);
 		total.money += partial.money;
 		total.happy += partial.happy;
 		total.energy -= partial.energy;
+		this.messages = this.messages.concat(partial.messages);
 	}, this);
 	this.applyCost(total);
 };

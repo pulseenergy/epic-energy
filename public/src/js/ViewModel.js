@@ -12,6 +12,7 @@ function ViewModel(game) {
 
 	this.weather = ko.observable();
 	this.equipment = ko.observable();
+	this.messages = ko.observable();
 
 	if (debug) {
 		this.occupants.subscribe(function (newValue) {
@@ -49,6 +50,9 @@ ViewModel.prototype.update = function () {
 			name: equip.name
 		};
 	}));
+	
+	this.messages(this.game.messages);
+
 	this.availableActionsByCategory(_.map(this.game.equipment, function (equip, slot) {
 		return {
 			category: slot,

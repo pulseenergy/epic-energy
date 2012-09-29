@@ -3,7 +3,8 @@ function Equipment() {
 		return {
 			money: 0,
 			happy: 0,
-			energy: 0
+			energy: 0,
+			messages: []
 		};
 	};
 };
@@ -22,9 +23,21 @@ function OffBoiler(base) {
 		return {
 			money: 0,
 			happy: (weather.averageLow < 12) ? (weather.averageLow < 8) ? -2 : -1 : 0,
-			energy: (weather.mean < 7) ? 2 * baselineEnergy : 0
+			energy: (weather.mean < 7) ? 2 * baselineEnergy : 0,
+			messages: this.getMessages(game, baselineEnergy, weather)
 		};
 	};
+	this.getMessages = function(game, baselineEnergy, weather) {
+		var messages = []; 
+		if (weather.mean < 7) {
+			messages.push("I'm turning on a space heater");
+		} else if (weather.averageLow < 8) {
+			messages.push("I'm freezing ... please turn back on the heat");
+		} else if (weather.averageLow < 12) {
+			messages.push("Brrr - it's cold in here");
+		}
+		return messages;
+	}
 };
 
 function CrappyBoiler() {
@@ -36,7 +49,8 @@ function CrappyBoiler() {
 		return {
 			money: 0,
 			happy: (weather.averageLow < 8) ? -1 : 0,
-			energy: baselineEnergy
+			energy: baselineEnergy,
+			messages: []
 		};
 	};
 };
@@ -50,7 +64,8 @@ function BetterBoiler() {
 		return {
 			money: 0,
 			happy: 0,
-			energy: (weather.averageLow < 8) ? 0.80 * baselineEnergy : 0.40 * baselineEnergy
+			energy: (weather.averageLow < 8) ? 0.80 * baselineEnergy : 0.40 * baselineEnergy,
+			messages: []
 		};
 	};
 };

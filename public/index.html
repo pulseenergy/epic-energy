@@ -61,6 +61,7 @@
 				</div>
 			</span>
 			<span class="right-column span8">
+                <div data-bind="foreach: messages"><span data-bind="text: $data"></span></div>
 				<div data-bind="text: '$' + budget() + ' remaining'"></div>
 				<div id="occupants" data-bind="foreach: occupants">
 					<span class="occupant" data-bind="text: happiness, attr: { 'title': happinessLabel }, class: happinessLabel"></span>
