@@ -1,5 +1,7 @@
 function OffBoiler(base) {
-	this.upgradeTitle = this.name = "Disabled " + base.name;
+	this.upgradeTitle = "Turn Off " + base.name;
+	base.upgradeTitle = "Turn On " + base.name;
+	this.name = base.name + " (Off)";
 	this.upgrades = function () {
 		return _.map(base.upgrades(), function (upgrade) {
 			if (upgrade[0] instanceof OffBoiler) {
@@ -30,7 +32,8 @@ function OffBoiler(base) {
 };
 
 function CrappyBoiler() {
-	this.upgradeTitle = this.name = "Atmospheric Boiler";
+	this.name = "Atmospheric Boiler";
+	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
 		return [ [new OffBoiler(this), {}], [new BetterBoiler(), { money: -1000 }] ];
 	};
@@ -45,7 +48,8 @@ function CrappyBoiler() {
 };
 
 function BetterBoiler() {
-	this.upgradeTitle = this.name = "Condensing Boiler";
+	this.name = "Condensing Boiler";
+	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
 		return [ [new OffBoiler(this), {}] ];
 	};

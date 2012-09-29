@@ -1,5 +1,7 @@
 function OffAirCon(base) {
-	this.upgradeTitle = this.name = "Disabled " + base.name;
+	this.upgradeTitle = "Turn Off " + base.name;
+	base.upgradeTitle = "Turn On " + base.name;
+	this.name = base.name + " (Off)";
 	this.upgrades = function () {
 		return _.map(base.upgrades(), function (upgrade) {
 			if (upgrade[0] instanceof OffAirCon) {
