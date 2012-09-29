@@ -1,6 +1,17 @@
 var debug = false;
 var monthNames = 'January February March April May June July August September October November December -'.split(' ');
 
+function categoryFriendlyName(category) {
+	return {
+		boiler: 'Boiler',
+		hotWater: 'Hot Water',
+		elevator: 'Elevator',
+		airCon: 'Air Cond.',
+		lighting: 'Lighting',
+		plugLoad: 'Building'
+	}[category] || category;
+}
+
 function ViewModel(game) {
 	this.game = game;
 

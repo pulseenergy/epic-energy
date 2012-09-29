@@ -16,7 +16,6 @@ function Game() {
 		boiler: new CrappyBoiler(),
 		hotWater: new CrappyHotWater(),
 		elevator: new CrappyElevator(),
-		building: new NothingBuilding(),
 		airCon: new AirCon(),
 		plugLoad: new PlugLoad(),
 		lighting: new T12Lighting()

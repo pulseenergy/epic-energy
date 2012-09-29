@@ -15,7 +15,6 @@
 <script src="src/js/Boiler.js"></script>
 <script src="src/js/HotWater.js"></script>
 <script src="src/js/Elevator.js"></script>
-<script src="src/js/Building.js"></script>
 <script src="src/js/AirCon.js"></script>
 <script src="src/js/PlugLoad.js"></script>
 <script src="src/js/Lighting.js"></script>
@@ -71,13 +70,13 @@
 				<div class="equipment-summary clearfix">
 					<ul>
 						<li class="occupants">
-							<h4>occupants</h4>
+							<h4>Occupants</h4>
 							<div data-bind="foreach: occupants">
 								<span class="occupant tooltipped" data-bind="attr: { 'title': happinessLabel }, class: happinessLabel.toLowerCase()"></span>
 							</div>
 						</li>
 						<!-- ko foreach: equipment -->
-						<li data-bind="text: category, attr: { title: name }, css: { selected: $root.selectedCategory() === category }, class: category, click: $root.selectCategory.bind($root)"></li>
+						<li data-bind="text: categoryFriendlyName(category), attr: { title: name }, css: { selected: $root.selectedCategory() === category }, class: category, click: $root.selectCategory.bind($root)"></li>
 						<!-- /ko -->
 					</ul>
 				</div>
