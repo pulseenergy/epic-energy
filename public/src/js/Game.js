@@ -17,7 +17,8 @@ function Game() {
 		hotWater: new CrappyHotWater(),
 		elevator: new CrappyElevator(),
 		building: new NothingBuilding(),
-		airCon: new AirCon()
+		airCon: new AirCon(),
+		plugLoad: new PlugLoad()
 	};
 	this.occupants = [];
 	for (var i = 0; i < 10; i++) {
