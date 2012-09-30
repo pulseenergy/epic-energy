@@ -16,8 +16,11 @@ function categoryFriendlyName(category) {
 function ViewModel(game) {
 	this.game = game;
 
+	this.animating = ko.observable(false);
+
 	this.budget = ko.observable();
 	this.year = ko.observable();
+	this.day = ko.observable(1);
 	this.month = ko.observable();
 	this.season = ko.computed(function () {
 		return 'season-' + seasons[Math.floor(this.month() / 3)] || seasons[0];
@@ -133,13 +136,26 @@ ViewModel.prototype.selectCategory = function (equipment) {
 };
 
 ViewModel.prototype.advanceToNextMonth = function () {
-	if (this.pendingAction()) {
-		this.pendingAction().apply(this.game);
-		this.pendingAction(null);
-	}
-	this.lastMonthDelta = this.game.monthDelta();
-	this.lastMonthChangePercent = Math.round(100 * (this.lastMonthDelta.energy - this.game.thisMonthsBaseline()) / this.game.thisMonthsBaseline());
-	this.game.nextMonth();
+	this.animating(true);
 
-	this.update();
+	var tomorrow = function() {
+		var day = this.day() + 3;
+		if (day > 29) {
+			this.day(1);
+			if (this.pendingAction()) {
+				this.pendingAction().apply(this.game);
+				this.pendingAction(null);
+			}
+			this.lastMonthDelta = this.game.monthDelta();
+			this.lastMonthChangePercent = Math.round(100 * (this.lastMonthDelta.energy - this.game.thisMonthsBaseline()) / this.game.thisMonthsBaseline());
+			this.game.nextMonth();
+			this.update();
+			this.animating(false);
+		} else {
+			this.day(day);
+			window.setTimeout(tomorrow, 50);
+		}
+	}.bind(this);
+
+	tomorrow();
 };
