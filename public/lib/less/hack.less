@@ -31,12 +31,27 @@
 }
 
 
+	.occupant {
+		display: inline-block;
+		width: 16px;
+		height: 25px;
+		padding-top: 8px;
+		text-align: center;
+		color: white;
+		background: url(img/occupant_hollow.png) 0 0 no-repeat;
+		.box-sizing(border-box);
 
+		&.happy { background-color: @green; }
+		&.content { background-color: @yellow; }
+		&.discontent { background-color: @orange; }
+		&.unhappy { background-color: @red; }
+	}
 
 .main-body {
 	padding-top: 20px;
 	padding-bottom: 60px;
 	background:  url(img/skyline.png) 0 -40px repeat-x #fff;
+	border-bottom: 1px solid #ccc;
 	
 	.left-column {
 		
@@ -94,32 +109,6 @@
 					&.lighting {background-position: -132px -87px;}
 					&.elevator {background-position: -132px -332px;}
 					
-					&.occupants {
-						width: 214px;
-						height: auto;
-						background: #fafafa;
-						
-						.occupant {
-							display: inline-block;
-							width: 16px;
-							height: 25px;
-							padding-top: 8px;
-							text-align: center;
-							font-size: 11px;
-							font-weight: 600;
-							margin-right: 0px;
-							background-color: @grayLight;
-							color: white;
-							background: url(img/occupant_hollow.png) 0 0 no-repeat;
-							.box-sizing(border-box);
-
-							&.happy { background-color: @green; }
-							&.content { background-color: @yellow; }
-							&.discontent { background-color: @orange; }
-							&.unhappy { background-color: @red; }
-						}
-						
-					}
 					
 					h4 {
 						line-height: 1.2em;
@@ -175,6 +164,7 @@
 					
 					li {
 						margin-bottom: .5em;
+						line-height: 1.3em;
 					}
 				}
 			}
@@ -183,12 +173,13 @@
 				width: 180px;
 				float: right;
 				margin-left: 20px;
+				margin-top: -20px;
 				padding: 12px;
 				.border-radius(10px);
 				border: 2px solid #fff;
 				.box-sizing(border-box);
 				.box-shadow(0 0 20px 0 rgba(0,0,0,.2));
-				background: rgba(255,255,255,.6);
+				background: #fafafa;
 				text-align: right;
 				text-shadow: 0 1px 0 #fff;
 				
@@ -292,7 +283,7 @@
 	.clearfix;
 	height: 40px;
 	margin-top: -75px;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 	padding: 0 20px;
 	background: #fff;
 	border: 1px solid #bbb;

@@ -70,12 +70,7 @@
 				<div class="building-container"></div>
 				<div class="equipment-summary clearfix">
 					<ul>
-						<li class="occupants">
-							<h4>Occupants</h4>
-							<div data-bind="foreach: occupants">
-								<span class="occupant tooltipped" data-bind="attr: { 'title': happinessLabel }, class: happinessLabel.toLowerCase()"></span>
-							</div>
-						</li>
+						
 						<!-- ko foreach: equipment -->
 						<li data-bind="attr: { title: name }, css: { selected: $root.selectedCategory() === category }, class: category, click: $root.selectCategory.bind($root)">
                           <span data-bind="text: categoryFriendlyName(category)"></span>
@@ -93,6 +88,12 @@
 							<dd data-bind="text: accounting.formatNumber(energy()) + ' kWh'"></dd>
 							<dt>Remaining Budget</dt>
 							<dd data-bind="text: '$' + accounting.formatNumber(budget())">
+							<dt class="occupants">Occupants</dt>
+							<dd>
+								<span data-bind="foreach: occupants">
+									<span class="occupant tooltipped" data-bind="attr: { 'title': happinessLabel }, class: happinessLabel.toLowerCase()">&nbsp;</span>
+								</span>
+							</dd>
 						</dl>
 					</div>
 					<div class="monthly-summary">
