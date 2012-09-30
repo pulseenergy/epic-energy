@@ -94,7 +94,7 @@
 						</dl>
 					</div>
 					<div class="monthly-summary" style="float: none">
-						<h1><span data-bind="text: monthName() + ' 1, ' + year()"></span> <button class="btn btn-large btn-primary" data-bind="click: advanceToNextMonth, disable: gameOver">Next</button></h1>
+						<h1><span data-bind="text: monthName() + ' 1, ' + year()"></span> <button tabindex="1" class="btn btn-large btn-primary" data-bind="click: advanceToNextMonth, disable: gameOver">Next</button></h1>
 						<ul data-bind="foreach: messages">
 							<li data-bind="text: $data"></li>
 						</ul>
@@ -145,6 +145,9 @@
 	<div class="game-over" data-bind="visible: gameOver">
 		<h2>Game Over!</h2>
 		<p>Your score was <span data-bind="text: finalScore"></span>, which is pretty weak.</p>
+
+		<a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-lang="en" data-hashtags="epicenergy">Tweet your score</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 	</div>
 </div>
 
