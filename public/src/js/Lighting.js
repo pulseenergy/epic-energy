@@ -1,6 +1,6 @@
 function NoLighting(base) {
 	this.upgradeTitle = "Turn Off " + base.name + " (Provide Candles)";
-	base.upgradeTitle = "Turn On " + base.name
+	base.upgradeTitle = "Turn On " + base.name;
 	this.name = "Candles";
 	this.upgrades = function () {
 		return _.map(base.upgrades(), function (upgrade) {
@@ -40,6 +40,7 @@ function T12Lighting() {
 function T8Lighting() {
 	this.name = "T8 Light Bulbs";
 	this.upgradeTitle = "Upgrade to " + this.name;
+	this.description = "Replacing T12 lamps and ballasts with high efficiency electronic ballasts and T8 lamps can provide savings greater than 40%";
 	this.upgrades = function () {
 		return [ [new NoLighting(this), { money: -10 }] ];
 	};

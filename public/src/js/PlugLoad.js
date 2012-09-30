@@ -18,6 +18,7 @@ function PlugLoad() {
 function ThrowParty(base) {
 	this.name = base.name;
 	this.upgradeTitle = "Throw Party";
+	this.description = "Morale Booster for Building Occupants";
 	this.upgrades = function () {
 		return base.upgrades();
 	};
@@ -32,7 +33,7 @@ function PowerBars(base) {
 	this.upgradeTitle = "Add Power Bars to Reduce Phantom Load";
 	this.upgrades = wrappedBaseUpgradeFunctions(base, PowerBars);
 	this.monthDelta = function (game, baselineEnergy, weather) {
-		var parent = base.monthDelta(game, baselineEnergy, weather)
+		var parent = base.monthDelta(game, baselineEnergy, weather);
 		return {
 			money: parent.money,
 			happy: parent.happy,
@@ -48,7 +49,7 @@ function ReplaceWithLaptops(base) {
 	this.upgradeTitle = "Replace PCs with Laptops";
 	this.upgrades = wrappedBaseUpgradeFunctions(base, ReplaceWithLaptops);
 	this.monthDelta = function (game, baselineEnergy, weather) {
-		var parent = base.monthDelta(game, baselineEnergy, weather)
+		var parent = base.monthDelta(game, baselineEnergy, weather);
 		return {
 			money: parent.money,
 			happy: parent.happy,

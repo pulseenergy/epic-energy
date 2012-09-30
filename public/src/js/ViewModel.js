@@ -96,6 +96,7 @@ ViewModel.prototype.update = function () {
 				category: slot,
 				name: name,
 				upgradeTitle: upgrade[0].upgradeTitle,
+				description: upgrade[0].description,
 				cost: cost,
 				available: cost.money == null || (budget + cost.money) >= 0,
 				formattedCost: cost.money < 0 ? '$' + accounting.formatNumber(-cost.money) : 'Free',

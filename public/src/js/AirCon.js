@@ -1,7 +1,8 @@
 function OffAirCon(base) {
+	this.name = base.name + " (Off)";
 	this.upgradeTitle = "Turn Off " + base.name;
 	base.upgradeTitle = "Turn On " + base.name;
-	this.name = base.name + " (Off)";
+	this.description = "Air Conditioning has a big impact on energy consumption, but also effects the happiness of occupants";
 	this.upgrades = function () {
 		return _.map(base.upgrades(), function (upgrade) {
 			if (upgrade[0] instanceof OffAirCon) {

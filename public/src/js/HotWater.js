@@ -44,6 +44,7 @@ function CrappyHotWater() {
 function OnDemandHotWater() {
 	this.name = "On Demand Hot Water Heater";
 	this.upgradeTitle = "Upgrade to " + this.name;
+	this.description = "Tankless On-demand Water-Heater also is more efficient than conventional heater, at around 60%";
 	this.upgrades = function () {
 		return [ [new OffHotWater(this), {}] ];
 	};
@@ -60,6 +61,7 @@ function OnDemandHotWater() {
 function SolarHotWater() {
 	this.name = "Solar Hot Water Heater";
 	this.upgradeTitle = "Upgrade to " + this.name;
+	this.description = "In order to heat water using solar energy, a collector, often fastened to a roof or a wall facing the sun, heats working fluid that is either pumped (active system) or driven by natural convection (passive system) through it.";
 	this.upgrades = function () {
 		return [ [new OffHotWater(this), {}] ];
 	};
@@ -76,6 +78,7 @@ function SolarHotWater() {
 function CondensingHotWater() {
 	this.name = "Condensing Hot Water Heater";
 	this.upgradeTitle = "Upgrade to " + this.name;
+	this.description = "Gas condensing water heaters are high efficient water heaters, with over 90% in energy efficiency, much higher than conventional tank-type";
 	this.upgrades = function () {
 		return [ [new OffHotWater(this), {}] ];
 	};
