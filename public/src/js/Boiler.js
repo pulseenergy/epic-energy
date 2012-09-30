@@ -42,7 +42,7 @@ function CrappyBoiler() {
 			money: 0,
 			happy: (weather.averageLow < 8) ? -1 : 0,
 			energy: baselineEnergy,
-			messages: []
+			messages: (weather.averageLow < 8) ? ["Turn up the heat, please"] : [],
 		};
 	};
 };
