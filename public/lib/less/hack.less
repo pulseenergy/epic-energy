@@ -32,12 +32,13 @@
 
 
 	.occupant {
-		display: inline-block;
+		display: block;
+		float: right;
 		width: 16px;
 		height: 25px;
+		margin-left: 2px;
+		margin-bottom: 2px;
 		padding-top: 8px;
-		text-align: center;
-		color: white;
 		background: url(img/occupant_hollow.png) 0 0 no-repeat;
 		.box-sizing(border-box);
 
@@ -170,7 +171,7 @@
 			}
 			
 			.score-summary {
-				width: 140px;
+				width: 170px;
 				float: right;
 				margin-left: 20px;
 				margin-top: -20px;
@@ -182,6 +183,7 @@
 				background: #fafafa;
 				text-align: right;
 				text-shadow: 0 1px 0 #fff;
+				.clearfix;
 				
 				h2 {
 					
@@ -199,11 +201,19 @@
 					
 					dd {
 						margin-bottom: .7em;
+						margin-left: 0;
+						margin-right: 0;
 						font-size: 20px;
 						font-weight: 700;
+						text-align: right;
 						
 						&:last-of-type {
 							margin-bottom: 0;
+						}
+						
+						&.occ-box {
+							width: 100px;
+							float: right;
 						}
 					}
 				}
