@@ -34,7 +34,7 @@ function OffBoiler(base) {
 };
 
 function CrappyBoiler() {
-	this.name = "Atmospheric Boiler";
+	this.name = "Old Boiler";
 	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
 		return [ [new OffBoiler(this), {}], [new BetterBoiler(), { money: -1000 }] ];

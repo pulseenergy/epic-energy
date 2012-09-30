@@ -22,7 +22,7 @@ function OffHotWater(base) {
 };
 
 function CrappyHotWater() {
-	this.name = "Atmospheric Hot Water Heater";
+	this.name = "Old Hot Water Heater";
 	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
 		return [
