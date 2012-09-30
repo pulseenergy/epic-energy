@@ -53,7 +53,7 @@ ViewModel.prototype.update = function () {
 	this.budget(this.game.budget);
 	this.month(this.game.month);
 	this.monthName(monthNames[this.game.month % 12]);
-	this.year(2012 + Math.floor(this.game.month / 12));
+	this.year(new Date().getFullYear() + Math.floor(this.game.month / 12));
 	this.energy(this.game.consumed);
 
 	this.occupants([]); // force template update
