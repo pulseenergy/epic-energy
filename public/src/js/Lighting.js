@@ -22,7 +22,8 @@ function NoLighting(base) {
 };
 
 function T12Lighting() {
-	this.upgradeTitle = this.name = "T12 Light Bulbs";
+	this.name = "T12 Light Bulbs";
+	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
 		return [ [new NoLighting(this), { money: -10 }], [new T8Lighting(), { money: -1000 }] ];
 	};
@@ -37,7 +38,8 @@ function T12Lighting() {
 };
 
 function T8Lighting() {
-	this.upgradeTitle = this.name = "T8 Light Bulbs";
+	this.name = "T8 Light Bulbs";
+	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
 		return [ [new NoLighting(this), { money: -10 }] ];
 	};
