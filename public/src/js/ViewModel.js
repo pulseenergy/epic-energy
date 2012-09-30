@@ -136,6 +136,15 @@ ViewModel.prototype.selectCategory = function (equipment) {
 	}
 };
 
+ViewModel.prototype.getGossipMessages = function () {
+	return _.map(this.game.messages, function (message) {
+		return {
+			type: 'gossip',
+			body: message
+		};
+	});
+};
+
 ViewModel.prototype.advanceToNextMonth = function () {
 	if (this.game.isGameOver() || this.animating()) {
 		return;
@@ -151,12 +160,7 @@ ViewModel.prototype.advanceToNextMonth = function () {
 	this.lastMonthDelta = this.game.monthDelta();
 	this.lastMonthChangePercent = Math.round(100 * (this.lastMonthDelta.energy - this.game.thisMonthsBaseline()) / this.game.thisMonthsBaseline());
 
-	var messages = _.map(this.game.messages, function (message) {
-		return {
-			type: 'gossip',
-			body: message
-		};
-	});
+	var messages = this.getGossipMessages();
 
 	var tomorrow = function() {
 		var day = this.day() + 3;

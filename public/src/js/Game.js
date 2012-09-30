@@ -8,6 +8,7 @@ var vancouverWeather = {
 
 var startingBudget = 10000;
 var vancouverOfficeEnergy = [50985, 43655, 42752, 37045, 35019, 34887, 38875, 39735, 33185, 35012, 48868, 53010]; // kwh
+var occupantNames = ["Rohit", "Bob", "Suzie", "Cher", "Ryan", "Carlos", "Shane", "Dan", "Donalda", "Angie", "Theresa", "John", "Gorp"];
 
 function Game() {
 	this.budget = startingBudget;
@@ -31,7 +32,8 @@ function Game() {
 	this.weather = vancouverWeather;
 	this.baselineEnergy = vancouverOfficeEnergy;
 	this.disaggregatedBaseline = this.disaggregate(this.baselineEnergy, this.baselineEnergy);
-	this.messages = ["It's kind of chilly in here. I'm not getting enough heat."];
+	this.messages = []
+	this.appendMessages(this.messages, ["It's kind of chilly in here. I'm not getting enough heat."]);
 }
 
 Game.prototype.monthDelta = function () {
@@ -45,7 +47,7 @@ Game.prototype.monthDelta = function () {
 		total.happy += partial.happy;
 		total.energy += partial.energy;
 		if (debug) console.log('adding energy', type, partial.energy);
-		this.messages = this.messages.concat(partial.messages);
+		this.appendMessages(this.messages, partial.messages);
 	}, this);
 	if (debug) console.log('total energy', total.energy);
 	this.applyCost(total);
@@ -73,6 +75,13 @@ Game.prototype.applyHappiness = function (deltaHappiness) {
 		occupant = notUnhappy[occupantIndex];
 		occupant.updateHappiness(sign);
 	}
+};
+
+Game.prototype.appendMessages = function(messages, newMessages) {
+	_.each(newMessages, function(message) {
+		var occupant = occupantNames[_.random(0, occupantNames.length -1)];
+		messages.push(occupant + " says: \"" + message + "\"");
+	});
 };
 
 Game.prototype.notUnhappyOccupants = function () {
