@@ -13,6 +13,6 @@ app.configure(function () {
 	app.use(express.static(__dirname + '/public'));
 });
 
-app.listen(3000);
+app.listen(process.env['app_port'] || 3000);
 console.log('running on 3000');
 
