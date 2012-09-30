@@ -15,7 +15,7 @@ function OffHotWater(base) {
 			money: 0,
 			happy: -2,
 			energy: 0,
-			messages: ["WTF? The hot water is broken!"]
+			messages: [randomItem(["WTF? The hot water is broken!", "I can't bike to work with cold showers!"])]
 		};
 	};
 	this.state = {name: "bad", description: "No Hot Water"};
