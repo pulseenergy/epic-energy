@@ -14,11 +14,11 @@ function Game() {
 	this.consumed = 0;
 	this.equipment = {
 		boiler: new CrappyBoiler(),
+		airCon: new AirCon(),
+		lighting: new T12Lighting(),
 		hotWater: new CrappyHotWater(),
 		elevator: new CrappyElevator(),
-		airCon: new AirCon(),
-		plugLoad: new PlugLoad(),
-		lighting: new T12Lighting()
+		plugLoad: new PlugLoad()
 	};
 	this.occupants = [];
 	for (var i = 0; i < 10; i++) {
