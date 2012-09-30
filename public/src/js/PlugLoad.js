@@ -23,9 +23,13 @@ function ThrowParty(base) {
 	this.upgrades = function () {
 		return base.upgrades();
 	};
+	var partyHappened = false;
 	this.monthDelta = function (game, baselineEnergy, weather) {
 		var delta = base.monthDelta(game, baselineEnergy, weather);
-		delta.messages = (delta.messages || []).concat("Sweet party!");
+		if (partyHappened == false) {
+			delta.messages = (delta.messages || []).concat("Sweet party!");
+			partyHappened = true;
+		}
 		return delta;
 	};
 	this.state = base.state;
