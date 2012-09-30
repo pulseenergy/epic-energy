@@ -37,6 +37,7 @@ function ViewModel(game) {
 	this.finalScore = ko.observable();
 	this.finalEnergyPercent = ko.observable();
 	this.finalEnergyMoreLess = ko.observable();
+	this.finalOccupantHappiness = ko.observable();
 
 	this.pendingAction = ko.observable();
 	this.availableActionsByCategory = ko.observable();
@@ -116,14 +117,16 @@ ViewModel.prototype.update = function () {
 	});
 	this.availableActionsByCategory(actions);
 
-	this.gameOver(this.game.isGameOver());
-	if (this.gameOver()) {
+	if (this.game.isGameOver()) {
 		this.finalScore(this.game.computeScore());
 
+		this.finalOccupantHappiness(this.game.computeFinalOccupantHappiness());
 		this.finalEnergyMoreLess(this.game.computeFinalEnergy() < 0 ? 'more' : 'less');
 		this.finalEnergyPercent(this.game.computeFinalEnergyPercent());
 		$('#twitter-button-container').html('<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="I just scored ' + this.finalScore() + ' in Epic Energy, a building energy sim created during @CleanwebYVR #epicenergy #html5" data-count="none" data-related="pulseenergy" data-lang="en"></a>');
 		$.getScript('http://platform.twitter.com/widgets.js');
+
+		this.gameOver(true);
 	}
 };
 

@@ -208,12 +208,12 @@
 			<li>Energy: used same as last year</li>
 			<!-- /ko -->
 			<!-- ko ifnot: finalEnergyPercent() == '0.00' -->
-			<li>Energy: used <span data-bind="text: finalEnergyPercent"></span>% <span data-bind="text: finalEnergyMoreLess"></span> than last year</li>
+			<li>Energy: used <strong data-bind="text: finalEnergyPercent() + '%'"></strong> <strong data-bind="text: finalEnergyMoreLess"></strong> than last year</li>
 			<!-- /ko -->
-
+			<li>Occupants: <strong data-bind="text: finalOccupantHappiness().happy"></strong> happy, <strong data-bind="text: finalOccupantHappiness().content"></strong> content, <strong data-bind="text: finalOccupantHappiness().discontent"></strong> discontent and <strong data-bind="text: finalOccupantHappiness().unhappy"></strong> unhappy</li>
 		</ul>
 
-		<button class="btn start-over" data-bind="click: function () { window.location.reload(false) }">Start over</button>
+		<!--<button class="btn start-over" data-bind="click: function () { window.location.reload(false) }">Start over</button>-->
 
 	</div>
 </script>

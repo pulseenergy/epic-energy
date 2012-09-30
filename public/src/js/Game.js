@@ -223,6 +223,16 @@ Game.prototype.computeFinalEnergy = function () {
 	return getBaselineTotal() - this.consumed;
 };
 
+Game.prototype.computeFinalOccupantHappiness = function () {
+	var counts = _.countBy(this.occupants, function (occupant) {
+		if (occupant.happiness === 3) { return 'happy'; }
+		if (occupant.happiness === 2) { return 'content'; }
+		if (occupant.happiness === 1) { return 'discontent'; }
+		if (occupant.happiness === 0) { return 'unhappy'; }
+	});
+	return _.defaults(counts, { happy: 0, content: 0, discontent: 0, unhappy: 0 });
+};
+
 Game.prototype.computeScore = function () {
 	var occupant = _.reduce(this.occupants, function (sum, occupant) {
 		return sum + (occupant.happiness - 2) * 10;
