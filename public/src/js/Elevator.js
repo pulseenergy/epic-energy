@@ -16,7 +16,7 @@ function OffElevator(base) {
 			money: 0,
 			happy: -1,
 			energy: 0,
-			messages: ["WTF? You expect me to climb stairs?"]
+			messages: [randomItem(["WTF? You expect me to climb stairs?", "The broken elevator is an accessibility hazard"])]
 		};
 	};
 	this.state = {name: "bad", description: "Elevator Turned Off"};

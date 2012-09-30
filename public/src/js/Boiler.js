@@ -22,11 +22,11 @@ function OffBoiler(base) {
 	this.getMessages = function(game, baselineEnergy, weather) {
 		var messages = [];
 		if (weather.mean < 7) {
-			messages.push("I'm turning on a space heater");
+			messages.push(randomItem(["I'm turning on a space heater", "I bought a heater"]));
 		} else if (weather.averageLow < 8) {
-			messages.push("I'm freezing ... please turn back on the heat");
+			messages.push(randomItem(["I'm freezing ... please turn back on the heat", "I'm sooooooo coooooold"]));
 		} else if (weather.averageLow < 12) {
-			messages.push("Brrr - it's cold in here");
+			messages.push(randomItem(["It's a bit nippy in here", "Brrr - it's cold in here"]));
 		}
 		return messages;
 	};
@@ -44,7 +44,7 @@ function CrappyBoiler() {
 			money: 0,
 			happy: (weather.averageLow < 8) ? -1 : 0,
 			energy: baselineEnergy,
-			messages: (weather.averageLow < 8) ? ["Turn up the heat, please"] : [],
+			messages: (weather.averageLow < 8) ? [randomItem(["Turn up the heat, please", "The thermostat is cranked, but I'm still cold"])] : [],
 		};
 	};
 	this.state = {name: "warning", description: "Undersized Boiler"};

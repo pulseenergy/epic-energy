@@ -27,7 +27,7 @@ function ThrowParty(base) {
 	this.monthDelta = function (game, baselineEnergy, weather) {
 		var delta = base.monthDelta(game, baselineEnergy, weather);
 		if (partyHappened == false) {
-			delta.messages = (delta.messages || []).concat("Sweet party!");
+			delta.messages = (delta.messages || []).concat(randomItem(["Sweet party!", "I drank too much at the party", "We should have a party every month!"]));
 			partyHappened = true;
 		}
 		return delta;

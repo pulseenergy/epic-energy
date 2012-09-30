@@ -50,3 +50,10 @@ function wrappedBaseUpgradeFunctions (parent, clazz) {
 		return myUpgrades;
 	}
 }
+
+function randomItem(list) {
+	if (list.length == 0) {
+		return null;
+	}
+	return list[_.random(0, list.length-1)];
+}
