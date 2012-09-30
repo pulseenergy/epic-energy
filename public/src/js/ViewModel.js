@@ -73,9 +73,15 @@ ViewModel.prototype.update = function () {
 
 	var msgs = [];
 	if (this.lastMonthDelta.energy !== undefined) {
+		var body = 'Last month, you used ' + accounting.formatNumber(this.lastMonthDelta.energy) + ' kWh';
+		if (this.lastMonthChangePercent !== undefined && this.lastMonthChangePercent > 0) {
+			body += ' (extra ' + this.lastMonthChangePercent + '% compared to last year)';
+		} else if (this.lastMonthChangePercent !== undefined && this.lastMonthChangePercent < 0) {
+			body += ' (saving ' + Math.abs(this.lastMonthChangePercent) + '% compared to last year)';
+		}
 		msgs.push({
 			type: 'spreadsheet',
-			body: 'Last month, you used ' + accounting.formatNumber(this.lastMonthDelta.energy) + ' kWh'
+			body: body
 		});
 	}
 	this.messages(msgs.concat(_.map(this.game.messages, function (message) {
@@ -132,6 +138,7 @@ ViewModel.prototype.advanceToNextMonth = function () {
 		this.pendingAction(null);
 	}
 	this.lastMonthDelta = this.game.monthDelta();
+	this.lastMonthChangePercent = Math.round(100 * (this.lastMonthDelta.energy - this.game.thisMonthsBaseline()) / this.game.thisMonthsBaseline());
 	this.game.nextMonth();
 
 	this.update();

@@ -89,6 +89,9 @@ Game.prototype.thisMonthsWeather = function () {
 	return weather;
 };
 
+Game.prototype.thisMonthsBaseline = function () {
+	return this.baselineEnergy[this.month];
+};
 
 Game.prototype.disaggregate = function (monthlyEnergy, weather) {
 	var disaggregateMonthlyEnergy = [];
