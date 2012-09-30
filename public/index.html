@@ -94,29 +94,33 @@
 						</dl>
 					</div>
 					<div class="monthly-summary" style="float: none">
-						<h1><span data-bind="text: monthName() + ' 1, ' + year()"></span> <button tabindex="1" class="btn btn-large btn-primary" data-bind="click: advanceToNextMonth, disable: gameOver">Next</button></h1>
-						<div data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
+
+						<h1><span data-bind="text: monthName() + ' 1, ' + year()"></span></h1>
+
 						<ul data-bind="foreach: messages">
 							<li data-bind="text: body"></li>
 						</ul>
 					</div>
 
-					<div id="pendingAction">
-						<!-- ko if: !pendingAction() -->
-							<h4>No Pending Action</h4>
-						<!-- /ko -->
-						<!-- ko if: pendingAction -->
-							<h4>Pending Action</h4>
-							<ul data-bind="with: pendingAction">
-								<li>
-									<div class="action-name" data-bind="text: upgradeTitle"></div>
-									<div class="action-cost" data-bind="text: formattedCost"></div>
-								</li>
-							</ul>
-						<!-- /ko -->
-					</div>
+					
 				</div>
 				<div class="right-column-bottom">
+					
+					<div id="pendingAction" class="pending-action">
+						<div class="pending-action-name">
+							<!-- ko if: !pendingAction() -->
+								<em>You may select one action this month. Please choose from the list below.</em>
+							<!-- /ko -->
+							<!-- ko if: pendingAction -->
+								<span data-bind="with: pendingAction">
+									<span class="action-name" data-bind="text: upgradeTitle"></span> for 
+									<span class="action-cost" data-bind="text: formattedCost"></span>
+								</span>
+							<!-- /ko -->
+						</div>
+						<a class="btn btn-large btn-primary btn-inverse" data-bind="click: advanceToNextMonth, disable: gameOver">Next month &#187;</a>
+					</div>
+					
 					<h3>Available Actions</h3>
 					<!-- ko if: !selectedCategory() -->
 						<p class="select-action">&#171; Select a category on the left to see available actions.</p>
