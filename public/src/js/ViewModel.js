@@ -31,7 +31,7 @@ function ViewModel(game) {
 
 	this.weather = ko.observable();
 	this.equipment = ko.observable();
-	this.messages = ko.observable();
+	this.messages = ko.observableArray();
 
 	this.gameOver = ko.observable(false);
 	this.finalScore = ko.observable();
@@ -74,7 +74,6 @@ ViewModel.prototype.update = function () {
 		};
 	}));
 
-	var msgs = [];
 	if (this.lastMonthDelta.energy !== undefined) {
 		var body = 'Last month, you used ' + accounting.formatNumber(this.lastMonthDelta.energy) + ' kWh';
 		if (this.lastMonthChangePercent !== undefined && this.lastMonthChangePercent > 0) {
@@ -82,17 +81,11 @@ ViewModel.prototype.update = function () {
 		} else if (this.lastMonthChangePercent !== undefined && this.lastMonthChangePercent < 0) {
 			body += ' (saving ' + Math.abs(this.lastMonthChangePercent) + '% compared to last year)';
 		}
-		msgs.push({
+		this.messages.push({
 			type: 'spreadsheet',
 			body: body
 		});
 	}
-	this.messages(msgs.concat(_.map(this.game.messages, function (message) {
-		return {
-			type: 'gossip',
-			body: message
-		};
-	})));
 
 	var budget = game.budget;
 
@@ -136,23 +129,42 @@ ViewModel.prototype.selectCategory = function (equipment) {
 };
 
 ViewModel.prototype.advanceToNextMonth = function () {
+	if (this.game.isGameOver() || this.animating()) {
+		return;
+	}
 	this.animating(true);
+
+	this.messages([]);
+	if (this.pendingAction()) {
+		this.pendingAction().apply(this.game);
+		this.pendingAction(null);
+	}
+
+	this.lastMonthDelta = this.game.monthDelta();
+	this.lastMonthChangePercent = Math.round(100 * (this.lastMonthDelta.energy - this.game.thisMonthsBaseline()) / this.game.thisMonthsBaseline());
+
+	var messages = _.map(this.game.messages, function (message) {
+		return {
+			type: 'gossip',
+			body: message
+		};
+	});
 
 	var tomorrow = function() {
 		var day = this.day() + 3;
 		if (day > 29) {
-			this.day(1);
-			if (this.pendingAction()) {
-				this.pendingAction().apply(this.game);
-				this.pendingAction(null);
+			while (messages.length) {
+				this.messages.push(messages.pop());
 			}
-			this.lastMonthDelta = this.game.monthDelta();
-			this.lastMonthChangePercent = Math.round(100 * (this.lastMonthDelta.energy - this.game.thisMonthsBaseline()) / this.game.thisMonthsBaseline());
+			this.day(1);
 			this.game.nextMonth();
 			this.update();
 			this.animating(false);
 		} else {
 			this.day(day);
+			if (messages.length && Math.random() < 0.2) {
+				this.messages.push(messages.pop());
+			}
 			window.setTimeout(tomorrow, 50);
 		}
 	}.bind(this);
