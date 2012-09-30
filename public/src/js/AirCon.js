@@ -16,7 +16,7 @@ function OffAirCon(base) {
 			money: 0,
 			happy: (weather.averageHigh > 20) ? -1: 0,
 			energy: 0,
-			messages: (weather.averageHigh > 20) ? ["It's hotter than two hamsters farting in a wool sock"]: []
+			messages: (weather.averageHigh > 20) ? [randomItem(["I wish I could wear shorts at work", "What happened to the A/C?", "It's hotter than two hamsters farting in a wool sock"])]: []
 		};
 	};
 	this.state = {name: "bad", description: "No Air Conditioning"};
