@@ -11,7 +11,7 @@
 		height: @monthTrackerHeight;
 		
 		li {
-			width: 78px;
+			width: 60px;
 			line-height: @monthTrackerHeight;
 			font-size: 12px;
 			text-shadow: 0 -1px 0 rgba(0,0,0,.5);
@@ -20,7 +20,18 @@
 			float: left;
 			display: block;
 			color: #777;
-			font-weight: 600;
+			font-weight:400;
+			
+			&.the-title {
+				color: #fff;
+				font-size: 15px;
+				font-weight: 700;
+				letter-spacing: 1px;
+				width: 220px;
+				text-transform: uppercase;
+				background: @orange;
+				text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+			}
 			
 			&.selected {
 				background: url(img/month_selected.png) bottom center no-repeat rgba(255,255,255,.1);
@@ -49,7 +60,7 @@
 	}
 
 .main-body {
-	padding-top: 20px;
+	padding-top: 25px;
 	padding-bottom: 60px;
 	background:  url(img/skyline.png) 0 -40px repeat-x #fff;
 	border-bottom: 1px solid #bbb;
