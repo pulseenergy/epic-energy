@@ -104,59 +104,66 @@
 
 					
 				</div>
-				<div class="right-column-bottom">
+				<div class="right-column-bottom" data-bind="template: gameOver() ? 'game-over' : 'actions'">
 					
-					<div id="pendingAction" class="pending-action">
-						<div class="pending-action-name">
-							<!-- ko if: !pendingAction() -->
-								<em>You may perform <strong>one</strong> action this month. Please choose from the list below.</em>
-							<!-- /ko -->
-							<!-- ko if: pendingAction -->
-								<span class="selected-action" data-bind="with: pendingAction">
-									<span class="action-name" data-bind="text: upgradeTitle"></span> for 
-									<span class="action-cost" data-bind="text: formattedCost"></span>
-								</span>
-							<!-- /ko -->
-						</div>
-						<button class="btn btn-large btn-primary btn-inverse" tabindex="1" data-bind="click: advanceToNextMonth, disable: gameOver">Next month &#187;</button>
-					</div>
-					
-					<h3>Available Actions</h3>
-					<!-- ko if: !selectedCategory() -->
-						<p class="select-action">&#171; Select a category on the left to see available actions.</p>
-					<!-- /ko -->
-					<!-- ko if: selectedCategory() -->
-						<!-- ko if: !availableActionsForSelectedCategory().length -->
-							<p>No available actions.</p>
-						<!-- /ko -->
-						<div data-bind="foreach: availableActionsForSelectedCategory">
-							<div class="action-row">
-								<div class="action-nd">
-									<div class="action-name" data-bind="text: upgradeTitle"></div>
-									<div class="action-description" data-bind="text: description"></div>
-								</div>
-								
-								<div class="action-cost" data-bind="text: formattedCost, css: { insufficentFunds: !available }"></div>
-								<div class="action-do">
-									<button class="btn btn-success" data-bind="click: $root.pendingAction, enable: available">Select</button>
-								</div>
-								
-							</div>
-						</div>
-					<!-- /ko -->
+
 				</div>
 			</span>
 		</div>
 	</div>
 
-	<div class="game-over" data-bind="visible: gameOver">
-		<h2>Game Over!</h2>
-		<p>Your final score: <span data-bind="text: finalScore"></span></p>
-		<div id="twitter-button-container"></div>
-
-		<p><button class="btn" data-bind="click: function () { window.location.reload(false) }">Start over</button></p>
-	</div>
 </div>
 
 </body>
 </html>
+
+<script type="text/html" id="actions">
+	<div id="pendingAction" class="pending-action">
+		<div class="pending-action-name">
+			<!-- ko if: !pendingAction() -->
+			<em>You may perform <strong>one</strong> action this month. Please choose from the list below.</em>
+			<!-- /ko -->
+			<!-- ko if: pendingAction -->
+							<span class="selected-action" data-bind="with: pendingAction">
+								<span class="action-name" data-bind="text: upgradeTitle"></span> for
+								<span class="action-cost" data-bind="text: formattedCost"></span>
+							</span>
+			<!-- /ko -->
+		</div>
+		<button class="btn btn-large btn-primary btn-inverse" tabindex="1" data-bind="click: advanceToNextMonth, disable: gameOver">Next month &#187;</button>
+	</div>
+
+	<h3>Available Actions</h3>
+	<!-- ko if: !selectedCategory() -->
+	<p class="select-action">&#171; Select a category on the left to see available actions.</p>
+	<!-- /ko -->
+	<!-- ko if: selectedCategory() -->
+	<!-- ko if: !availableActionsForSelectedCategory().length -->
+	<p>No available actions.</p>
+	<!-- /ko -->
+	<div data-bind="foreach: availableActionsForSelectedCategory">
+		<div class="action-row">
+			<div class="action-nd">
+				<div class="action-name" data-bind="text: upgradeTitle"></div>
+				<div class="action-description" data-bind="text: description"></div>
+			</div>
+
+			<div class="action-cost" data-bind="text: formattedCost, css: { insufficentFunds: !available }"></div>
+			<div class="action-do">
+				<button class="btn btn-success" data-bind="click: $root.pendingAction, enable: available">Select</button>
+			</div>
+
+		</div>
+	</div>
+	<!-- /ko -->
+</script>
+
+<script type="text/html" id="game-over">
+	<div class="game-over">
+		<h3>Game Over</h3>
+		<p>Final score:</p>
+		<strong class="final-score" data-bind="text: finalScore"></strong>
+		<button class="btn start-over" data-bind="click: function () { window.location.reload(false) }">Start over</button> <div id="twitter-button-container"></div>
+
+	</div>
+</script>
