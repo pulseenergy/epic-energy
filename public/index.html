@@ -79,8 +79,8 @@
 						</li>
 						<!-- ko foreach: equipment -->
 						<li data-bind="attr: { title: name }, css: { selected: $root.selectedCategory() === category }, class: category, click: $root.selectCategory.bind($root)">
-                          <span data-bind="class: state, attr: {title: state_hover}"></span>
                           <span data-bind="text: categoryFriendlyName(category)"></span>
+                          <span data-bind="class: state, attr: {title: state_hover}">*</span>
                         </li>
 						<!-- /ko -->
 					</ul>
