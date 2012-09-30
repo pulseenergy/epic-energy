@@ -5,7 +5,7 @@ body {
 	padding: 50;
 	min-height: 100%;
 	margin: 0;
-	background: url(img/skyline.png) top repeat-x #fff;
+	background: @grayDark;
 	
 	.building-container {
 		width: 260px;
@@ -14,36 +14,38 @@ body {
 		background: url(img/bldg_winter.png) top left no-repeat;
 		left: -20px;
 		top: -10px;
-		.transition(all 3s);
+		.transition(all 5s);
 	}
 	
 	&.season-spring {
-		background-image: url();
 		
 		.building-container {
-			background: url(img/bldg_spring.png) top left no-repeat;
-			.transition(all 3s);
+			background-image: url(img/bldg_spring.png);
+			.transition(all 5s);
 		}
 	}
 	
 	&.season-summer {
+		
 		.building-container {
-			background: url(img/bldg_summer.png) top left no-repeat;
-			.transition(all 3s);
+			background-image: url(img/bldg_summer.png);
+			.transition(all 5s);
 		}
 	}
 	
 	&.season-winter {
+		
 		.building-container {
-			background: url(img/bldg_winter.png) top left no-repeat;
-			.transition(all 3s);
+			background-image: url(img/bldg_winter.png);
+			.transition(all 5s);
 		}
 	}
 	
 	&.season-fall {
+		
 		.building-container {
-			background: url(img/bldg_fall.png) top left no-repeat;
-			.transition(all 3s);
+			background-image: url(img/bldg_fall.png);
+			.transition(all 5s);
 		}
 	}
 }
@@ -51,7 +53,6 @@ body {
 .insufficentFunds {
 	color: red;
 }
-
 
 #above {
 	height: 260px;
