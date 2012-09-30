@@ -95,13 +95,11 @@
 					</div>
 					<div class="monthly-summary" style="float: none">
 						<h1><span data-bind="text: monthName() + ' 1, ' + year()"></span> <button tabindex="1" class="btn btn-large btn-primary" data-bind="click: advanceToNextMonth, disable: gameOver">Next</button></h1>
+						<div data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
 						<ul data-bind="foreach: messages">
-							<li data-bind="text: $data"></li>
+							<li data-bind="text: body"></li>
 						</ul>
 					</div>
-					
-					
-					<div data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
 
 					<div id="pendingAction">
 						<!-- ko if: !pendingAction() -->

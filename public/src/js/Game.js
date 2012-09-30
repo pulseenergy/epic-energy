@@ -49,6 +49,7 @@ Game.prototype.monthDelta = function () {
 	}, this);
 	if (debug) console.log('total energy', total.energy);
 	this.applyCost(total);
+	return total;
 };
 
 Game.prototype.applyCost = function (total) {

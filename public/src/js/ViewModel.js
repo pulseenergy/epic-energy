@@ -41,6 +41,10 @@ function ViewModel(game) {
 		return (this.availableActionsByCategory() || {})[selected] || [];
 	}, this);
 
+	this.lastMonthDelta = {
+		energy: 53010
+	};
+
 	this.update();
 }
 
@@ -67,7 +71,19 @@ ViewModel.prototype.update = function () {
 		};
 	}));
 
-	this.messages(this.game.messages);
+	var msgs = [];
+	if (this.lastMonthDelta.energy !== undefined) {
+		msgs.push({
+			type: 'spreadsheet',
+			body: 'Last month, you used ' + accounting.formatNumber(this.lastMonthDelta.energy) + ' kWh'
+		});
+	}
+	this.messages(msgs.concat(_.map(this.game.messages, function (message) {
+		return {
+			type: 'gossip',
+			body: message
+		};
+	})));
 
 	var budget = game.budget;
 
@@ -112,7 +128,7 @@ ViewModel.prototype.advanceToNextMonth = function () {
 		this.pendingAction().apply(this.game);
 		this.pendingAction(null);
 	}
-	this.game.monthDelta();
+	this.lastMonthDelta = this.game.monthDelta();
 	this.game.nextMonth();
 
 	this.update();
