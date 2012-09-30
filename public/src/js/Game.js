@@ -211,8 +211,11 @@ Game.prototype.nextMonth = function () {
 };
 
 Game.prototype.isGameOver = function () {
-	// TODO: occupants all left, over budget
-	return this.month === 12 || _.isEmpty(this.notUnhappyOccupants());
+	return this.month === 12;
+};
+
+Game.prototype.youLose = function () {
+	return _.isEmpty(this.notUnhappyOccupants());
 };
 
 Game.prototype.computeFinalEnergyPercent = function () {

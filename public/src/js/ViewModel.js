@@ -34,6 +34,7 @@ function ViewModel(game) {
 	this.messages = ko.observableArray(this.getGossipMessages());
 
 	this.gameOver = ko.observable(false);
+	this.youLose = ko.observable(false);
 	this.finalScore = ko.observable();
 	this.finalEnergyPercent = ko.observable();
 	this.finalEnergyMoreLess = ko.observable();
@@ -116,6 +117,10 @@ ViewModel.prototype.update = function () {
 		});
 	});
 	this.availableActionsByCategory(actions);
+
+	if (this.game.youLose()) {
+		return this.youLose(true);
+	}
 
 	if (this.game.isGameOver()) {
 		this.finalScore(this.game.computeScore());

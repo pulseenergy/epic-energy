@@ -107,7 +107,7 @@
 
 					
 				</div>
-				<div class="right-column-bottom" data-bind="template: gameOver() ? 'game-over' : 'actions'">
+				<div class="right-column-bottom" data-bind="template: youLose() ? 'you-lose' : gameOver() ? 'game-over' : 'actions'">
 			
 					<div id="pendingAction" class="pending-action">
 						<div class="pending-action-name">
@@ -216,5 +216,12 @@
 
 		<!--<button class="btn start-over" data-bind="click: function () { window.location.reload(false) }">Start over</button>-->
 
+	</div>
+</script>
+
+<script type="text/html" id="you-lose">
+	<div class="game-over">
+		<h3>You Lose</h3>
+		<p>Everybody moved out. Maybe you were too aggressive with the energy savings?</p>
 	</div>
 </script>
