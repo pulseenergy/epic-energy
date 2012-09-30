@@ -20,7 +20,7 @@ function OffElevator(base) {
 		};
 	};
 	this.state = {name: "bad", description: "Elevator Turned Off"};
-};
+}
 
 function CrappyElevator() {
 	this.name = "Inefficient Elevator";
@@ -43,7 +43,7 @@ function CrappyElevator() {
 		};
 	};
 	this.state = {name: "good", description: ""};
-};
+}
 
 function HibernatingElevator() {
 	this.name = "Hibernating Elevator";
@@ -65,12 +65,12 @@ function HibernatingElevator() {
 		};
 	};
 	this.state = {name: "good", description: ""};
-};
+}
 
 function RegenerativeDriveElevator() {
 	this.name = "Elevator with Regenerative Drive";
 	this.upgradeTitle = "Upgrade to " + this.name;
-	this.description = "By using regenerative technology, the elevator utilises this wasted energy and transfers it back into the building’s electrical system for use in other areas or to further power the lift at later intervals.";
+	this.description = "By using regenerative technology, the elevator uses this wasted energy and transfers it back into the building’s electrical system for use in other areas or to further power the lift at later intervals";
 	this.upgrades = function () {
 		return [
 			[new OffElevator(this), {}],
@@ -87,7 +87,7 @@ function RegenerativeDriveElevator() {
 		};
 	};
 	this.state = {name: "good", description: ""};
-};
+}
 
 function HibernatingRegenerativeDriveElevator() {
 	this.name = "Hibernating Elevator with Regenerative Drive";
@@ -107,7 +107,7 @@ function HibernatingRegenerativeDriveElevator() {
 		};
 	};
 	this.state = {name: "good", description: ""};
-};
+}
 
 function LEDElevatorLighting(base) {
 	this.base = base;
@@ -125,4 +125,4 @@ function LEDElevatorLighting(base) {
 		};
 	};
 	this.state = base.state;
-};
+}

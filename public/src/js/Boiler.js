@@ -2,7 +2,7 @@ function OffBoiler(base) {
 	this.name = base.name + " (Off)";
 	this.upgradeTitle = "Turn Off " + base.name;
 	base.upgradeTitle = "Turn On " + base.name;
-	this.description = "Turn the heat off to save energy, but be cautious of tenant hapiness";
+	this.description = "Turn the heat off to save energy, but be cautious of tenant happiness";
 	this.upgrades = function () {
 		return _.map(base.upgrades(), function (upgrade) {
 			if (upgrade[0] instanceof OffBoiler) {
@@ -24,14 +24,14 @@ function OffBoiler(base) {
 		if (weather.mean < 7) {
 			messages.push(randomItem(["I'm turning on a space heater", "I bought a heater"]));
 		} else if (weather.averageLow < 8) {
-			messages.push(randomItem(["I'm freezing ... please turn back on the heat", "I'm sooooooo coooooold"]));
+			messages.push(randomItem(["I'm freezing ... please turn the heat back on", "I'm sooooooo coooooold"]));
 		} else if (weather.averageLow < 12) {
 			messages.push(randomItem(["It's a bit nippy in here", "Brrr - it's cold in here"]));
 		}
 		return messages;
 	};
 	this.state = {name: "bad", description: "No Heating"};
-};
+}
 
 function CrappyBoiler() {
 	this.name = "Old Boiler";
@@ -44,11 +44,11 @@ function CrappyBoiler() {
 			money: 0,
 			happy: (weather.averageLow < 8) ? -1 : 0,
 			energy: baselineEnergy,
-			messages: (weather.averageLow < 8) ? [randomItem(["Turn up the heat, please", "The thermostat is cranked, but I'm still cold"])] : [],
+			messages: (weather.averageLow < 8) ? [randomItem(["Turn up the heat, please", "The thermostat is cranked, but I'm still cold"])] : []
 		};
 	};
 	this.state = {name: "warning", description: "Undersized Boiler"};
-};
+}
 
 function BetterBoiler() {
 	this.name = "Condensing Boiler";
@@ -66,4 +66,4 @@ function BetterBoiler() {
 		};
 	};
 	this.state = {name: "good", description: ""};
-};
+}
