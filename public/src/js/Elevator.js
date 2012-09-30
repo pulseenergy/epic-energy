@@ -102,20 +102,10 @@ function HibernatingRegenerativeDriveElevator() {
 };
 
 function LEDElevatorLighting(elevator) {
+	this.base = elevator;
 	this.name = elevator.name;
 	this.upgradeTitle = "Replace bulbs with LED lighting";
-	this.upgrades = function () {
-		var parentUpgrades = elevator.upgrades();
-		var myUpgrades = [];
-		_.each(parentUpgrades, function(upgrade) {
-			if (!(upgrade[0] instanceof LEDElevatorLighting)) {
-				var decorated = new LEDElevatorLighting(upgrade[0]);
-				decorated.upgradeTitle = upgrade[0].upgradeTitle;
-				myUpgrades.push([decorated, upgrade[1]]);
-			}
-		});
-		return myUpgrades;
-	};
+	this.upgrades = wrappedBaseUpgradeFunctions(elevator, LEDElevatorLighting);
 	this.monthDelta = function (game, baselineEnergy, weather) {
 		var parent = elevator.monthDelta(game, baselineEnergy, weather)
 		return {

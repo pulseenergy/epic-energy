@@ -1,7 +1,9 @@
 function PlugLoad() {
 	this.upgradeTitle = this.name = "Occupant Plug Load";
 	this.upgrades = function () {
-		return [ [new ThrowParty(this), { money: -100, happy: 3 }] ];
+		return [ [new ThrowParty(this), { money: -100, happy: 3 }],
+		         [new PowerBars(this), { money: -300 }],
+		         [new ReplaceWithLaptops(this), { money: -3000 }]];
 	};
 	this.monthDelta = function (game, baselineEnergy, weather) {
 		return {
@@ -21,5 +23,37 @@ function ThrowParty(base) {
 	};
 	this.monthDelta = function (game, baselineEnergy, weather) {
 		return base.monthDelta(game, baselineEnergy, weather);
+	};
+};
+
+function PowerBars(base) {
+	this.base = base;
+	this.name = base.name;
+	this.upgradeTitle = "Add Power Bars to Reduce Phantom Load";
+	this.upgrades = wrappedBaseUpgradeFunctions(base, PowerBars);
+	this.monthDelta = function (game, baselineEnergy, weather) {
+		var parent = base.monthDelta(game, baselineEnergy, weather)
+		return {
+			money: parent.money,
+			happy: parent.happy,
+			energy: 0.90 * parent.energy,
+			messages: parent.messages
+		};
+	};
+};
+
+function ReplaceWithLaptops(base) {
+	this.base = base;
+	this.name = base.name;
+	this.upgradeTitle = "Replace PCs with Laptops";
+	this.upgrades = wrappedBaseUpgradeFunctions(base, ReplaceWithLaptops);
+	this.monthDelta = function (game, baselineEnergy, weather) {
+		var parent = base.monthDelta(game, baselineEnergy, weather)
+		return {
+			money: parent.money,
+			happy: parent.happy,
+			energy: 0.80 * parent.energy,
+			messages: parent.messages
+		};
 	};
 };
