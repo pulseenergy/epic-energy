@@ -50,8 +50,8 @@
 					width: 68px;
 					display: block;
 					float: left;
-					.border-radius(10px);
-					border: 2px solid #bbb;
+					.border-radius(6px);
+					border: 1px dashed #aaa;
 					.box-sizing(border-box);
 					padding: 6px 2px;
 					margin: 0 5px 5px 0;
@@ -61,8 +61,24 @@
 					text-align: center;
 					line-height: 1em;
 					font-weight: 600;
-					background: url(img/equipment_icons.png) 0 0 no-repeat #fafafa;
+					background: url(img/equipment_icons.png) 0 0 no-repeat #f4f4f4;
+					@shadow: 0 0 0 0px rgba(0,0,0,.04), inset 0 1px 0 #fff;
+					.box-shadow(@shadow);
 					
+					&:hover {
+						.box-shadow(0 0 0 3px rgba(0,0,0,.04));
+						cursor: pointer;
+						border-color: #999;
+					}
+					
+					&.selected {
+						border-color: #555;
+						.box-shadow(0 0 0 3px rgba(0,0,0,.04));
+						cursor: pointer;
+						background-color: #444;
+						color: #fff;
+						border-color: #444;
+					}
 					
 					&.hotWater {background-position: -132px -494px;}
 					&.building,
@@ -107,20 +123,7 @@
 						font-weight: 600;
 					}
 					
-					&:hover {
-						.box-shadow(0 0 0 3px rgba(0,0,0,.04));
-						cursor: pointer;
-						border-color: #999;
-					}
 					
-					&.selected {
-						border-color: #555;
-						.box-shadow(0 0 0 3px rgba(0,0,0,.04));
-						cursor: pointer;
-						background-color: #444;
-						color: #fff;
-						border-color: #444;
-					}
 				}
 			}
 		}
@@ -205,16 +208,29 @@
 .action-row {
 	.clearfix;
 	border-top: 1px dotted #bbb;
-	padding: 8px 0;
+	padding: 12px 0;
 	
-	.action-name {
-		font-weight: 600;
-		display: block;
-		float: left;
+	.action-nd {
+		
 		width: 500px;
-		font-size: 14px;
+		float: left;
 		margin-right: 10px;
+		
+		.action-name {
+			font-weight: 600;
+			display: block;
+			width: 500px;
+			font-size: 14px;
+			margin-bottom: .2em;
+		}
+
+		.action-description {
+			font-size: 12px;
+			color: @gray;
+			line-height: 1.4em;
+		}
 	}
+	
 	
 	.action-cost {
 		display: block;
@@ -234,7 +250,7 @@
 	}
 	
 	&:last-of-type {
-		border-bottom: 0;
+		border-bottom: 1px dotted #bbb;
 	}
 }
 
@@ -256,10 +272,16 @@
 		
 	}
 	
+	.selected-action {
+		font-weight: 600;
+		font-size: 14px;
+		color: @orange;
+	}
+	
 	.pending-action-name {
 		float: left;
 		line-height: 48px;
-		font-size: 14px;
+		font-size: 13px;
 		
 		h4 {
 			font-weight: 600;
@@ -277,7 +299,7 @@
 		padding-top: 0;
 		padding-bottom: 0;
 		padding-left: 10px;
-		font-size: 18px;
+		font-size: 16px;
 		font-weight: 600;
 	}
 }

@@ -109,10 +109,10 @@
 					<div id="pendingAction" class="pending-action">
 						<div class="pending-action-name">
 							<!-- ko if: !pendingAction() -->
-								<em>You may select one action this month. Please choose from the list below.</em>
+								<em>You may perform one action this month. Please choose from the list below.</em>
 							<!-- /ko -->
 							<!-- ko if: pendingAction -->
-								<span data-bind="with: pendingAction">
+								<span class="selected-action" data-bind="with: pendingAction">
 									<span class="action-name" data-bind="text: upgradeTitle"></span> for 
 									<span class="action-cost" data-bind="text: formattedCost"></span>
 								</span>
@@ -131,12 +131,16 @@
 						<!-- /ko -->
 						<div data-bind="foreach: availableActionsForSelectedCategory">
 							<div class="action-row">
-								<div class="action-name" data-bind="text: upgradeTitle"></div>
+								<div class="action-nd">
+									<div class="action-name" data-bind="text: upgradeTitle"></div>
+									<div class="action-description" data-bind="text: description"></div>
+								</div>
+								
 								<div class="action-cost" data-bind="text: formattedCost, css: { insufficentFunds: !available }"></div>
 								<div class="action-do">
-									<button class="btn btn-success" data-bind="click: $root.pendingAction, enable: available">Do It</button>
+									<button class="btn btn-success" data-bind="click: $root.pendingAction, enable: available">Select</button>
 								</div>
-								<div class="action-description" data-bind="text: description"></div>
+								
 							</div>
 						</div>
 					<!-- /ko -->
