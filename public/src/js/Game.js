@@ -31,7 +31,7 @@ function Game() {
 	this.weather = vancouverWeather;
 	this.baselineEnergy = vancouverOfficeEnergy;
 	this.disaggregatedBaseline = this.disaggregate(this.baselineEnergy, this.baselineEnergy);
-	this.messages = [];
+	this.messages = ["It's kind of chilly in here. I'm not getting enough heat."];
 }
 
 Game.prototype.monthDelta = function () {
