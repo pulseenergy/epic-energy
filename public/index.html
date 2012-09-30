@@ -93,9 +93,9 @@
 							<dd data-bind="text: '$' + accounting.formatNumber(budget())">
 						</dl>
 					</div>
-					<div class="monthly-summary" style="float: none">
-
+					<div class="monthly-summary">
 						<h1><span data-bind="text: monthName() + ' 1, ' + year()"></span></h1>
+						<div data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
 
 						<ul data-bind="foreach: messages">
 							<li data-bind="text: body"></li>
