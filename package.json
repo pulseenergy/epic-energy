@@ -1,7 +1,8 @@
 {
-  "name": "ever-energy",
-  "description": "Better known as Legends of Energy 3: Downtown",
+  "name": "epic-energy",
+  "description": "Better known as Epic Energy III",
   "version": "0.0.1",
+  "node": "0.6.17",
   "dependencies": {
     "express": "2.5.11",
     "less-middleware": "0.1.x"
