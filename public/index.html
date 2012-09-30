@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Legends of Energy 3: Downtown</title>
+<title>Epic Energy III</title>
 <link rel="stylesheet" href="global.css">
 
 <script src="lib/underscore-1.4.0.js"></script>
@@ -203,8 +203,18 @@
 	<div class="game-over">
 		<h3>Game Over</h3>
 		<p>Final score:</p>
-		<strong class="final-score" data-bind="text: finalScore"></strong>
-		<button class="btn start-over" data-bind="click: function () { window.location.reload(false) }">Start over</button> <div id="twitter-button-container"></div>
+		<strong class="final-score"><span data-bind="text: finalScore"></span> <div id="twitter-button-container"></div></strong>
+		<ul>
+			<!-- ko if: finalEnergyPercent() == '0.00' -->
+			<li>Energy: used same as last year</li>
+			<!-- /ko -->
+			<!-- ko ifnot: finalEnergyPercent() == '0.00' -->
+			<li>Energy: used <span data-bind="text: finalEnergyPercent"></span>% <span data-bind="text: finalEnergyMoreLess"></span> than last year</li>
+			<!-- /ko -->
+
+		</ul>
+
+		<button class="btn start-over" data-bind="click: function () { window.location.reload(false) }">Start over</button>
 
 	</div>
 </script>

@@ -206,11 +206,19 @@ Game.prototype.isGameOver = function () {
 	return this.month === 12 || _.isEmpty(this.notUnhappyOccupants());
 };
 
+Game.prototype.computeFinalEnergyPercent = function () {
+	return (100 * (getBaselineTotal() - this.consumed) / getBaselineTotal()).toFixed(2);
+};
+
+Game.prototype.computeFinalEnergy = function () {
+	return getBaselineTotal() - this.consumed;
+};
+
 Game.prototype.computeScore = function () {
 	var occupant = _.reduce(this.occupants, function (sum, occupant) {
 		return sum + (occupant.happiness - 2) * 10;
 	}, 0);
-	var energy = (getBaselineTotal() - this.consumed) / 10;
+	var energy = this.computeFinalEnergy() / 10;
 	var budget = this.budget / 10; // max 100
 	console.log(energy, budget, occupant);
 	return Math.round(energy + budget + occupant);
