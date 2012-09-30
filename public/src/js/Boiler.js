@@ -53,7 +53,7 @@ function CrappyBoiler() {
 function BetterBoiler() {
 	this.name = "Condensing Boiler";
 	this.upgradeTitle = "Upgrade to " + this.name;
-	this.description = "Condensing hot water heaters are the most energy-efficient tank-style water heater and thus cost less to operate. A condensing hot water heater recaptures the heat of the flue gases that normally get vented out, so less heat is lost out of the tank";
+	this.description = "A condensing boiler recaptures the heat of the flue gases that normally get vented out, so less heat is wasted";
 	this.upgrades = function () {
 		return [ [new OffBoiler(this), {}] ];
 	};
