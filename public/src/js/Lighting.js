@@ -19,6 +19,7 @@ function NoLighting(base) {
 			messages: positive ? ["The candles are romantic"] : ["I'm afraid of the dark"]
 		};
 	};
+	this.state = {name: "warning", description: "Romantic But Not Productive"};
 };
 
 function T12Lighting() {
@@ -35,6 +36,7 @@ function T12Lighting() {
 			messages: []
 		};
 	};
+	this.state = {name: "good", description: ""};
 };
 
 function T8Lighting() {
@@ -52,6 +54,7 @@ function T8Lighting() {
 			messages: []
 		};
 	};
+	this.state = {name: "good", description: ""};
 };
 
 function EmergencyLEDs(base) {
@@ -68,6 +71,7 @@ function EmergencyLEDs(base) {
 			messages: parent.messages
 		};
 	};
+	this.state = base.state;
 };
 
 function OccupancySensor(base) {
@@ -84,4 +88,5 @@ function OccupancySensor(base) {
 			messages: parent.messages
 		};
 	};
+	this.state = base.state;
 };

@@ -30,6 +30,7 @@ function OffBoiler(base) {
 		}
 		return messages;
 	};
+	this.state = {name: "bad", description: "No Heating"};
 };
 
 function CrappyBoiler() {
@@ -46,6 +47,7 @@ function CrappyBoiler() {
 			messages: (weather.averageLow < 8) ? ["Turn up the heat, please"] : [],
 		};
 	};
+	this.state = {name: "warning", description: "Undersized Boiler"};
 };
 
 function BetterBoiler() {
@@ -63,4 +65,5 @@ function BetterBoiler() {
 			messages: []
 		};
 	};
+	this.state = {name: "good", description: ""};
 };

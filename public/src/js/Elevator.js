@@ -19,6 +19,7 @@ function OffElevator(base) {
 			messages: ["WTF? You expect me to climb stairs?"]
 		};
 	};
+	this.state = {name: "bad", description: "Elevator Turned Off"};
 };
 
 function CrappyElevator() {
@@ -41,6 +42,7 @@ function CrappyElevator() {
 			messages: []
 		};
 	};
+	this.state = {name: "good", description: ""};
 };
 
 function HibernatingElevator() {
@@ -62,6 +64,7 @@ function HibernatingElevator() {
 			messages: []
 		};
 	};
+	this.state = {name: "good", description: ""};
 };
 
 function RegenerativeDriveElevator() {
@@ -83,6 +86,7 @@ function RegenerativeDriveElevator() {
 			messages: []
 		};
 	};
+	this.state = {name: "good", description: ""};
 };
 
 function HibernatingRegenerativeDriveElevator() {
@@ -102,16 +106,17 @@ function HibernatingRegenerativeDriveElevator() {
 			messages: []
 		};
 	};
+	this.state = {name: "good", description: ""};
 };
 
-function LEDElevatorLighting(elevator) {
-	this.base = elevator;
-	this.name = elevator.name;
+function LEDElevatorLighting(base) {
+	this.base = base;
+	this.name = base.name;
 	this.upgradeTitle = "Replace bulbs with LED lighting";
 	this.description = "LEDs are a more efficient way to light elevators and can save 80% of lighting load";
-	this.upgrades = wrappedBaseUpgradeFunctions(elevator, LEDElevatorLighting);
+	this.upgrades = wrappedBaseUpgradeFunctions(base, LEDElevatorLighting);
 	this.monthDelta = function (game, baselineEnergy, weather) {
-		var parent = elevator.monthDelta(game, baselineEnergy, weather);
+		var parent = base.monthDelta(game, baselineEnergy, weather);
 		return {
 			money: parent.money,
 			happy: parent.happy,
@@ -119,4 +124,5 @@ function LEDElevatorLighting(elevator) {
 			messages: parent.messages
 		};
 	};
+	this.state = base.state;
 };

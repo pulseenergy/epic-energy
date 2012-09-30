@@ -19,6 +19,7 @@ function OffAirCon(base) {
 			messages: (weather.averageHigh > 20) ? ["It's hotter than two hampsters farting in a wool sock"]: []
 		};
 	};
+	this.state = {name: "bad", description: "No Air Conditioning"};
 };
 
 function AirCon() {
@@ -34,4 +35,5 @@ function AirCon() {
 			messages: (weather.averageHigh > 25) ? ["Thank God for A/C!"]: []
 		};
 	};
+	this.state = {name: "good", description: ""};
 };

@@ -70,7 +70,9 @@ ViewModel.prototype.update = function () {
 	this.equipment(_.map(this.game.equipment, function (equip, slot) {
 		return {
 			category: slot,
-			name: equip.name
+			name: equip.name,
+			state: (equip.state) ? equip.state.name : "",
+			state_hover: (equip.state) ? equip.state.description : ""
 		};
 	}));
 

@@ -13,6 +13,7 @@ function PlugLoad() {
 			messages: []
 		};
 	};
+	this.state = {name: "good", description: ""};
 };
 
 function ThrowParty(base) {
@@ -27,6 +28,7 @@ function ThrowParty(base) {
 		delta.messages = (delta.messages || []).concat("Sweet party!");
 		return delta;
 	};
+	this.state = base.state;
 };
 
 function PowerBars(base) {
@@ -43,6 +45,7 @@ function PowerBars(base) {
 			messages: parent.messages
 		};
 	};
+	this.state = base.state;
 };
 
 function ReplaceWithLaptops(base) {
@@ -59,4 +62,5 @@ function ReplaceWithLaptops(base) {
 			messages: parent.messages
 		};
 	};
+	this.state = base.state;
 };

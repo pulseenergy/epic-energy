@@ -18,6 +18,7 @@ function OffHotWater(base) {
 			messages: ["WTF? The hot water is broken!"]
 		};
 	};
+	this.state = {name: "bad", description: "No Hot Water"};
 };
 
 function CrappyHotWater() {
@@ -39,6 +40,7 @@ function CrappyHotWater() {
 			messages: []
 		};
 	};
+	this.state = {name: "good", description: ""};
 };
 
 function OnDemandHotWater() {
@@ -56,6 +58,7 @@ function OnDemandHotWater() {
 			messages: []
 		};
 	};
+	this.state = {name: "good", description: ""};
 };
 
 function SolarHotWater() {
@@ -73,6 +76,7 @@ function SolarHotWater() {
 			messages: (weather.averageHigh > 15) ? ["The solar hot water tank is sizzling"] : []
 		};
 	};
+	this.state = {name: "good", description: ""};
 };
 
 function CondensingHotWater() {
@@ -90,4 +94,5 @@ function CondensingHotWater() {
 			messages: []
 		};
 	};
+	this.state = {name: "good", description: ""};
 };
