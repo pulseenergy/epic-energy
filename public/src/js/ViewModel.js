@@ -31,7 +31,7 @@ function ViewModel(game) {
 
 	this.weather = ko.observable();
 	this.equipment = ko.observable();
-	this.messages = ko.observableArray();
+	this.messages = ko.observableArray(this.getGossipMessages());
 
 	this.gameOver = ko.observable(false);
 	this.finalScore = ko.observable();
