@@ -112,6 +112,8 @@ ViewModel.prototype.update = function () {
 	this.gameOver(this.game.isGameOver());
 	if (this.gameOver()) {
 		this.finalScore(this.game.computeScore());
+		$('#twitter-button-container').html('<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="I just scored ' + this.finalScore() + ' in Epic Energy, a building energy sim created during @CleanwebYVR #epicenergy #html5" data-count="none" data-related="pulseenergy" data-lang="en"></a>');
+		$.getScript('http://platform.twitter.com/widgets.js');
 	}
 };
 
