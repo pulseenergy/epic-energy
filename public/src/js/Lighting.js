@@ -20,7 +20,7 @@ function NoLighting(base) {
 		};
 	};
 	this.state = {name: "warning", description: "Romantic But Not Productive"};
-};
+}
 
 function T12Lighting() {
 	this.name = "T12 Light Bulbs";
@@ -37,7 +37,7 @@ function T12Lighting() {
 		};
 	};
 	this.state = {name: "good", description: ""};
-};
+}
 
 function T8Lighting() {
 	this.name = "T8 Light Bulbs";
@@ -55,7 +55,7 @@ function T8Lighting() {
 		};
 	};
 	this.state = {name: "good", description: ""};
-};
+}
 
 function EmergencyLEDs(base) {
 	this.base = base;
@@ -72,7 +72,7 @@ function EmergencyLEDs(base) {
 		};
 	};
 	this.state = base.state;
-};
+}
 
 function OccupancySensor(base) {
 	this.base = base;
@@ -89,4 +89,4 @@ function OccupancySensor(base) {
 		};
 	};
 	this.state = base.state;
-};
+}

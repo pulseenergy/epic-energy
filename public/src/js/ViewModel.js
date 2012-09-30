@@ -123,7 +123,7 @@ ViewModel.prototype.update = function () {
 	}
 
 	if (this.game.isGameOver()) {
-		this.finalScore(this.game.computeScore());
+		this.finalScore(accounting.formatNumber(this.game.computeScore()));
 
 		this.finalOccupantHappiness(this.game.computeFinalOccupantHappiness());
 		this.finalEnergyMoreLess(this.game.computeFinalEnergy() < 0 ? 'more' : 'less');

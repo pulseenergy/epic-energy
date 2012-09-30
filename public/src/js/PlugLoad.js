@@ -14,12 +14,12 @@ function PlugLoad() {
 		};
 	};
 	this.state = {name: "good", description: ""};
-};
+}
 
 function ThrowParty(base) {
 	this.name = base.name;
 	this.upgradeTitle = "Throw Party";
-	this.description = "Morale Booster for Building Occupants";
+	this.description = "Morale booster for building occupants";
 	this.upgrades = function () {
 		return base.upgrades();
 	};
@@ -33,7 +33,7 @@ function ThrowParty(base) {
 		return delta;
 	};
 	this.state = base.state;
-};
+}
 
 function PowerBars(base) {
 	this.base = base;
@@ -50,7 +50,7 @@ function PowerBars(base) {
 		};
 	};
 	this.state = base.state;
-};
+}
 
 function ReplaceWithLaptops(base) {
 	this.base = base;
@@ -67,4 +67,4 @@ function ReplaceWithLaptops(base) {
 		};
 	};
 	this.state = base.state;
-};
+}

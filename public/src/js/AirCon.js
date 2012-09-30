@@ -2,7 +2,7 @@ function OffAirCon(base) {
 	this.name = base.name + " (Off)";
 	this.upgradeTitle = "Turn Off " + base.name;
 	base.upgradeTitle = "Turn On " + base.name;
-	this.description = "Air Conditioning has a big impact on energy consumption, but also effects the happiness of occupants";
+	this.description = "Air conditioning has a big impact on energy consumption and occupant happiness when it's hot";
 	this.upgrades = function () {
 		return _.map(base.upgrades(), function (upgrade) {
 			if (upgrade[0] instanceof OffAirCon) {
@@ -20,7 +20,7 @@ function OffAirCon(base) {
 		};
 	};
 	this.state = {name: "bad", description: "No Air Conditioning"};
-};
+}
 
 function AirCon() {
 	this.upgradeTitle = this.name = "Air Conditioning";
@@ -36,4 +36,4 @@ function AirCon() {
 		};
 	};
 	this.state = {name: "good", description: ""};
-};
+}
