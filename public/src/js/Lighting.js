@@ -4,7 +4,7 @@ function NoLighting(base) {
 	this.name = "Candles";
 	this.upgrades = function () {
 		return _.map(base.upgrades(), function (upgrade) {
-			if (upgrade[0] instanceof OffElevator) {
+			if (upgrade[0] instanceof NoLighting) {
 				return [base, {}];
 			}
 			return upgrade;
@@ -25,7 +25,7 @@ function T12Lighting() {
 	this.name = "T12 Light Bulbs";
 	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
-		return [ [new NoLighting(this), { money: -10 }], [new T8Lighting(), { money: -1000 }] ];
+		return [ [new NoLighting(this), { money: -10 }], [new T8Lighting(), { money: -1000 }], [new EmergencyLEDs(this), { money: -100 }], [new OccupancySensor(this), { money: -800 }] ];
 	};
 	this.monthDelta = function (game, baselineEnergy, weather) {
 		return {
@@ -42,7 +42,7 @@ function T8Lighting() {
 	this.upgradeTitle = "Upgrade to " + this.name;
 	this.description = "Replacing T12 lamps and ballasts with high efficiency electronic ballasts and T8 lamps can provide savings greater than 40%";
 	this.upgrades = function () {
-		return [ [new NoLighting(this), { money: -10 }] ];
+		return [ [new NoLighting(this), { money: -10 }], [new EmergencyLEDs(this), { money: -100 }], [new OccupancySensor(this), { money: -800 }]  ];
 	};
 	this.monthDelta = function (game, baselineEnergy, weather) {
 		return {
@@ -50,6 +50,38 @@ function T8Lighting() {
 			happy: 0,
 			energy: baselineEnergy * 0.6,
 			messages: []
+		};
+	};
+};
+
+function EmergencyLEDs(base) {
+	this.base = base;
+	this.name = base.name;
+	this.upgradeTitle = "Replace Emergency Exit Sign Bulbs With LEDs";
+	this.upgrades = wrappedBaseUpgradeFunctions(base, EmergencyLEDs);
+	this.monthDelta = function (game, baselineEnergy, weather) {
+		var parent = base.monthDelta(game, baselineEnergy, weather)
+		return {
+			money: parent.money,
+			happy: parent.happy,
+			energy: 0.95 * parent.energy,
+			messages: parent.messages
+		};
+	};
+};
+
+function OccupancySensor(base) {
+	this.base = base;
+	this.name = base.name;
+	this.upgradeTitle = "Install Occupancy-Sensing Light Switches in Common Areas";
+	this.upgrades = wrappedBaseUpgradeFunctions(base, OccupancySensor);
+	this.monthDelta = function (game, baselineEnergy, weather) {
+		var parent = base.monthDelta(game, baselineEnergy, weather)
+		return {
+			money: parent.money,
+			happy: parent.happy,
+			energy: 0.65 * parent.energy,
+			messages: parent.messages
 		};
 	};
 };
