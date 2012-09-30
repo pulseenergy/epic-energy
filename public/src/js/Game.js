@@ -61,6 +61,9 @@ Game.prototype.applyCost = function (total) {
 Game.prototype.applyHappiness = function (deltaHappiness) {
 	var occupant, occupantIndex;
 	var sign = deltaHappiness < 0 ? -1 : 1;
+	if (deltaHappiness >= 0) {
+		deltaHappiness++;
+	}
 	for (var i = 0; i < Math.abs(deltaHappiness); i++) {
 		var notUnhappy = this.notUnhappyOccupants();
 		if (notUnhappy.length == 0) {
