@@ -23,7 +23,9 @@ function ThrowParty(base) {
 		return base.upgrades();
 	};
 	this.monthDelta = function (game, baselineEnergy, weather) {
-		return base.monthDelta(game, baselineEnergy, weather);
+		var delta = base.monthDelta(game, baselineEnergy, weather);
+		delta.messages = (delta.messages || []).concat("Sweet party!");
+		return delta;
 	};
 };
 
