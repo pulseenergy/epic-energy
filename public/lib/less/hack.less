@@ -51,7 +51,7 @@
 					display: block;
 					float: left;
 					.border-radius(6px);
-					border: 1px dashed #aaa;
+					border: 2px solid #bbb;
 					.box-sizing(border-box);
 					padding: 6px 2px;
 					margin: 0 5px 5px 0;
@@ -138,12 +138,20 @@
 			.clearfix;
 			
 			.monthly-summary {
+				
+				font-size: 15px;
+				line-height: 1.5em;
+				
 				h1 {
-
+					margin-bottom: .3em;
 				}
 
 				p {
-
+					
+				}
+				
+				ul {
+					margin-top: .2em;
 				}
 			}
 			
@@ -199,7 +207,7 @@
 				font-size: 12px;
 				color: @gray;
 				text-align: center;
-				border: 2px solid #ddd;
+				border: 2px dashed #ccc;
 			}
 		}		
 	}
@@ -257,19 +265,19 @@
 
 .pending-action {
 	.clearfix;
-	height: 50px;
+	height: 40px;
 	margin-top: -75px;
 	margin-bottom: 20px;
 	padding: 0 20px;
 	background: #fff;
 	border: 1px solid #bbb;
-	.border-radius(25px);
+	.border-radius(20px);
 	.box-sizing(border-box);
 	position: relative;
 	#gradient .vertical(#eaeaea, #fafafa);
 	
 	em {
-		
+		color: @orange;
 	}
 	
 	.selected-action {
@@ -280,27 +288,27 @@
 	
 	.pending-action-name {
 		float: left;
-		line-height: 48px;
+		line-height: 38px;
 		font-size: 13px;
 		
 		h4 {
 			font-weight: 600;
-			line-height: 48px;
+			line-height: 38px;
 		}
 	}
 	
 	button {
 		position: absolute;
-		line-height: 48px !important;
+		line-height: 38px !important;
 		margin: 0;
 		top: -1px;
 		right: -1px;
-		.border-radius(0 25px 25px 0);
+		.border-radius(0 20px 20px 0);
 		padding-top: 0;
 		padding-bottom: 0;
 		padding-left: 10px;
-		font-size: 16px;
-		font-weight: 600;
+		font-size: 15px;
+		font-weight: 400;
 	}
 }
 
