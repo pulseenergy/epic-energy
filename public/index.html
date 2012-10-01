@@ -136,16 +136,17 @@
 	<div id="pendingAction" class="pending-action">
 		<div class="pending-action-name">
 			<!-- ko if: !pendingAction() -->
-			<em>You may perform <strong>one</strong> action this month. Please choose from the list below.</em>
+				<em>You may perform <strong>one</strong> action this month. Please choose from the list below.</em>
 			<!-- /ko -->
 			<!-- ko if: pendingAction -->
-							<span class="selected-action" data-bind="with: pendingAction">
-								<span class="action-name" data-bind="text: upgradeTitle"></span> for
-								<span class="action-cost" data-bind="text: formattedCost"></span>
-							</span>
+				<span class="selected-action" data-bind="with: pendingAction">
+					<span class="action-name" data-bind="text: upgradeTitle"></span> for
+					<span class="action-cost" data-bind="text: formattedCost"></span>
+				</span>
 			<!-- /ko -->
 		</div>
-		<button class="btn btn-large btn-primary btn-inverse" tabindex="1" data-bind="click: advanceToNextMonth, disable: gameOver">Next month &#187;</button>
+		<button class="cancel-action close tooltipped" title="Cancel action" data-bind="visible: pendingAction, click: function () { pendingAction(null); }">&times;</button>
+		<button class="next-month btn btn-large btn-primary btn-inverse" tabindex="1" data-bind="click: advanceToNextMonth, disable: gameOver">Next month &#187;</button>
 	</div>
 
 	<h3>Available Actions</h3>
@@ -165,7 +166,7 @@
 
 			<div class="action-cost" data-bind="text: formattedCost, css: { insufficentFunds: !available }"></div>
 			<div class="action-do">
-				<button class="btn btn-success" data-bind="click: $root.pendingAction, enable: available">Select</button>
+				<button class="btn btn-success" data-bind="click: $root.pendingAction, enable: available, disable: $root.pendingAction()">Select</button>
 			</div>
 
 		</div>
