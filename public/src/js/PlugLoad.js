@@ -1,9 +1,11 @@
 function PlugLoad() {
 	this.upgradeTitle = this.name = "Occupant Plug Load";
 	this.upgrades = function () {
-		return [ [new ThrowParty(this), { money: -100, happy: 3 }],
-		         [new PowerBars(this), { money: -300 }],
-		         [new ReplaceWithLaptops(this), { money: -3000 }]];
+		return [
+			[new ThrowParty(this), { money: -100, happy: 3 }],
+			[new PowerBars(this), { money: -300 }],
+			[new ReplaceWithLaptops(this), { money: -3000 }]
+		];
 	};
 	this.monthDelta = function (game, baselineEnergy, weather) {
 		return {
@@ -26,7 +28,7 @@ function ThrowParty(base) {
 	var partyHappened = false;
 	this.monthDelta = function (game, baselineEnergy, weather) {
 		var delta = base.monthDelta(game, baselineEnergy, weather);
-		if (partyHappened == false) {
+		if (!partyHappened) {
 			delta.messages = (delta.messages || []).concat(randomItem(["Sweet party!", "I drank too much at the party", "We should have a party every month!"]));
 			partyHappened = true;
 		}

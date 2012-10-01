@@ -32,7 +32,7 @@ function Game() {
 	this.weather = vancouverWeather;
 	this.baselineEnergy = vancouverOfficeEnergy;
 	this.disaggregatedBaseline = this.disaggregate(this.baselineEnergy, this.baselineEnergy);
-	this.messages = []
+	this.messages = [];
 	this.appendMessages(this.messages, ["It's cold in here. I'm not getting enough heat."]);
 }
 
@@ -68,7 +68,7 @@ Game.prototype.applyHappiness = function (deltaHappiness) {
 	}
 	for (var i = 0; i < Math.abs(deltaHappiness); i++) {
 		var notUnhappy = this.notUnhappyOccupants();
-		if (notUnhappy.length == 0) {
+		if (notUnhappy.length === 0) {
 			break;
 		}
 		occupantIndex = _.random(0, notUnhappy.length - 1);

@@ -63,7 +63,7 @@ function EmergencyLEDs(base) {
 	this.upgradeTitle = "Replace Emergency Exit Sign Bulbs With LEDs";
 	this.upgrades = wrappedBaseUpgradeFunctions(base, EmergencyLEDs);
 	this.monthDelta = function (game, baselineEnergy, weather) {
-		var parent = base.monthDelta(game, baselineEnergy, weather)
+		var parent = base.monthDelta(game, baselineEnergy, weather);
 		return {
 			money: parent.money,
 			happy: parent.happy,
@@ -80,7 +80,7 @@ function OccupancySensor(base) {
 	this.upgradeTitle = "Install Occupancy-Sensing Light Switches in Common Areas";
 	this.upgrades = wrappedBaseUpgradeFunctions(base, OccupancySensor);
 	this.monthDelta = function (game, baselineEnergy, weather) {
-		var parent = base.monthDelta(game, baselineEnergy, weather)
+		var parent = base.monthDelta(game, baselineEnergy, weather);
 		return {
 			money: parent.money,
 			happy: parent.happy,
