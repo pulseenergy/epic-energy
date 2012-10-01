@@ -53,11 +53,6 @@ function ViewModel(game) {
 	this.update();
 }
 
-function vowel(char) {
-	char = char.toLowerCase();
-	return char == 'a' || char == 'e' || char == 'i' || char == 'o' || char == 'u';
-}
-
 ViewModel.prototype.update = function () {
 	this.budget(this.game.budget);
 	this.month(this.game.month);
@@ -91,7 +86,7 @@ ViewModel.prototype.update = function () {
 		});
 	}
 
-	var budget = game.budget;
+	var budget = this.game.budget;
 
 	var actions = {};
 	_.each(this.game.equipment, function (equip, slot) {
@@ -127,7 +122,7 @@ ViewModel.prototype.update = function () {
 			moreLess: this.game.computeFinalEnergy() < 0 ? 'more' : 'less'
 		});
 		this.gameOver(true);
-		twttr.widgets.load();
+		twttr && twttr.widgets.load();
 	}
 };
 
