@@ -94,9 +94,9 @@ function HibernatingRegenerativeDriveElevator() {
 	this.upgradeTitle = "Upgrade to " + this.name;
 	this.upgrades = function () {
 		return [
-	        	[new OffElevator(this), {}],
-				[new LEDElevatorLighting(this), { money: -250}]
-	    ];
+			[new OffElevator(this), {}],
+			[new LEDElevatorLighting(this), { money: -250}]
+		];
 	};
 	this.monthDelta = function (game, baselineEnergy, weather) {
 		return {
