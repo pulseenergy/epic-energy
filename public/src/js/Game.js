@@ -219,7 +219,7 @@ Game.prototype.youLose = function () {
 };
 
 Game.prototype.computeFinalEnergyPercent = function () {
-	return (100 * (getBaselineTotal() - this.consumed) / getBaselineTotal()).toFixed(2);
+	return 100 * (getBaselineTotal() - this.consumed) / getBaselineTotal();
 };
 
 Game.prototype.computeFinalEnergy = function () {
@@ -242,7 +242,7 @@ Game.prototype.computeScore = function () {
 	}, 0);
 	var energy = this.computeFinalEnergy() / 10;
 	var budget = this.budget / 10; // max 100
-	console.log(energy, budget, occupant);
+	if (debug) console.log(energy, budget, occupant);
 	return Math.round(energy + budget + occupant);
 };
 

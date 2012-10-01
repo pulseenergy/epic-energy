@@ -36,6 +36,8 @@
 		})
 	});
 
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
 	var _gaq = _gaq || [];
 	_gaq.push(['_setAccount', 'UA-3014482-15']);
 	_gaq.push(['_trackPageview']);
@@ -127,7 +129,6 @@
 	</div>
 
 </div>
-
 </body>
 </html>
 
@@ -177,19 +178,21 @@
 	<div class="game-over">
 		<h3>Game Over</h3>
 		<p>Final score:</p>
-		<strong class="final-score"><span data-bind="text: finalScore"></span> <div id="twitter-button-container"></div></strong>
+		<div class="final-score">
+			<strong data-bind="text: finalStats().score"></strong>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-related="pulseenergy" data-bind="attr: { 'data-text': 'I just scored ' + finalStats().score + ' in Epic Energy III, created by @PulseEnergy team during @CleanwebYVR' }" data-hashtags="epicenergy,html5,cleanweb" data-lang="en"></a>
+		</div>
 		<ul>
-			<!-- ko if: finalEnergyPercent() == '0.00' -->
+			<!-- ko if: finalStats().energyPercent === 0 -->
 			<li>Energy: used same as last year</li>
 			<!-- /ko -->
-			<!-- ko ifnot: finalEnergyPercent() == '0.00' -->
-			<li>Energy: used <strong data-bind="text: finalEnergyPercent() + '%'"></strong> <strong data-bind="text: finalEnergyMoreLess"></strong> than last year</li>
+			<!-- ko ifnot: finalStats().energyPercent === 0 -->
+			<li>Energy: used <strong data-bind="text: accounting.toFixed(finalStats().energyPercent, 1) + '%'"></strong> <strong data-bind="text: finalStats().moreLess"></strong> than last year</li>
 			<!-- /ko -->
-			<li>Occupants: <strong data-bind="text: finalOccupantHappiness().happy"></strong> happy, <strong data-bind="text: finalOccupantHappiness().content"></strong> content, <strong data-bind="text: finalOccupantHappiness().discontent"></strong> discontent and <strong data-bind="text: finalOccupantHappiness().unhappy"></strong> unhappy</li>
+			<li>Occupants: <strong data-bind="text: finalStats().happiness.happy"></strong> happy, <strong data-bind="text: finalStats().happiness.content"></strong> content, <strong data-bind="text: finalStats().happiness.discontent"></strong> discontent and <strong data-bind="text: finalStats().happiness.unhappy"></strong> unhappy</li>
 		</ul>
 
 		<!--<button class="btn start-over" data-bind="click: function () { window.location.reload(false) }">Start over</button>-->
-
 	</div>
 </script>
 
