@@ -759,7 +759,7 @@ footer{font-size:12px;margin-top:30px;text-align:right;}
 .pending-action .pending-action-name{float:left;line-height:38px;font-size:13px;}.pending-action .pending-action-name h4{font-weight:600;line-height:38px;}
 .pending-action .cancel-action{position:absolute;right:130px;color:red;opacity:0.9;font-size:25px;top:8px;}
 .pending-action .next-month{position:absolute;line-height:38px !important;margin:0;top:-1px;right:-1px;-webkit-border-radius:0 20px 20px 0;-moz-border-radius:0 20px 20px 0;border-radius:0 20px 20px 0;padding-top:0;padding-bottom:0;padding-left:10px;font-size:15px;font-weight:400;}
-.final-score{font-size:50px;line-height:50px;letter-spacing:4px;display:block;text-align:center;margin-bottom:15px;}
+.final-score{font-size:50px;line-height:50px;letter-spacing:4px;text-align:center;margin-bottom:15px;}
 .start-over{float:left;margin-right:10px;}
 body{padding:50;min-height:100%;margin:0;background:#ddd;}body .building-container{width:260px;height:300px;position:relative;background:url(img/bldg_winter.png) top left no-repeat;left:-30px;top:-10px;}
 body.season-spring .building-container{background-image:url(img/bldg_spring.png);-webkit-transition:all 5s;-moz-transition:all 5s;-ms-transition:all 5s;-o-transition:all 5s;transition:all 5s;}
