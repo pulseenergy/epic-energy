@@ -129,9 +129,7 @@ ViewModel.prototype.update = function () {
 		this.finalEnergyMoreLess(this.game.computeFinalEnergy() < 0 ? 'more' : 'less');
 		this.finalEnergyPercent(this.game.computeFinalEnergyPercent());
 		this.gameOver(true);
-
-		$('#twitter-button-container').html('<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="I just scored ' + this.finalScore() + ' in Epic Energy III, a building energy sim created during @CleanwebYVR #epicenergy #html5" data-count="none" data-related="pulseenergy" data-lang="en"></a>');
-		$.getScript('http://platform.twitter.com/widgets.js');
+		twttr.widgets.load();
 	}
 };
 
