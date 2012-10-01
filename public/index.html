@@ -179,17 +179,17 @@
 		<h3>Game Over</h3>
 		<p>Final score:</p>
 		<div class="final-score">
-			<strong data-bind="text: finalScore"></strong>
-			<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-related="pulseenergy" data-bind="attr: { 'data-text': 'I just scored ' + finalScore() + ' in Epic Energy III, created by @PulseEnergy team during @CleanwebYVR' }" data-hashtags="epicenergy,html5,cleanweb" data-lang="en"></a>
+			<strong data-bind="text: finalStats().score"></strong>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-related="pulseenergy" data-bind="attr: { 'data-text': 'I just scored ' + finalStats().score + ' in Epic Energy III, created by @PulseEnergy team during @CleanwebYVR' }" data-hashtags="epicenergy,html5,cleanweb" data-lang="en"></a>
 		</div>
 		<ul>
-			<!-- ko if: finalEnergyPercent() == '0.00' -->
+			<!-- ko if: finalStats().energyPercent === 0 -->
 			<li>Energy: used same as last year</li>
 			<!-- /ko -->
-			<!-- ko ifnot: finalEnergyPercent() == '0.00' -->
-			<li>Energy: used <strong data-bind="text: finalEnergyPercent() + '%'"></strong> <strong data-bind="text: finalEnergyMoreLess"></strong> than last year</li>
+			<!-- ko ifnot: finalStats().energyPercent === 0 -->
+			<li>Energy: used <strong data-bind="text: accounting.toFixed(finalStats().energyPercent, 1) + '%'"></strong> <strong data-bind="text: finalStats().moreLess"></strong> than last year</li>
 			<!-- /ko -->
-			<li>Occupants: <strong data-bind="text: finalOccupantHappiness().happy"></strong> happy, <strong data-bind="text: finalOccupantHappiness().content"></strong> content, <strong data-bind="text: finalOccupantHappiness().discontent"></strong> discontent and <strong data-bind="text: finalOccupantHappiness().unhappy"></strong> unhappy</li>
+			<li>Occupants: <strong data-bind="text: finalStats().happiness.happy"></strong> happy, <strong data-bind="text: finalStats().happiness.content"></strong> content, <strong data-bind="text: finalStats().happiness.discontent"></strong> discontent and <strong data-bind="text: finalStats().happiness.unhappy"></strong> unhappy</li>
 		</ul>
 
 		<!--<button class="btn start-over" data-bind="click: function () { window.location.reload(false) }">Start over</button>-->
