@@ -84,9 +84,9 @@
 						
 						<!-- ko foreach: equipment -->
 						<li data-bind="attr: { title: name }, css: { selected: $root.selectedCategory() === category }, class: category, click: $root.selectCategory.bind($root)">
-                          <span data-bind="text: categoryFriendlyName(category)"></span>
-                          <span data-bind="class: state, attr: {title: state_hover}"></span>
-                        </li>
+							<span data-bind="text: categoryFriendlyName(category)"></span>
+							<span data-bind="class: state, attr: {title: state_hover}"></span>
+						</li>
 						<!-- /ko -->
 					</ul>
 				</div>
@@ -129,14 +129,12 @@
 	</div>
 
 </div>
-</body>
-</html>
 
 <script type="text/html" id="actions">
 	<div id="pendingAction" class="pending-action">
 		<div class="pending-action-name">
 			<!-- ko if: !pendingAction() -->
-				<em>You may perform <strong>one</strong> action this month. Please choose from the list below.</em>
+			<em>You may perform <strong>one</strong> action this month. Please choose from the list below.</em>
 			<!-- /ko -->
 			<!-- ko if: pendingAction -->
 				<span class="selected-action" data-bind="with: pendingAction">
@@ -203,3 +201,5 @@
 		<p>Everybody moved out. Maybe you were too aggressive with the energy savings?</p>
 	</div>
 </script>
+</body>
+</html>
