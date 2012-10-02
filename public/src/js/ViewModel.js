@@ -160,7 +160,7 @@ ViewModel.prototype.advanceToNextMonth = function () {
 	this.lastMonthChangePercent = Math.round(100 * (this.lastMonthDelta.energy - this.game.thisMonthsBaseline()) / this.game.thisMonthsBaseline());
 
 	var messages = this.getGossipMessages();
-alert('need bind');
+
 	var tomorrow = function() {
 		var day = this.day() + 3;
 		if (day > 29) {
