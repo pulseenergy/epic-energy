@@ -9,6 +9,18 @@ ko.bindingHandlers['class'] = {
 	}
 };
 
+ko.bindingHandlers['countup'] = {
+	'update': function (element, valueAccessor) {
+		var value = accounting.unformat(ko.utils.unwrapObservable(valueAccessor()));
+		$({count: 0}).animate({count: value}, {
+			duration: 5000,
+			easing: 'easeInOutExpo',
+			step: function() {
+				ko.utils.setTextContent(element, accounting.formatNumber(this.count));
+			}});
+	}
+};
+
 function goFullScreen() {
 	var docElm = document.documentElement;
 	if (docElm.requestFullscreen) {

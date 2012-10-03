@@ -25,7 +25,7 @@ function Game() {
 	for (var i = 0; i < 10; i++) {
 		this.occupants[i] = new Occupant();
 	}
-	this.month = 11;//@@@
+	this.month = 0;
 
 	// later: these could be dynamic for a given location
 	// disaggregated data down below would require using fixed end use percentages
