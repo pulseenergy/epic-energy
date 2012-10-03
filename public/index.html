@@ -176,21 +176,32 @@
 <script type="text/html" id="game-over">
 	<div class="game-over">
 		<h3>Game Over</h3>
-		<p>Final score:</p>
-		<div class="final-score">
-			<!-- TODO: count up effect? -->
-			<strong data-bind="text: finalStats().score"></strong>
-			<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-related="pulseenergy" data-bind="attr: { 'data-text': 'I just scored ' + finalStats().score + ' in Epic Energy III, created by @PulseEnergy team during @CleanwebYVR' }" data-hashtags="epicenergy,html5,cleanweb" data-lang="en"></a>
-		</div>
+		<aside class="tweets">
+			<a class="twitter-timeline" width="250" height="350" data-dnt=true href="https://twitter.com/search?q=%23epicenergy" data-widget-id="253333870106247168">Tweets about "#epicenergy"</a>
+		</aside>
+		<div class="score-breakdown">
 		<ul>
 			<!-- ko if: finalStats().energyPercent === 0 -->
 			<li>Energy: used same as last year</li>
 			<!-- /ko -->
 			<!-- ko ifnot: finalStats().energyPercent === 0 -->
-			<li>Energy: used <strong data-bind="text: accounting.toFixed(finalStats().energyPercent, 1) + '%'"></strong> <strong data-bind="text: finalStats().moreLess"></strong> than last year</li>
+			<li><label>Energy</label>
+				<strong data-bind="text: accounting.toFixed(finalStats().energyPercent, 1) + '%'"></strong> <strong data-bind="text: finalStats().moreLess"></strong> than last year
+			</li>
 			<!-- /ko -->
-			<li>Occupants: <strong data-bind="text: finalStats().happiness.happy"></strong> happy, <strong data-bind="text: finalStats().happiness.content"></strong> content, <strong data-bind="text: finalStats().happiness.discontent"></strong> discontent and <strong data-bind="text: finalStats().happiness.unhappy"></strong> unhappy</li>
+			<li><label>Occupants</label>
+				<strong data-bind="text: finalStats().happiness.happy"></strong> happy, <strong data-bind="text: finalStats().happiness.content"></strong> content, <strong data-bind="text: finalStats().happiness.discontent"></strong> discontent and <strong data-bind="text: finalStats().happiness.unhappy"></strong> unhappy
+			</li>
+
+			<li>
+				<label>Final score</label>
+				<div class="final-score">
+					<!-- TODO: count up effect? -->
+					<strong data-bind="text: finalStats().score"></strong>
+					<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-related="pulseenergy" data-bind="attr: { 'data-text': 'I just scored ' + finalStats().score + ' in Epic Energy III, created by @PulseEnergy team during @CleanwebYVR' }" data-hashtags="epicenergy,html5,cleanweb" data-lang="en"></a>
+				</div>
 		</ul>
+		</div>
 
 		<!--<button class="btn start-over" data-bind="click: function () { window.location.reload(false) }">Start over</button>-->
 	</div>
