@@ -1,52 +1,12 @@
 @import "lib/less/bootstrap.less";
 @import "hack.less";
+@import "seasons.less";
 
 body {
 	padding: 50;
 	min-height: 100%;
 	margin: 0;
 	background: #ddd;
-	
-	.building-container {
-		width: 260px;
-		height: 300px;		
-		position: relative;
-		background: url(img/bldg_winter.png) top left no-repeat;
-		left: -30px;
-		top: -10px;
-	}
-	
-	&.season-spring {
-		
-		.building-container {
-			background-image: url(img/bldg_spring.png);
-			.transition(all 5s);
-		}
-	}
-	
-	&.season-summer {
-		
-		.building-container {
-			background-image: url(img/bldg_summer.png);
-			.transition(all 5s);
-		}
-	}
-	
-	&.season-winter {
-		
-		.building-container {
-			background-image: url(img/bldg_winter.png);
-			.transition(all 5s);
-		}
-	}
-	
-	&.season-fall {
-		
-		.building-container {
-			background-image: url(img/bldg_fall.png);
-			.transition(all 5s);
-		}
-	}
 }
 
 .insufficentFunds {
@@ -77,3 +37,5 @@ body {
 .messages li.spreadsheet {
 	background: url(/img/balloon-left.png) no-repeat;
 }
+
+
