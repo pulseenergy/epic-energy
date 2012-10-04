@@ -1,0 +1,76 @@
+body {
+
+	.building-weather {
+		position: absolute;
+		top: 0; left: 0; right: 0; bottom: 20px;
+	}
+
+	.building-container {
+		background: url(img/bldg_winter.png) top left no-repeat;
+		width: 260px;
+		height: 300px;
+		position: relative;
+		left: -30px;
+		top: -10px;
+	}
+
+	&.season-spring {
+
+		.building-container {
+			background-image: url(img/bldg_spring.png);
+			.transition(all 5s);
+		}
+	}
+
+	&.season-summer {
+
+		.building-container {
+			background-image: url(img/bldg_summer.png);
+			.transition(all 5s);
+		}
+	}
+
+	&.season-winter {
+
+		.building-container {
+			background-image: url(img/bldg_winter.png);
+			.transition(all 5s);
+		}
+	}
+
+	&.season-fall {
+
+		.building-container {
+			background-image: url(img/bldg_fall.png);
+			.transition(all 5s);
+		}
+	}
+}
+
+@keyframes snow {
+	0% {background-position: 0 0, 0 0;}
+	100% {background-position: 0 400px, 0 300px;}
+}
+
+@-moz-keyframes snow {
+	0% {background-position: 0 0, 0 0;}
+	100% {background-position: 0 400px, 0 300px;}
+}
+
+@-webkit-keyframes snow {
+	0% {background-position: 0 0, 0 0;}
+	100% {background-position: 0 400px, 0 300px;}
+}
+
+@-ms-keyframes snow {
+	0% { background-position: 0 0, 0 0;}
+	100% {background-position: 0 400px, 0 300px;}
+}
+
+.season-winter .building-weather {
+	background-image: url('img/snow3.png'), url('img/snow2.png');
+	-webkit-animation: snow 10s linear infinite;
+	-moz-animation: snow 10s linear infinite;
+	-ms-animation: snow 10s linear infinite;
+	animation: snow 10s linear infinite;
+}

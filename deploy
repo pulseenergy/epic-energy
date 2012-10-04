@@ -1,0 +1,4 @@
+For now, push to nodester from the nodester branch, which has pre-compiled css.
+
+git checkout nodester
+git push nodester nodester:master

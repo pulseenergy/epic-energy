@@ -1,0 +1,41 @@
+@import "lib/less/bootstrap.less";
+@import "hack.less";
+@import "seasons.less";
+
+body {
+	padding: 50;
+	min-height: 100%;
+	margin: 0;
+	background: #ddd;
+}
+
+.insufficentFunds {
+	color: red;
+}
+
+#fullscreen-button {
+	position: absolute;
+	top: 6px;
+	right: 5px;
+}
+
+:-webkit-full-screen #fullscreen-button {
+	display: none;
+}
+
+.messages {
+	padding-left: 0;
+	margin-left: 0;
+}
+.messages li {
+	padding-left: 18px;
+	list-style: none;
+}
+.messages li.gossip {
+	background: url(/img/balloon-left.png) no-repeat;
+}
+.messages li.spreadsheet {
+	background: url(/img/balloon-left.png) no-repeat;
+}
+
+

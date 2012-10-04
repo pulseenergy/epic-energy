@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Legends of Energy 3: Downtown</title>
+<link rel="stylesheet" href="global.css">
+
+<script src="lib/underscore-1.4.0.js"></script>
+<script src="lib/knockout-2.1.0.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="lib/js/bootstrap-button.js"></script>
+<script src="src/js/util.js"></script>
+<script src="src/js/Occupant.js"></script>
+<script src="src/js/Equipment.js"></script>
+<script src="src/js/Boiler.js"></script>
+<script src="src/js/HotWater.js"></script>
+<script src="src/js/Building.js"></script>
+<script src="src/js/Game.js"></script>
+<script src="src/js/ViewModel.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+<script>
+	var game, viewModel;
+
+	$(function () {
+		game = new Game();
+		viewModel = new ViewModel(game);
+		ko.applyBindings(viewModel);
+	});
+</script>
+</head>
+<body>
+
+<div class="month-tracker">
+	<div class="container">
+		<div class="row">
+			<span class="span12">
+				<ul>
+					<li>Jan</li>
+					<li>Feb</li>
+					<li>Mar</li>
+					<li>Apr</li>
+					<li>May</li>
+					<li class="selected">Jun</li>
+					<li>Jul</li>
+					<li>Aug</li>
+					<li>Sep</li>
+					<li>Oct</li>
+					<li>Nov</li>
+					<li>Dec</li>
+				</ul>
+			</span>
+		</div>
+	</div>
+</div>
+
+<div class="main-body season-spring">
+	<div class="container">
+		<div class="row">
+			<span class="left-column span4">
+				<div class="building-container"></div>
+				<div class="equipment-summary">
+					<ul>
+						<li class="occupants"><h4>Occupants</h4></li>
+						<li class="building"><h4>Building</h4></li>
+						<li class="hvac"><h4>HVAC</h4></li>
+						<li class="cooling"><h4>Cooling</h4></li>
+						<li class="water-heating"><h4>Heating</h4></li>
+						<li class="lighting"><h4>Lighting</h4></li>
+						<li class="elevator"><h4>Elevator</h4></li>
+					</ul>
+				</div>
+			</span>
+			<span class="right-column span8">
+				<div class="right-column-top">
+					<div class="monthly-summary">
+						<h1>June 1, 2012</h1>
+						<p>Lorem ipsum...</p>
+						<ul>
+							<li>This happened in May...</li>
+							<li>So did this...</li>
+						</ul>
+					</div>
+					<div class="score-summary">
+						<dl>
+							<dt>Energy</dt>
+							<dd>75%</dd>
+							<dt>Remaining budget</dt>
+							<dd>$28,500</dd>
+							<dt>Occupant satisfaction</dt>
+							<dd>58%</dd>
+						</dl>
+					</div>
+				</div>
+				
+				<div class="right-column-bottom">
+					<h2>Available actions</h2>
+				</div>
+				
+			</span>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

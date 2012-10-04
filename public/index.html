@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Epic Energy III</title>
+<link rel="stylesheet" href="global.css">
+
+<script type="text/javascript" src="lib/underscore-1.4.0.js"></script>
+<!-- only leaving these external due to truncation bug that affects mobile safari -->
+<script type="text/javascript" src="http://cloud.github.com/downloads/SteveSanderson/knockout/knockout-2.1.0.debug.js"></script>
+<script type="text/javascript" src="lib/accounting.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="lib/jquery.easing.js"></script>
+<script type="text/javascript" src="lib/js/bootstrap-transition.js"></script>
+<script type="text/javascript" src="lib/js/bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="lib/js/bootstrap-button.js"></script>
+<script type="text/javascript" src="src/js/util.js"></script>
+<script type="text/javascript" src="src/js/Occupant.js"></script>
+<script type="text/javascript" src="src/js/Boiler.js"></script>
+<script type="text/javascript" src="src/js/HotWater.js"></script>
+<script type="text/javascript" src="src/js/Elevator.js"></script>
+<script type="text/javascript" src="src/js/AirCon.js"></script>
+<script type="text/javascript" src="src/js/PlugLoad.js"></script>
+<script type="text/javascript" src="src/js/Lighting.js"></script>
+
+<script type="text/javascript" src="data/data.json"></script>
+<script type="text/javascript" src="src/js/Game.js"></script>
+<script type="text/javascript" src="src/js/ViewModel.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+
+<script>
+	var game, viewModel;
+
+	$(function () {
+		$('#fullscreen-button').click(goFullScreen);
+		game = new Game();
+		viewModel = new ViewModel(game);
+		ko.applyBindings(viewModel);
+
+		$('body').tooltip({
+			selector: '.tooltipped'
+		})
+	});
+
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-3014482-15']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+<body data-bind="class: season">
+<button class="btn btn-mini" id="fullscreen-button">Fullscreen</button>
+<div class="month-tracker">
+	<div class="container">
+		<div class="row">
+			<span class="span12">
+				<ul>
+					<li class="the-title">Epic Energy III</li>
+					<li data-bind="css: { selected: month() === 0 }">Jan</li>
+					<li data-bind="css: { selected: month() === 1 }">Feb</li>
+					<li data-bind="css: { selected: month() === 2 }">Mar</li>
+					<li data-bind="css: { selected: month() === 3 }">Apr</li>
+					<li data-bind="css: { selected: month() === 4 }">May</li>
+					<li data-bind="css: { selected: month() === 5 }">Jun</li>
+					<li data-bind="css: { selected: month() === 6 }">Jul</li>
+					<li data-bind="css: { selected: month() === 7 }">Aug</li>
+					<li data-bind="css: { selected: month() === 8 }">Sep</li>
+					<li data-bind="css: { selected: month() === 9 }">Oct</li>
+					<li data-bind="css: { selected: month() === 10 }">Nov</li>
+					<li data-bind="css: { selected: month() === 11 }">Dec</li>
+				</ul>
+			</span>
+		</div>
+	</div>
+</div>
+<div class="main-body">
+	<div class="container">
+
+		<div class="row">
+			<span class="left-column span3">
+				<div class="building-container">
+					<div class="building-weather"></div>
+				</div>
+				<div class="equipment-summary clearfix">
+					<ul>
+						
+						<!-- ko foreach: equipment -->
+						<li data-bind="attr: { title: name }, css: { selected: $root.selectedCategory() === category }, class: category, click: $root.selectCategory.bind($root)">
+							<span data-bind="text: categoryFriendlyName(category)"></span>
+							<span data-bind="class: state, attr: {title: state_hover}"></span>
+						</li>
+						<!-- /ko -->
+					</ul>
+				</div>
+			</span>
+			<span class="right-column span9">
+				<div class="right-column-top">
+					<div class="score-summary">
+						<dl>
+							<dt>Energy Used</dt>
+							<dd data-bind="text: accounting.formatNumber(energy()) + ' kWh'"></dd>
+							<dt>Remaining Budget</dt>
+							<dd data-bind="text: '$' + accounting.formatNumber(budget())">
+							<dt class="occupants">Occupants</dt>
+							<dd class="occ-box">
+								<span data-bind="foreach: occupants">
+									<span class="occupant tooltipped" data-bind="attr: { 'title': happinessLabel }, class: happinessLabel.toLowerCase()">&nbsp;</span>
+								</span>
+							</dd>
+						</dl>
+					</div>
+					<div class="monthly-summary">
+						<h1><span data-bind="text: monthName() + ' ' + day() + ', ' + year()"></span></h1>
+						<div class="temp" data-bind="text: 'Average Temperature: ' + weather().mean + '\u00b0C'"></div>
+
+						<ul data-bind="foreach: messages" class="messages">
+							<li data-bind="text: body, class: type"></li>
+						</ul>
+					</div>
+
+					
+				</div>
+				<div class="right-column-bottom" data-bind="template: youLose() ? 'you-lose' : gameOver() ? 'game-over' : 'actions'">
+					<!-- dynamic -->
+				</div>
+			</span>
+		</div>
+
+		<footer>Developed during <a href="http://yvr.cleanweb.co">Cleanweb Hackathon Vancouver</a> by folks from <a href="http://www.pulseenergy.com">Pulse Energy</a></footer>
+		
+	</div>
+
+</div>
+
+<script type="text/html" id="actions">
+	<div id="pendingAction" class="pending-action">
+		<div class="pending-action-name">
+			<!-- ko if: !pendingAction() -->
+			<em>You may perform <strong>one</strong> action this month. Please choose from the list below.</em>
+			<!-- /ko -->
+			<!-- ko if: pendingAction -->
+				<span class="selected-action" data-bind="with: pendingAction">
+					<span class="action-name" data-bind="text: upgradeTitle"></span> for
+					<span class="action-cost" data-bind="text: formattedCost"></span>
+				</span>
+			<!-- /ko -->
+		</div>
+		<button class="cancel-action close tooltipped" title="Cancel action" data-bind="visible: pendingAction, click: function () { pendingAction(null); }">&times;</button>
+		<button class="next-month btn btn-large btn-primary btn-inverse" tabindex="1" data-bind="click: advanceToNextMonth, disable: gameOver">Next month &#187;</button>
+	</div>
+
+	<h3>Available Actions</h3>
+	<!-- ko if: !selectedCategory() -->
+	<p class="select-action">&#171; Select a category on the left to see available actions</p>
+	<!-- /ko -->
+	<!-- ko if: selectedCategory() -->
+	<!-- ko if: !availableActionsForSelectedCategory().length -->
+	<p>No available actions.</p>
+	<!-- /ko -->
+	<div data-bind="foreach: availableActionsForSelectedCategory">
+		<div class="action-row">
+			<div class="action-nd">
+				<div class="action-name" data-bind="text: upgradeTitle"></div>
+				<div class="action-description" data-bind="text: description"></div>
+			</div>
+
+			<div class="action-cost" data-bind="text: formattedCost, css: { insufficentFunds: !available }"></div>
+			<div class="action-do">
+				<button class="btn btn-success" data-bind="click: $root.pendingAction, enable: available, disable: $root.pendingAction()">Select</button>
+			</div>
+
+		</div>
+	</div>
+	<!-- /ko -->
+</script>
+
+<script type="text/html" id="game-over">
+	<div class="game-over">
+		<h3>Game Over</h3>
+		<aside class="tweets">
+			<a class="twitter-timeline" width="250" height="350" data-dnt=true href="https://twitter.com/search?q=%23epicenergy" data-widget-id="253333870106247168">Tweets about "#epicenergy"</a>
+		</aside>
+		<div class="score-breakdown">
+		<ul>
+			<!-- ko if: finalStats().energyPercent === 0 -->
+			<li><label>Energy</label>same as last year</li>
+			<!-- /ko -->
+			<!-- ko ifnot: finalStats().energyPercent === 0 -->
+			<li><label>Energy</label>
+				<strong data-bind="text: accounting.toFixed(finalStats().energyPercent, 1) + '%'"></strong> <strong data-bind="text: finalStats().moreLess"></strong> than last year
+			</li>
+			<!-- /ko -->
+			<li><label>Occupants</label>
+				<strong data-bind="text: finalStats().happiness.happy"></strong> happy, <strong data-bind="text: finalStats().happiness.content"></strong> content, <strong data-bind="text: finalStats().happiness.discontent"></strong> discontent and <strong data-bind="text: finalStats().happiness.unhappy"></strong> unhappy
+			</li>
+
+			<li>
+				<label>Final score</label>
+				<div class="final-score">
+					<strong data-bind="countup: finalStats().score"></strong>
+					<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-related="pulseenergy" data-bind="attr: { 'data-text': 'I just scored ' + finalStats().score + ' in Epic Energy III, created by @PulseEnergy team during @CleanwebYVR' }" data-hashtags="epicenergy,html5,cleanweb" data-lang="en"></a>
+				</div>
+		</ul>
+		</div>
+
+		<!--<button class="btn start-over" data-bind="click: function () { window.location.reload(false) }">Start over</button>-->
+	</div>
+</script>
+
+<script type="text/html" id="you-lose">
+	<div class="game-over">
+		<h3>You Lose</h3>
+		<p>Everybody moved out. Maybe you were too aggressive with the energy savings?</p>
+	</div>
+</script>
+</body>
+</html>
