@@ -1,0 +1,36 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Mocha Tests</title>
+	<link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+</head>
+<body>
+<div id="mocha"></div>
+<!--<script src="jquery.js"></script>-->
+<script src="../node_modules/expect.js/expect.js"></script>
+<script src="../node_modules/mocha/mocha.js"></script>
+<script>mocha.setup('bdd')</script>
+
+<script type="text/javascript" src="../public/lib/underscore-1.4.0.js"></script>
+<script type="text/javascript" src="http://cloud.github.com/downloads/SteveSanderson/knockout/knockout-2.1.0.debug.js"></script>
+<script type="text/javascript" src="../public/lib/accounting.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+
+<script type="text/javascript" src="../public/src/js/util.js"></script>
+<script type="text/javascript" src="../public/src/js/Occupant.js"></script>
+<script type="text/javascript" src="../public/src/js/Boiler.js"></script>
+<script type="text/javascript" src="../public/src/js/HotWater.js"></script>
+<script type="text/javascript" src="../public/src/js/Elevator.js"></script>
+<script type="text/javascript" src="../public/src/js/AirCon.js"></script>
+<script type="text/javascript" src="../public/src/js/PlugLoad.js"></script>
+<script type="text/javascript" src="../public/src/js/Lighting.js"></script>
+<script type="text/javascript" src="../public/src/js/Game.js"></script>
+
+
+<!-- tests here -->
+<script src="gameTest.js"></script>
+<script>
+	mocha.run();
+</script>
+</body>
+</html>

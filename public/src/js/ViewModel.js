@@ -1,4 +1,3 @@
-var debug = false;
 var monthNames = 'January February March April May June July August September October November December -'.split(' ');
 var seasons = ['winter', 'spring', 'summer', 'fall'];
 
