@@ -4728,7 +4728,6 @@ body.season-fall .building-container {
   animation: snow 10s linear infinite;
 }
 body {
-  color: red;
   padding: 50;
   min-height: 100%;
   margin: 0;
