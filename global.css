@@ -4658,35 +4658,35 @@ body .building-container {
 }
 body.season-spring .building-container {
   background-image: url(img/bldg_spring.png);
-  -webkit-transition: all 5s;
-  -moz-transition: all 5s;
-  -ms-transition: all 5s;
-  -o-transition: all 5s;
-  transition: all 5s;
+  -webkit-transition: background-image 5s;
+  -moz-transition: background-image 5s;
+  -ms-transition: background-image 5s;
+  -o-transition: background-image 5s;
+  transition: background-image 5s;
 }
 body.season-summer .building-container {
   background-image: url(img/bldg_summer.png);
-  -webkit-transition: all 5s;
-  -moz-transition: all 5s;
-  -ms-transition: all 5s;
-  -o-transition: all 5s;
-  transition: all 5s;
+  -webkit-transition: background-image 5s;
+  -moz-transition: background-image 5s;
+  -ms-transition: background-image 5s;
+  -o-transition: background-image 5s;
+  transition: background-image 5s;
 }
 body.season-winter .building-container {
   background-image: url(img/bldg_winter.png);
-  -webkit-transition: all 5s;
-  -moz-transition: all 5s;
-  -ms-transition: all 5s;
-  -o-transition: all 5s;
-  transition: all 5s;
+  -webkit-transition: background-image 5s;
+  -moz-transition: background-image 5s;
+  -ms-transition: background-image 5s;
+  -o-transition: background-image 5s;
+  transition: background-image 5s;
 }
 body.season-fall .building-container {
   background-image: url(img/bldg_fall.png);
-  -webkit-transition: all 5s;
-  -moz-transition: all 5s;
-  -ms-transition: all 5s;
-  -o-transition: all 5s;
-  transition: all 5s;
+  -webkit-transition: background-image 5s;
+  -moz-transition: background-image 5s;
+  -ms-transition: background-image 5s;
+  -o-transition: background-image 5s;
+  transition: background-image 5s;
 }
 @keyframes snow {
   0% {
