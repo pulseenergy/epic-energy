@@ -1,4 +1,5 @@
-For now, push to nodester from the nodester branch, which has pre-compiled css.
+git checkout gh-pages
+git merge master
+./deploy.sh
 
-git checkout nodester
-git push nodester nodester:master
+no longer updating nodester; will just redirect to pe.com

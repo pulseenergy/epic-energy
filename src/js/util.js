@@ -15,8 +15,11 @@ ko.bindingHandlers['countup'] = {
 		$({count: 0}).animate({count: value}, {
 			duration: 5000,
 			easing: 'easeInOutExpo',
-			step: function() {
+			step: function () {
 				ko.utils.setTextContent(element, accounting.formatNumber(this.count));
+			},
+			complete: function () {
+				ko.utils.setTextContent(element, accounting.formatNumber(value));
 			}});
 	}
 };
