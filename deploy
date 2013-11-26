@@ -1,5 +1,5 @@
 git checkout gh-pages
-git merge master
+git merge -Xsubtree=public master
 ./deploy.sh
 
 no longer updating nodester; will just redirect to pe.com
