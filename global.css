@@ -4746,7 +4746,7 @@ body {
 .messages li {
   padding-left: 22px;
   list-style: none;
-  background: url(/img/messages_icons.png) 100px 100px no-repeat transparent;
+  background: url(img/messages_icons.png) 100px 100px no-repeat transparent;
 }
 .messages li.gossip {
   background-position: 0 -100px;
