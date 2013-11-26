@@ -2004,7 +2004,7 @@ table .span24 {
 .open {
   *z-index: 1000;
 }
-.open  > .dropdown-menu {
+.open > .dropdown-menu {
   display: block;
 }
 .pull-right > .dropdown-menu {
@@ -4237,15 +4237,10 @@ a.badge:hover {
   display: block;
   float: right;
   width: 16px;
-  height: 25px;
+  height: 22px;
   margin-left: 2px;
   margin-bottom: 2px;
-  padding-top: 8px;
   background: url(img/occupant_hollow.png) 0 0 no-repeat;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
 }
 .occupant.happy {
   background-color: #46a546;
@@ -4384,7 +4379,7 @@ footer {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
-  padding-top: 20px;
+  padding-top: 10px;
   *zoom: 1;
 }
 .main-body .right-column .right-column-top:before,
@@ -4396,8 +4391,8 @@ footer {
   clear: both;
 }
 .main-body .right-column .right-column-top .monthly-summary {
-  font-size: 15px;
-  line-height: 1.4em;
+  font-size: 14px;
+  line-height: 18px;
 }
 .main-body .right-column .right-column-top .monthly-summary h1 {
   margin: 0;
@@ -4409,17 +4404,17 @@ footer {
   font-style: italic;
 }
 .main-body .right-column .right-column-top .monthly-summary ul {
-  margin-top: .3em;
+  margin-top: 10px;
 }
 .main-body .right-column .right-column-top .monthly-summary ul li {
-  margin-bottom: .4em;
+  margin-bottom: 8px;
   line-height: 1.3em;
 }
 .main-body .right-column .right-column-top .score-summary {
   width: 170px;
   float: right;
   margin-left: 20px;
-  margin-top: -20px;
+  margin-top: 0px;
   padding: 12px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -4432,7 +4427,7 @@ footer {
   -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
-  background: #fafafa;
+  background: #fff;
   text-align: right;
   text-shadow: 0 1px 0 #fff;
   *zoom: 1;
@@ -4749,12 +4744,13 @@ body {
   margin-left: 0;
 }
 .messages li {
-  padding-left: 18px;
+  padding-left: 22px;
   list-style: none;
+  background: url(/img/messages_icons.png) 100px 100px no-repeat transparent;
 }
 .messages li.gossip {
-  background: url(/img/balloon-left.png) no-repeat;
+  background-position: 0 -100px;
 }
 .messages li.spreadsheet {
-  background: url(/img/balloon-left.png) no-repeat;
+  background-position: 0 -50px;
 }
